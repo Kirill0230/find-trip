@@ -1,0 +1,631 @@
+{
+ "generated_at": "2026-10-24T19:03:15",
+ "summary": {
+  "cases": 20,
+  "completion": "20 из 20",
+  "completion_rate": 1.0,
+  "t_first_result_ms_max": 10,
+  "t_first_result_ms_median": 6.0,
+  "questions_avg": 0.15,
+  "questions_max": 1,
+  "swipes_to_shortlist_avg": 3.2,
+  "parse_accuracy": 1.0,
+  "conflicts_at_booking": 0,
+  "rebuild_not_from_scratch": "9 из 9",
+  "failed_cases": []
+ },
+ "results": [
+  {
+   "id": 1,
+   "kind": "размытый (из кейса)",
+   "text": "Хочу куда-нибудь к тёплому морю в ноябре, недорого, с ребёнком, без долгих перелётов",
+   "errors": [],
+   "corrections": [
+    {
+     "text": "а если на два дня позже?",
+     "after": "shortlist",
+     "understood": true,
+     "tool_calls": [
+      "get_hotel_price",
+      "get_hotel_price",
+      "get_hotel_price"
+     ],
+     "affected": [
+      "hotel",
+      "transfer",
+      "transport"
+     ],
+     "notes": [
+      "сдвинул даты на 2 дн позже: 12–19 ноября"
+     ],
+     "not_from_scratch": true
+    }
+   ],
+   "parse_ok": 5,
+   "parse_total": 5,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": 3,
+   "t_first_result_ms": 10,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-221739",
+   "total_rub": 107160,
+   "questions": 0,
+   "wall_ms": 34
+  },
+  {
+   "id": 2,
+   "kind": "точный (из ТЗ)",
+   "text": "Выходные в Питере вдвоём, из Москвы на Сапсане, 14–16 ноября",
+   "errors": [],
+   "corrections": [],
+   "parse_ok": 6,
+   "parse_total": 6,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": 5,
+   "t_first_result_ms": 5,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-213539",
+   "total_rub": 32260,
+   "questions": 0,
+   "wall_ms": 37
+  },
+  {
+   "id": 3,
+   "kind": "сценарий 2, без ленты (из ТЗ)",
+   "text": "Азур Бэй Сочи, номер делюкс с видом на море, 3–10 декабря, двое взрослых",
+   "errors": [],
+   "corrections": [
+    {
+     "text": "а если на два дня позже?",
+     "after": "package",
+     "understood": true,
+     "tool_calls": [
+      "get_hotel_price",
+      "search_trains",
+      "search_trains",
+      "search_trains",
+      "search_flights",
+      "search_flights",
+      "search_transfer",
+      "search_transfer",
+      "check_connections"
+     ],
+     "affected": [
+      "hotel",
+      "transfer",
+      "transport"
+     ],
+     "notes": [
+      "сдвинул даты на 2 дн позже: 5–12 декабря"
+     ],
+     "recomputed": [
+      "hotel_price",
+      "transport",
+      "transfer",
+      "connections"
+     ],
+     "kept": [
+      "hotel"
+     ],
+     "not_from_scratch": true
+    },
+    {
+     "text": "с нами едет собака",
+     "after": "package",
+     "understood": true,
+     "tool_calls": [
+      "search_hotels",
+      "get_hotel_price",
+      "search_trains",
+      "search_trains",
+      "search_trains",
+      "search_flights",
+      "search_flights",
+      "search_transfer",
+      "search_transfer",
+      "check_connections"
+     ],
+     "affected": [
+      "hotel_check"
+     ],
+     "notes": [
+      "едем с питомцем — только отели, где можно с животными"
+     ],
+     "recomputed": [
+      "hotel",
+      "transport",
+      "transfer",
+      "connections"
+     ],
+     "kept": [],
+     "not_from_scratch": true
+    }
+   ],
+   "parse_ok": 6,
+   "parse_total": 6,
+   "parse_misses": [],
+   "mode": "checkout",
+   "t_first_result_ms": 3,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-666255",
+   "total_rub": 67920,
+   "questions": 0,
+   "wall_ms": 16
+  },
+  {
+   "id": 4,
+   "kind": "точный, семья",
+   "text": "Турция или Египет всё включено на неделю с 5 декабря, 2 взрослых и двое детей 4 и 9 лет, бюджет до 250 тысяч",
+   "errors": [],
+   "corrections": [
+    {
+     "text": "бюджет меньше",
+     "after": "package",
+     "understood": true,
+     "tool_calls": [
+      "check_connections"
+     ],
+     "affected": [
+      "budget_check"
+     ],
+     "notes": [
+      "бюджет меньше: до 200 000 ₽"
+     ],
+     "recomputed": [
+      "connections"
+     ],
+     "kept": [
+      "hotel",
+      "transport",
+      "transfer"
+     ],
+     "not_from_scratch": true
+    }
+   ],
+   "parse_ok": 6,
+   "parse_total": 6,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": 3,
+   "t_first_result_ms": 6,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-748722",
+   "total_rub": 170780,
+   "questions": 0,
+   "wall_ms": 23
+  },
+  {
+   "id": 5,
+   "kind": "праздник + питомец",
+   "text": "Новый год в горах с собакой, из Питера, бюджет 150 тысяч на двоих",
+   "errors": [],
+   "corrections": [],
+   "parse_ok": 6,
+   "parse_total": 6,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": 3,
+   "t_first_result_ms": 5,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-299770",
+   "total_rub": 114510,
+   "questions": 0,
+   "wall_ms": 20
+  },
+  {
+   "id": 6,
+   "kind": "соло, город",
+   "text": "Казань на выходные одна, до 30 000",
+   "errors": [],
+   "corrections": [],
+   "parse_ok": 4,
+   "parse_total": 4,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": 4,
+   "t_first_result_ms": 5,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-074949",
+   "total_rub": 22780,
+   "questions": 0,
+   "wall_ms": 22
+  },
+  {
+   "id": 7,
+   "kind": "размытый, настроение",
+   "text": "Хочу тихо отдохнуть без детей в спа, 5 звезд, питание не важно",
+   "errors": [],
+   "corrections": [
+    {
+     "text": "питание не важно, но нужна бесплатная отмена",
+     "after": "shortlist",
+     "understood": true,
+     "tool_calls": [],
+     "affected": [],
+     "notes": [
+      "«всё включено» больше не влияет на выбор",
+      "«бесплатная отмена» теперь важно"
+     ],
+     "not_from_scratch": true
+    }
+   ],
+   "parse_ok": 2,
+   "parse_total": 2,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": 3,
+   "t_first_result_ms": 6,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-460669",
+   "total_rub": 219620,
+   "questions": 0,
+   "wall_ms": 24
+  },
+  {
+   "id": 8,
+   "kind": "точный, заграница",
+   "text": "Дубай в январе на 5 ночей вдвоём, первая линия, бюджет 300к",
+   "errors": [],
+   "corrections": [],
+   "parse_ok": 5,
+   "parse_total": 5,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": null,
+   "t_first_result_ms": 5,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-119238",
+   "total_rub": 171930,
+   "questions": 0,
+   "wall_ms": 21
+  },
+  {
+   "id": 9,
+   "kind": "поезд, природа, дети",
+   "text": "Карелия на майские с детьми 6 и 10 лет, на поезде из Петербурга, домик у озера",
+   "errors": [],
+   "corrections": [],
+   "parse_ok": 5,
+   "parse_total": 5,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": null,
+   "t_first_result_ms": 5,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-457607",
+   "total_rub": 118840,
+   "questions": 0,
+   "wall_ms": 19
+  },
+  {
+   "id": 10,
+   "kind": "активный, из регионов",
+   "text": "Алтай в июле на 10 дней, активный отдых, из Новосибирска",
+   "errors": [],
+   "corrections": [],
+   "parse_ok": 4,
+   "parse_total": 4,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": null,
+   "t_first_result_ms": 6,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-265335",
+   "total_rub": 193170,
+   "questions": 0,
+   "wall_ms": 21
+  },
+  {
+   "id": 11,
+   "kind": "каверзный: противоречие",
+   "text": "Тёплое море в январе, но только на поезде из Москвы",
+   "errors": [],
+   "corrections": [],
+   "parse_ok": 4,
+   "parse_total": 4,
+   "parse_misses": [],
+   "mode": "clarify",
+   "clarify": {
+    "question": "Тёплого моря в январе с такими условиями не нашёл. Что важнее?",
+    "picked": "✈️ Полетим самолётом"
+   },
+   "swipes_to_shortlist": 3,
+   "t_first_result_ms": 8,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-150661",
+   "total_rub": 147150,
+   "questions": 1,
+   "wall_ms": 23
+  },
+  {
+   "id": 12,
+   "kind": "каверзный: нет вариантов в бюджет",
+   "text": "Неделя в Дубае на двоих за 30 тысяч",
+   "errors": [],
+   "corrections": [],
+   "parse_ok": 4,
+   "parse_total": 4,
+   "parse_misses": [],
+   "mode": "clarify",
+   "clarify": {
+    "question": "Честно: в бюджет ничего не помещается. Что можно ослабить?",
+    "picked": "Поднять бюджет до 127 000 ₽"
+   },
+   "swipes_to_shortlist": null,
+   "t_first_result_ms": 8,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-203469",
+   "total_rub": 132200,
+   "questions": 1,
+   "wall_ms": 21
+  },
+  {
+   "id": 13,
+   "kind": "компания, регион",
+   "text": "Море, 3 взрослых, с 20 по 27 декабря, из Екатеринбурга, бесплатная отмена обязательна",
+   "errors": [],
+   "corrections": [],
+   "parse_ok": 5,
+   "parse_total": 5,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": 3,
+   "t_first_result_ms": 7,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-191778",
+   "total_rub": 265020,
+   "questions": 0,
+   "wall_ms": 23
+  },
+  {
+   "id": 14,
+   "kind": "размытый, город",
+   "text": "Куда-нибудь на выходные из Москвы, недалеко, погулять по городу",
+   "errors": [],
+   "corrections": [],
+   "parse_ok": 4,
+   "parse_total": 4,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": 3,
+   "t_first_result_ms": 5,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-885817",
+   "total_rub": 45910,
+   "questions": 0,
+   "wall_ms": 20
+  },
+  {
+   "id": 15,
+   "kind": "малыш, прямой рейс",
+   "text": "Египет с 1 по 8 декабря, без пересадок, с малышом 2 года, бюджет 200 тыс",
+   "errors": [],
+   "corrections": [
+    {
+     "text": "рейс побыстрее",
+     "after": "package",
+     "understood": true,
+     "tool_calls": [
+      "check_connections"
+     ],
+     "affected": [
+      "transport_pick"
+     ],
+     "notes": [
+      "самые быстрые билеты"
+     ],
+     "recomputed": [
+      "transport_choice",
+      "connections"
+     ],
+     "kept": [
+      "hotel",
+      "transport",
+      "transfer"
+     ],
+     "not_from_scratch": true
+    }
+   ],
+   "parse_ok": 6,
+   "parse_total": 6,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": 3,
+   "t_first_result_ms": 6,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-844177",
+   "total_rub": 150460,
+   "questions": 0,
+   "wall_ms": 24
+  },
+  {
+   "id": 16,
+   "kind": "сценарий 2, семья",
+   "text": "Анталья, Лара Голд Делюкс, семейный номер, 12-19 ноября, 2 взрослых и ребенок 7 лет",
+   "errors": [],
+   "corrections": [
+    {
+     "text": "на день раньше",
+     "after": "package",
+     "understood": true,
+     "tool_calls": [
+      "get_hotel_price",
+      "search_flights",
+      "search_flights",
+      "search_transfer",
+      "search_transfer",
+      "check_connections"
+     ],
+     "affected": [
+      "hotel",
+      "transfer",
+      "transport"
+     ],
+     "notes": [
+      "сдвинул даты на 1 дн раньше: 11–18 ноября"
+     ],
+     "recomputed": [
+      "hotel_price",
+      "transport",
+      "transfer",
+      "connections"
+     ],
+     "kept": [
+      "hotel"
+     ],
+     "not_from_scratch": true
+    }
+   ],
+   "parse_ok": 6,
+   "parse_total": 6,
+   "parse_misses": [],
+   "mode": "checkout",
+   "t_first_result_ms": 2,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-819179",
+   "total_rub": 240560,
+   "questions": 0,
+   "wall_ms": 10
+  },
+  {
+   "id": 17,
+   "kind": "каверзный: поезда нет",
+   "text": "Романтические выходные в Петербурге 28-30 ноября из Казани, поездом",
+   "errors": [],
+   "corrections": [],
+   "parse_ok": 5,
+   "parse_total": 5,
+   "parse_misses": [],
+   "mode": "clarify",
+   "clarify": {
+    "question": "Санкт-Петербург: поездом туда не добраться. Как поступим?",
+    "picked": "✈️ Полетим самолётом"
+   },
+   "swipes_to_shortlist": null,
+   "t_first_result_ms": 7,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-015502",
+   "total_rub": 45580,
+   "questions": 1,
+   "wall_ms": 28
+  },
+  {
+   "id": 18,
+   "kind": "регион, поезд вместо самолёта",
+   "text": "Хочу на море в Сочи в декабре вчетвером с двумя детьми 3 и 8 лет, всё включено, вылет из Краснодара",
+   "errors": [],
+   "corrections": [
+    {
+     "text": "с нами едет бабушка",
+     "after": "shortlist",
+     "understood": true,
+     "tool_calls": [
+      "get_hotel_price",
+      "get_hotel_price",
+      "get_hotel_price"
+     ],
+     "affected": [
+      "hotel",
+      "transfer",
+      "transport"
+     ],
+     "notes": [
+      "гости: 3 взрослых + 2 детей (3, 8)"
+     ],
+     "not_from_scratch": true
+    }
+   ],
+   "parse_ok": 5,
+   "parse_total": 5,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": 3,
+   "t_first_result_ms": 6,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-905607",
+   "total_rub": 260860,
+   "questions": 0,
+   "wall_ms": 25
+  },
+  {
+   "id": 19,
+   "kind": "размытый + питомец",
+   "text": "Отдохнуть недорого где-то в России в ноябре с собакой",
+   "errors": [],
+   "corrections": [],
+   "parse_ok": 3,
+   "parse_total": 3,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": 3,
+   "t_first_result_ms": 7,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-837055",
+   "total_rub": 48920,
+   "questions": 0,
+   "wall_ms": 23
+  },
+  {
+   "id": 20,
+   "kind": "поезд между регионами",
+   "text": "Из Нижнего Новгорода в Казань на 3 дня с 12 декабря, двое",
+   "errors": [],
+   "corrections": [
+    {
+     "text": "Что-нибудь ещё: нужен ранний заезд",
+     "after": "package",
+     "understood": true,
+     "tool_calls": [
+      "check_connections"
+     ],
+     "affected": [],
+     "notes": [
+      "передам отелю: ранний заезд"
+     ],
+     "recomputed": [
+      "connections"
+     ],
+     "kept": [
+      "hotel",
+      "transport",
+      "transfer"
+     ],
+     "not_from_scratch": true
+    }
+   ],
+   "parse_ok": 5,
+   "parse_total": 5,
+   "parse_misses": [],
+   "mode": "feed",
+   "swipes_to_shortlist": 3,
+   "t_first_result_ms": 5,
+   "booked": true,
+   "conflicts_at_booking": 0,
+   "order_id": "OD-2610-828780",
+   "total_rub": 26390,
+   "questions": 0,
+   "wall_ms": 22
+  }
+ ]
+}
