@@ -1,0 +1,331 @@
+{
+ "_note": "Стоковые видео с Pexels (бесплатная лицензия Pexels, использование без указания автора разрешено). Это видео направлений, а не съёмка конкретных отелей — в кадре так и подписано.",
+ "license": "https://www.pexels.com/license/",
+ "clips": {
+  "hurghada_beach": {
+   "dest": "hurghada",
+   "tags": [
+    "beach"
+   ],
+   "title": "Пляж отеля с дрона",
+   "pexels": "https://www.pexels.com/video/drone-shot-of-hotel-beach-front-4185241/"
+  },
+  "hurghada_hotel": {
+   "dest": "hurghada",
+   "tags": [
+    "beach"
+   ],
+   "title": "Отель на берегу с дрона",
+   "pexels": "https://www.pexels.com/video/drone-footage-of-a-beachfront-hotel-4185244/"
+  },
+  "antalya_beach1": {
+   "dest": "antalya",
+   "tags": [
+    "beach"
+   ],
+   "title": "Пляж Антальи",
+   "pexels": "https://www.pexels.com/video/tourists-on-a-beach-in-antalya-turkey-12176988/"
+  },
+  "antalya_beach2": {
+   "dest": "antalya",
+   "tags": [
+    "beach"
+   ],
+   "title": "Пляж Антальи",
+   "pexels": "https://www.pexels.com/video/people-on-a-beach-in-antalya-turkey-12176989/"
+  },
+  "dubai_beach": {
+   "dest": "dubai",
+   "tags": [
+    "beach"
+   ],
+   "title": "Пляж Дубая",
+   "pexels": "https://www.pexels.com/video/beach-on-shore-in-dubai-11095788/"
+  },
+  "dubai_waves": {
+   "dest": "dubai",
+   "tags": [
+    "beach"
+   ],
+   "title": "Побережье Дубая",
+   "pexels": "https://www.pexels.com/video/waves-on-beach-near-dubai-11849894/"
+  },
+  "dubai_skyline": {
+   "dest": "dubai",
+   "tags": [
+    "city"
+   ],
+   "title": "Небоскрёбы Дубая",
+   "pexels": "https://www.pexels.com/video/skyscrapers-on-shore-in-dubai-10567969/"
+  },
+  "sochi_coast": {
+   "dest": "sochi",
+   "tags": [
+    "beach"
+   ],
+   "title": "Побережье Сочи",
+   "pexels": "https://www.pexels.com/video/aerial-view-of-coastal-city-with-mountains-in-background-12215884/"
+  },
+  "sochi_promenade": {
+   "dest": "sochi",
+   "tags": [
+    "beach",
+    "city"
+   ],
+   "title": "Набережная Сочи",
+   "pexels": "https://www.pexels.com/video/promenade-along-sea-12215895/"
+  },
+  "sochi_mountains": {
+   "dest": "sochi",
+   "tags": [
+    "mountains"
+   ],
+   "title": "Горы над Сочи",
+   "pexels": "https://www.pexels.com/video/residential-buildings-overlooking-majestic-mountains-12215453/"
+  },
+  "spb_bridge": {
+   "dest": "spb",
+   "tags": [
+    "city"
+   ],
+   "title": "Мост и канал Петербурга",
+   "pexels": "https://www.pexels.com/video/a-view-of-a-bridge-and-canal-8301737/"
+  },
+  "spb_cathedral": {
+   "dest": "spb",
+   "tags": [
+    "city"
+   ],
+   "title": "Собор в Петербурге",
+   "pexels": "https://www.pexels.com/video/cathedral-in-sankt-petersburg-11597490/"
+  },
+  "kazan_center": {
+   "dest": "kazan",
+   "tags": [
+    "city"
+   ],
+   "title": "Центр семьи «Казан»",
+   "pexels": "https://www.pexels.com/video/kazan-family-center-12063381/"
+  },
+  "kazan_palace": {
+   "dest": "kazan",
+   "tags": [
+    "city"
+   ],
+   "title": "Дворец в парке, Казань",
+   "pexels": "https://www.pexels.com/video/palace-in-park-12081610/"
+  },
+  "altai_mountains": {
+   "dest": "altai",
+   "tags": [
+    "mountains"
+   ],
+   "title": "Горы Алтая с дрона",
+   "pexels": "https://www.pexels.com/video/drone-footage-of-the-altai-mountains-8761462/"
+  },
+  "altai_river": {
+   "dest": "altai",
+   "tags": [
+    "nature"
+   ],
+   "title": "Река на Алтае с дрона",
+   "pexels": "https://www.pexels.com/video/aerial-footage-of-a-river-8761028/"
+  },
+  "karelia_lake": {
+   "dest": "karelia",
+   "tags": [
+    "nature"
+   ],
+   "title": "Лесное озеро с дрона",
+   "pexels": "https://www.pexels.com/video/drone-footage-of-a-lake-7154839/"
+  },
+  "karelia_forest": {
+   "dest": "karelia",
+   "tags": [
+    "nature"
+   ],
+   "title": "Озеро в лесу",
+   "pexels": "https://www.pexels.com/video/tracking-shot-of-a-lake-surrounded-by-forest-trees-12236600/"
+  },
+  "room_bed": {
+   "dest": null,
+   "tags": [
+    "room"
+   ],
+   "title": "Номер отеля",
+   "pexels": "https://www.pexels.com/video/bed-and-furniture-in-hotel-room-11051002/"
+  },
+  "room_door": {
+   "dest": null,
+   "tags": [
+    "room"
+   ],
+   "title": "Номер отеля",
+   "pexels": "https://www.pexels.com/video/shot-of-a-hotel-room-with-an-open-door-7507165/"
+  },
+  "antalya_port": {
+   "dest": "antalya",
+   "tags": [
+    "beach",
+    "city"
+   ],
+   "title": "Порт и побережье Антальи",
+   "pexels": "https://www.pexels.com/video/high-angle-view-of-antalya-city-port-11974316/"
+  },
+  "antalya_sunset": {
+   "dest": "antalya",
+   "tags": [
+    "beach"
+   ],
+   "title": "Закат на побережье Турции",
+   "pexels": "https://www.pexels.com/video/breaking-waves-under-a-sunset-sky-11974321/"
+  },
+  "antalya_resort": {
+   "dest": "antalya",
+   "tags": [
+    "beach"
+   ],
+   "title": "Морской курорт в Турции",
+   "pexels": "https://www.pexels.com/video/sea-resort-in-turkey-12575886/"
+  },
+  "antalya_marina": {
+   "dest": "antalya",
+   "tags": [
+    "city"
+   ],
+   "title": "Марина старого города Антальи",
+   "pexels": "https://www.pexels.com/video/antalya-old-town-marina-18200442/"
+  },
+  "hurghada_resorts": {
+   "dest": "hurghada",
+   "tags": [
+    "beach"
+   ],
+   "title": "Отели на берегу Красного моря",
+   "pexels": "https://www.pexels.com/video/aerial-footage-of-beachfront-hotels-and-resorts-4185239/"
+  },
+  "hurghada_mountain": {
+   "dest": "hurghada",
+   "tags": [
+    "beach"
+   ],
+   "title": "Курорт на фоне гор",
+   "pexels": "https://www.pexels.com/video/drone-shot-of-hotel-and-resort-with-a-mountain-view-4185237/"
+  },
+  "hurghada_resort": {
+   "dest": "hurghada",
+   "tags": [
+    "beach"
+   ],
+   "title": "Курорт с дрона",
+   "pexels": "https://www.pexels.com/video/drone-shot-of-hotel-and-resort-4185263/"
+  },
+  "hurghada_gouna": {
+   "dest": "hurghada",
+   "tags": [
+    "beach",
+    "city"
+   ],
+   "title": "Эль-Гуна",
+   "pexels": "https://www.pexels.com/video/a-beautiful-view-of-el-gouna-3718603/"
+  },
+  "hurghada_reef": {
+   "dest": "hurghada",
+   "tags": [
+    "reef"
+   ],
+   "title": "Коралловый риф",
+   "pexels": "https://www.pexels.com/video/a-coral-reef-with-many-fish-swimming-in-the-water-19120678/"
+  },
+  "dubai_pool": {
+   "dest": "dubai",
+   "tags": [
+    "beach",
+    "city"
+   ],
+   "title": "Бассейн в Дубае",
+   "pexels": "https://www.pexels.com/video/swimming-pool-in-dubai-11782814/"
+  },
+  "dubai_panorama": {
+   "dest": "dubai",
+   "tags": [
+    "city"
+   ],
+   "title": "Панорама Дубая",
+   "pexels": "https://www.pexels.com/video/panning-shot-of-dubai-3864903/"
+  },
+  "sochi_resort": {
+   "dest": "sochi",
+   "tags": [
+    "beach"
+   ],
+   "title": "Курорт между морем и горами",
+   "pexels": "https://www.pexels.com/video/tourist-resort-between-sea-and-mountains-12215886/"
+  },
+  "sochi_resort2": {
+   "dest": "sochi",
+   "tags": [
+    "beach",
+    "mountains"
+   ],
+   "title": "Курортный район Сочи",
+   "pexels": "https://www.pexels.com/video/modern-tourist-resort-12215887/"
+  },
+  "pool_calm": {
+   "dest": null,
+   "tags": [
+    "pool"
+   ],
+   "title": "Бассейн отеля",
+   "pexels": "https://www.pexels.com/video/tranquil-swimming-pool-10652457/"
+  },
+  "pool_loungers": {
+   "dest": null,
+   "tags": [
+    "pool"
+   ],
+   "title": "Бассейн с шезлонгами",
+   "pexels": "https://www.pexels.com/video/the-pool-area-at-the-hotel-has-lounge-chairs-and-umbrellas-19773859/"
+  },
+  "pool_tropical": {
+   "dest": null,
+   "tags": [
+    "pool"
+   ],
+   "title": "Бассейн на курорте",
+   "pexels": "https://www.pexels.com/video/blue-pool-in-tropical-tourist-resort-10051508/"
+  },
+  "room_showcase": {
+   "dest": null,
+   "tags": [
+    "room"
+   ],
+   "title": "Номер отеля",
+   "pexels": "https://www.pexels.com/video/showcase-of-hotel-room-11050698/"
+  },
+  "room_interior": {
+   "dest": null,
+   "tags": [
+    "room"
+   ],
+   "title": "Интерьер номера",
+   "pexels": "https://www.pexels.com/video/hotel-interior-hotel-rooms-19403230/"
+  },
+  "room_balcony_sea": {
+   "dest": null,
+   "tags": [
+    "room_sea"
+   ],
+   "title": "Вид на море с балкона",
+   "pexels": "https://www.pexels.com/video/luxury-holiday-view-from-balcony-to-the-ocean-11919299/"
+  },
+  "room_balcony_view": {
+   "dest": null,
+   "tags": [
+    "room_sea"
+   ],
+   "title": "Вид с балкона на воду",
+   "pexels": "https://www.pexels.com/video/a-view-of-the-water-from-a-balcony-19479166/"
+  }
+ }
+}

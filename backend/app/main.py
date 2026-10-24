@@ -227,6 +227,10 @@ def graph():
     return flows.graphs_mermaid()
 
 
-_dist = Path(__file__).resolve().parent.parent.parent / "frontend" / "dist"
+_front = Path(__file__).resolve().parent.parent.parent / "frontend"
+_videos = _front / "public" / "videos"
+if _videos.exists():  # ролики отдаём прямо из public — без пересборки фронта
+    app.mount("/videos", StaticFiles(directory=_videos), name="videos")
+_dist = _front / "dist"
 if _dist.exists():
     app.mount("/", StaticFiles(directory=_dist, html=True), name="front")

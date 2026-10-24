@@ -187,3 +187,7 @@ code { background: #ffffff14; padding: 2px 6px; border-radius: 6px; font-size: 1
 .kind { font-size: 11px; padding: 1px 6px; border-radius: 6px; background: #ffffff14; margin-right: 4px; }
 .kind.llm { background: #b388ff33; }
 .kind.tool { background: #43d17a33; }
+.feed { position: relative; }
+.ask-overlay { position: absolute; inset: 10px 0 auto; z-index: 15; padding: 0 8px; animation: up .2s; }
+.ask-overlay .card { box-shadow: 0 20px 50px #000c; border-color: var(--accent); }
+.option.muted { color: var(--muted); }

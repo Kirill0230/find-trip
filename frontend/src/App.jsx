@@ -131,7 +131,7 @@ export default function App() {
         )}
         {screen === "feed" && sid && (
           <Feed sid={sid} initial={initialFeed} version={feedVersion} muted={muted} likes={likes.total} likesSince={likes.since}
-            onSwipeResult={(r) => setLikes({ total: r.likes, since: r.likes_since_shortlist })} onShortlist={openShortlist} />
+            onSwipeResult={(r) => setLikes({ total: r.likes, since: r.likes_since_shortlist })} onShortlist={openShortlist} onAnswer={correct} />
         )}
         {screen === "shortlist" && sid && (
           <Shortlist key={shortlistKey} sid={sid} override={shortlistOverride}

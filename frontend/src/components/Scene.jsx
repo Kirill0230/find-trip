@@ -210,6 +210,33 @@ function frames(hotel, ns) {
   ];
 }
 
+// Настоящее видео: плейлист «место → номер» по кругу. Звук — озвучка агента, сам ролик без звука.
+function StockVideo({ video, playing, compact }) {
+  const list = video.playlist?.length ? video.playlist : [video.url];
+  const [i, setI] = useState(0);
+  useEffect(() => setI(0), [video.video_id]);
+  const src = list[i % list.length];
+  return (
+    <div className={`scene ${compact ? "compact" : ""}`}>
+      <video
+        key={src}
+        src={src}
+        autoPlay={playing}
+        muted
+        playsInline
+        preload={compact ? "metadata" : "auto"}
+        loop={list.length === 1}
+        onEnded={() => setI((x) => x + 1)}
+      />
+      {!compact && (
+        <div className="ai-label">
+          {video.source === "stock" ? "Видео направления (Pexels), не съёмка этого отеля" : "Видео отеля"}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Scene({ hotel, video, playing = true, compact = false }) {
   const ns = useMemo(() => `${hotel.id}-${Math.random().toString(36).slice(2, 7)}`, [hotel.id]);
   const fr = useMemo(() => frames(hotel, ns), [hotel.id, ns]);
@@ -222,7 +249,7 @@ export default function Scene({ hotel, video, playing = true, compact = false })
   }, [hotel.id, playing, fr.length]);
 
   if (video?.url) {
-    return <video className="scene" src={video.url} autoPlay={playing} muted loop playsInline />;
+    return <StockVideo video={video} playing={playing} compact={compact} />;
   }
   return (
     <div className={`scene ${compact ? "compact" : ""}`}>

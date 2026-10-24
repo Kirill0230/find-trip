@@ -306,7 +306,7 @@ def feed_item(st: dict, c: dict) -> dict:
     w = st.get("weather", {}).get(h["dest"])
     tr = c["transport"]
     return {
-        "video": {k: v[k] for k in ("video_id", "hotel_id", "room_category", "kind", "source", "url", "duration_sec")},
+        "video": {k: v[k] for k in ("video_id", "hotel_id", "room_category", "kind", "source", "url", "playlist", "credits", "duration_sec")},
         "hotel": {"id": h["id"], "name": h["name"], "stars": h["stars"], "area": h["area"], "dest": h["dest"],
                   "dest_name": DESTINATIONS[h["dest"]]["name"], "country": DESTINATIONS[h["dest"]]["country"],
                   "rating": h["rating"], "reviews": h["reviews"], "desc": h["desc"], "vibe": h["vibe"],
@@ -343,13 +343,42 @@ def get_feed(st: dict, n: int = 3) -> dict:
     return {"items": items, "exhausted": not items, "total_candidates": len(cands)}
 
 
+SKIP_STREAK_ASK = 5
+
+
+def _streak_question(st: dict) -> dict:
+    """После серии дизлайков агент не листает дальше вслепую, а спрашивает, что поменять."""
+    hard = st["hard"]
+    stats = st.get("dest_stats", {})
+    disliked = sorted((d for d, x in stats.items() if x["skip"] >= 2 and not x["like"]), key=lambda d: -stats[d]["skip"])[:3]
+    opts: list[tuple[str, str]] = []
+    if hard.get("destination"):
+        opts.append(("Другое направление", "давай другое направление"))
+    elif disliked:
+        probe = dict(hard, exclude_dests=sorted(set(hard.get("exclude_dests") or []) | set(disliked)))
+        if any(dest_allowed(d, probe)[0] for d in DESTINATIONS):
+            names = [DESTINATIONS[d]["name"] for d in disliked]
+            opts.append((f"Не {', не '.join(names)}", "не " + " и не ".join(names)))
+    opts.append(("Отели получше", "хочу отели получше, от 4 звезд"))
+    opts.append(("Подешевле", "дешевле"))
+    if {"sea", "warm_sea"} & set(hard.get("trip_tags") or []) or not hard.get("trip_tags"):
+        opts.append(("Не море — город или горы", "хочу в город или в горы"))
+    st["metrics"]["clarify_questions"] += 1
+    return {"question": f"{st['skip_streak']} мимо подряд — похоже, это не то. Что поменять?",
+            "options": [{"label": l, "text": t} for l, t in opts[:4]]}
+
+
 def swipe(st: dict, video_id: str, direction: str) -> dict:
     from .ranking import apply_swipe
     res = apply_swipe(st, video_id, direction)
     if res["show_shortlist"] and "swipes_to_first_shortlist" not in st["metrics"]:
         st["metrics"]["swipes_to_first_shortlist"] = st["swipes"]
+    ask = None
+    if direction == "left" and st.get("skip_streak", 0) >= SKIP_STREAK_ASK:
+        ask = _streak_question(st)
+        st["skip_streak"] = 0
     return {"weights": st["weights"], "priorities": priorities(st), "show_shortlist": res["show_shortlist"],
-            "likes": len(st["liked"]), "likes_since_shortlist": st["likes_since_shortlist"]}
+            "likes": len(st["liked"]), "likes_since_shortlist": st["likes_since_shortlist"], "ask": ask}
 
 
 # ================================================================ SHORTLIST
@@ -509,7 +538,7 @@ def correct(st: dict, text: str, context: str = "feed", today: date | None = Non
     apply_delta(st, delta)
     if context == "package" and not st.get("package"):
         context = "feed"
-    if st["mode"] == "clarify" or (context == "feed" and set(delta["hard"]) & {"destination", "trip_tags", "transport", "max_travel_hours", "budget_total_rub", "min_stars", "budget_soft", "destinations_allowed"} and not st["liked"]):
+    if st["mode"] == "clarify" or (context == "feed" and set(delta["hard"]) & {"destination", "trip_tags", "transport", "max_travel_hours", "budget_total_rub", "min_stars", "budget_soft", "destinations_allowed", "exclude_dests"} and not st["liked"]):
         run = _research.invoke({"state": st, "today": today or _today()})
         trace += run["trace"]
         result = {"type": "clarify" if st["mode"] == "clarify" else "feed", "session": session_view(st)}

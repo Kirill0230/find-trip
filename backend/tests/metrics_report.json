@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-10-24T19:03:15",
+ "generated_at": "2026-10-24T21:44:42",
  "summary": {
   "cases": 20,
   "completion": "20 из 20",
   "completion_rate": 1.0,
-  "t_first_result_ms_max": 10,
-  "t_first_result_ms_median": 6.0,
+  "t_first_result_ms_max": 16,
+  "t_first_result_ms_median": 7.0,
   "questions_avg": 0.15,
   "questions_max": 1,
   "swipes_to_shortlist_avg": 3.2,
@@ -46,13 +46,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 10,
+   "t_first_result_ms": 11,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-221739",
+   "order_id": "OD-2610-135438",
    "total_rub": 107160,
    "questions": 0,
-   "wall_ms": 34
+   "wall_ms": 49
   },
   {
    "id": 2,
@@ -68,10 +68,10 @@
    "t_first_result_ms": 5,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-213539",
+   "order_id": "OD-2610-193755",
    "total_rub": 32260,
    "questions": 0,
-   "wall_ms": 37
+   "wall_ms": 33
   },
   {
    "id": 3,
@@ -149,13 +149,13 @@
    "parse_total": 6,
    "parse_misses": [],
    "mode": "checkout",
-   "t_first_result_ms": 3,
+   "t_first_result_ms": 4,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-666255",
+   "order_id": "OD-2610-302698",
    "total_rub": 67920,
    "questions": 0,
-   "wall_ms": 16
+   "wall_ms": 21
   },
   {
    "id": 4,
@@ -192,13 +192,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 6,
+   "t_first_result_ms": 8,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-748722",
+   "order_id": "OD-2610-826427",
    "total_rub": 170780,
    "questions": 0,
-   "wall_ms": 23
+   "wall_ms": 31
   },
   {
    "id": 5,
@@ -211,13 +211,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 5,
+   "t_first_result_ms": 6,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-299770",
+   "order_id": "OD-2610-896560",
    "total_rub": 114510,
    "questions": 0,
-   "wall_ms": 20
+   "wall_ms": 22
   },
   {
    "id": 6,
@@ -230,13 +230,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 4,
-   "t_first_result_ms": 5,
+   "t_first_result_ms": 6,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-074949",
+   "order_id": "OD-2610-046749",
    "total_rub": 22780,
    "questions": 0,
-   "wall_ms": 22
+   "wall_ms": 25
   },
   {
    "id": 7,
@@ -262,13 +262,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 6,
+   "t_first_result_ms": 7,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-460669",
+   "order_id": "OD-2610-710117",
    "total_rub": 219620,
    "questions": 0,
-   "wall_ms": 24
+   "wall_ms": 26
   },
   {
    "id": 8,
@@ -281,13 +281,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": null,
-   "t_first_result_ms": 5,
+   "t_first_result_ms": 6,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-119238",
+   "order_id": "OD-2610-077195",
    "total_rub": 171930,
    "questions": 0,
-   "wall_ms": 21
+   "wall_ms": 23
   },
   {
    "id": 9,
@@ -303,10 +303,10 @@
    "t_first_result_ms": 5,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-457607",
+   "order_id": "OD-2610-332199",
    "total_rub": 118840,
    "questions": 0,
-   "wall_ms": 19
+   "wall_ms": 21
   },
   {
    "id": 10,
@@ -319,13 +319,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": null,
-   "t_first_result_ms": 6,
+   "t_first_result_ms": 7,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-265335",
+   "order_id": "OD-2610-542878",
    "total_rub": 193170,
    "questions": 0,
-   "wall_ms": 21
+   "wall_ms": 25
   },
   {
    "id": 11,
@@ -342,13 +342,13 @@
     "picked": "✈️ Полетим самолётом"
    },
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 8,
+   "t_first_result_ms": 16,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-150661",
-   "total_rub": 147150,
+   "order_id": "OD-2610-925308",
+   "total_rub": 158040,
    "questions": 1,
-   "wall_ms": 23
+   "wall_ms": 36
   },
   {
    "id": 12,
@@ -365,13 +365,13 @@
     "picked": "Поднять бюджет до 127 000 ₽"
    },
    "swipes_to_shortlist": null,
-   "t_first_result_ms": 8,
+   "t_first_result_ms": 10,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-203469",
+   "order_id": "OD-2610-976572",
    "total_rub": 132200,
    "questions": 1,
-   "wall_ms": 21
+   "wall_ms": 25
   },
   {
    "id": 13,
@@ -384,13 +384,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 7,
+   "t_first_result_ms": 8,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-191778",
-   "total_rub": 265020,
+   "order_id": "OD-2610-706369",
+   "total_rub": 165730,
    "questions": 0,
-   "wall_ms": 23
+   "wall_ms": 31
   },
   {
    "id": 14,
@@ -403,13 +403,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 5,
+   "t_first_result_ms": 7,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-885817",
-   "total_rub": 45910,
+   "order_id": "OD-2610-844680",
+   "total_rub": 54310,
    "questions": 0,
-   "wall_ms": 20
+   "wall_ms": 28
   },
   {
    "id": 15,
@@ -447,13 +447,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 6,
+   "t_first_result_ms": 7,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-844177",
+   "order_id": "OD-2610-222897",
    "total_rub": 150460,
    "questions": 0,
-   "wall_ms": 24
+   "wall_ms": 28
   },
   {
    "id": 16,
@@ -497,13 +497,13 @@
    "parse_total": 6,
    "parse_misses": [],
    "mode": "checkout",
-   "t_first_result_ms": 2,
+   "t_first_result_ms": 3,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-819179",
+   "order_id": "OD-2610-992460",
    "total_rub": 240560,
    "questions": 0,
-   "wall_ms": 10
+   "wall_ms": 13
   },
   {
    "id": 17,
@@ -520,13 +520,13 @@
     "picked": "✈️ Полетим самолётом"
    },
    "swipes_to_shortlist": null,
-   "t_first_result_ms": 7,
+   "t_first_result_ms": 10,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-015502",
+   "order_id": "OD-2610-679923",
    "total_rub": 45580,
    "questions": 1,
-   "wall_ms": 28
+   "wall_ms": 48
   },
   {
    "id": 18,
@@ -559,13 +559,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 6,
+   "t_first_result_ms": 7,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-905607",
+   "order_id": "OD-2610-468734",
    "total_rub": 260860,
    "questions": 0,
-   "wall_ms": 25
+   "wall_ms": 32
   },
   {
    "id": 19,
@@ -578,13 +578,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 7,
+   "t_first_result_ms": 8,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-837055",
+   "order_id": "OD-2610-857355",
    "total_rub": 48920,
    "questions": 0,
-   "wall_ms": 23
+   "wall_ms": 25
   },
   {
    "id": 20,
@@ -622,7 +622,7 @@
    "t_first_result_ms": 5,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-828780",
+   "order_id": "OD-2610-633644",
    "total_rub": 26390,
    "questions": 0,
    "wall_ms": 22

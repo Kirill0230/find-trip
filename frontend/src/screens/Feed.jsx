@@ -5,11 +5,12 @@ import { useSpeech } from "../components/common.jsx";
 
 const STARS = (n) => "★".repeat(n);
 
-export default function Feed({ sid, initial, version, muted, likes, likesSince, onSwipeResult, onShortlist }) {
+export default function Feed({ sid, initial, version, muted, likes, likesSince, onSwipeResult, onShortlist, onAnswer }) {
   const [queue, setQueue] = useState(initial?.items || []);
   const [exhausted, setExhausted] = useState(false);
   const [drag, setDrag] = useState(0);
   const [leaving, setLeaving] = useState(null);
+  const [ask, setAsk] = useState(null);
   const loading = useRef(false);
   const start = useRef(null);
   const watchedSent = useRef(new Set());
@@ -60,6 +61,7 @@ export default function Feed({ sid, initial, version, muted, likes, likesSince, 
     }, 260);
     const res = await resP;
     onSwipeResult(res);
+    if (res.ask) setAsk(res.ask);
     if (res.show_shortlist) setTimeout(onShortlist, 300);
   };
 
@@ -110,6 +112,8 @@ export default function Feed({ sid, initial, version, muted, likes, likesSince, 
         onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} onPointerLeave={onUp}
       >
         <Scene hotel={h} video={cur.video} key={cur.video.video_id} />
+        {/* предзагрузка следующих роликов, чтобы свайп не ждал сеть */}
+        {queue.slice(1, 3).map((q) => q.video.url && <link key={q.video.video_id} rel="preload" as="video" href={q.video.url} />)}
         {drag > 40 && <div className="stamp like">Нравится</div>}
         {drag < -40 && <div className="stamp nope">Мимо</div>}
         <div className="reel-top">
@@ -127,6 +131,19 @@ export default function Feed({ sid, initial, version, muted, likes, likesSince, 
           <div className="chips">{cur.chips.map((c) => <span key={c} className="chip dark">{c}</span>)}{cur.transport.label && <span className="chip dark">{cur.transport.mode === "train" ? "🚆" : cur.transport.mode === "flight" ? "✈️" : "📍"} {cur.transport.label}</span>}{cur.weather?.water ? <span className="chip dark">🌊 +{cur.weather.water}°</span> : null}</div>
         </div>
       </div>
+      {ask && (
+        <div className="ask-overlay" role="dialog" aria-label="Вопрос агента">
+          <div className="card clarify">
+            <div className="q">🤔 {ask.question}</div>
+            <div className="options">
+              {ask.options.map((o) => (
+                <button key={o.label} className="option" onClick={() => { setAsk(null); window.speechSynthesis?.cancel(); onAnswer(o.text); }}>{o.label}</button>
+              ))}
+              <button className="option muted" onClick={() => setAsk(null)}>Листать дальше</button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="swipe-buttons">
         <button className="round nope" onClick={() => decide("left")} aria-label="Пропустить">✕</button>
         <button className="ghost small" onClick={onShortlist}>Подборка ({likes})</button>

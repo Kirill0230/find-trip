@@ -135,21 +135,70 @@ def hotel_features(hotel_id: str) -> dict:
     }
 
 
+_stock_raw = json.loads((DATA_DIR / "videos.json").read_text(encoding="utf-8"))
+_VIDEO_DIRS = [Path(__file__).resolve().parents[2] / "frontend" / d / "videos" for d in ("public", "dist")]
+# в каталог попадают только клипы, файлы которых реально лежат рядом с фронтом
+STOCK_CLIPS: dict = {k: {**v, "key": k, "url": f"/videos/{k}.mp4"} for k, v in _stock_raw["clips"].items()
+                     if any((d / f"{k}.mp4").exists() and (d / f"{k}.mp4").stat().st_size > 100_000 for d in _VIDEO_DIRS)}
+
+
+def _spread(items: list, hotel_id: str, group: list[str]) -> dict | None:
+    """Раздаёт клипы по кругу внутри группы отелей, чтобы соседи не получали одно и то же видео."""
+    if not items:
+        return None
+    return items[sorted(group).index(hotel_id) % len(items)]
+
+
+def _place_tag(h: dict) -> str | None:
+    if h["dest"] == "sochi" and h["beach_line"] == 0:
+        return "mountains"
+    if h["beach_line"] in (1, 2):
+        return "beach"
+    if h["dest"] == "dubai":
+        return "city"
+    return None
+
+
+def _stock_for(hotel_id: str) -> list[dict]:
+    """Плейлист отеля: клип места (под тип отеля) → бассейн (для курортов) → номер."""
+    h = HOTELS[hotel_id]
+    dest = h["dest"]
+    want = _place_tag(h)
+    pool_dest = [c for c in STOCK_CLIPS.values() if c["dest"] == dest]
+    place_clips = sorted((c for c in pool_dest if want in c["tags"]), key=lambda c: c["key"]) or sorted(pool_dest, key=lambda c: c["key"])
+    same_type = [hid for hid, x in HOTELS.items() if x["dest"] == dest and _place_tag(x) == want]
+    out = [_spread(place_clips, hotel_id, same_type)]
+    resort = "warm" in DESTINATIONS[dest]["tags"] or (h["beach_line"] in (1, 2) and h["stars"] >= 4)
+    if resort:
+        pools = sorted((c for c in STOCK_CLIPS.values() if "pool" in c["tags"]), key=lambda c: c["key"])
+        out.append(_spread(pools, hotel_id, [hid for hid in HOTELS if hid.startswith("h_")]))
+    sea_room = h["beach_line"] == 1 and "sea" in DESTINATIONS[dest]["tags"]
+    rooms = sorted((c for c in STOCK_CLIPS.values() if ("room_sea" if sea_room else "room") in c["tags"]), key=lambda c: c["key"]) \
+        or sorted((c for c in STOCK_CLIPS.values() if "room" in c["tags"]), key=lambda c: c["key"])
+    out.append(_spread(rooms, hotel_id, list(HOTELS)))
+    return [c for c in out if c]
+
+
 def videos_for(hotel_id: str) -> list[dict]:
-    """2 ролика на отель: территория и лучший номер. Файлов нет — фронт рисует
-    иллюстрацию-слайдшоу, поэтому source = mock_illustration (честная метка)."""
+    """2 ролика на отель: территория и номер. Если есть стоковые клипы направления —
+    source = stock (видео места, не отеля); иначе фронт рисует иллюстрацию (mock_illustration)."""
     h = HOTELS[hotel_id]
     rooms = h["rooms"]
     best_room = next((r for r in ("deluxe_sea", "suite", "deluxe", "cottage", "family") if r in rooms), rooms[0])
+    playlist = _stock_for(hotel_id)
     out = []
     for i, (kind, room) in enumerate((("territory", rooms[0]), ("room", best_room)), start=1):
+        clips = playlist if kind == "territory" else playlist[-1:] + playlist[:-1]
+        source = h.get("video_source") or ("stock" if clips else "mock_illustration")
         out.append({
             "video_id": f"v_{hotel_id[2:]}_{i}",
             "hotel_id": hotel_id,
             "room_category": room,
             "kind": kind,
-            "source": h.get("video_source", "mock_illustration"),
-            "url": h.get("video_url"),
+            "source": source,
+            "url": h.get("video_url") or (clips[0]["url"] if clips else None),
+            "playlist": [c["url"] for c in clips],
+            "credits": [{"title": c["title"], "pexels": c["pexels"]} for c in clips],
             "duration_sec": 18,
             "features": hotel_features(hotel_id),
         })

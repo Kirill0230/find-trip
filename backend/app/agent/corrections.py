@@ -9,7 +9,7 @@ from __future__ import annotations
 import re
 from datetime import date, timedelta
 
-from ..catalog import DESTINATIONS, FEATURE_LABELS, HOTELS, ORIGINS
+from ..catalog import DEST_SYNONYMS, DESTINATIONS, FEATURE_LABELS, HOTELS, ORIGINS
 from .explain import guests_label, rub
 from .parser import (NUM, find_destinations, find_hotel, find_origin, find_room, fmt_range, norm, num, parse_budget,
                      parse_constraints, parse_dates, parse_guests, parse_trip_type, parse_weights)
@@ -32,6 +32,7 @@ AFFECTS = {
     "budget_night_rub": {"budget_check"},
     "destination": {"hotel", "transport", "transfer"},
     "trip_tags": {"hotel_check"},
+    "exclude_dests": {"hotel_check"},
     "hotel_id": {"hotel", "transport", "transfer"},
 }
 
@@ -79,6 +80,14 @@ def _extend(t: str) -> int | None:
     if m:
         return -(num(m.group(2)) if m.group(2) else 1)
     return None
+
+
+def _negated_dest(t: str, dest: str) -> bool:
+    for syn in DEST_SYNONYMS[dest]:
+        for m in re.finditer(re.escape(syn), t):
+            if re.search(r"(?:\bне|\bбез|кроме|исключи\w*|убери\w*)\s+(?:в\s+|во\s+|на\s+)?$", t[max(0, m.start() - 16):m.start()]):
+                return True
+    return False
 
 
 def parse_correction(text: str, state: dict, today: date, context: str = "feed") -> dict:
@@ -184,6 +193,16 @@ def parse_correction(text: str, state: dict, today: date, context: str = "feed")
         hotel_change = h
         notes.append(f"отель: {HOTELS[h]['name']}")
     dests = find_destinations(t_dest)
+    negated = [d for d in dests if _negated_dest(t_dest, d)]
+    if negated:  # «только не Турция», «не Анталья и не Хургада»
+        dests = [d for d in dests if d not in negated]
+        excl = sorted(set(hard.get("exclude_dests") or []) | set(negated))
+        ch["exclude_dests"] = excl
+        if hard.get("destination") in negated:
+            ch["destination"] = None
+        if hard.get("destinations_allowed"):
+            ch["destinations_allowed"] = [d for d in hard["destinations_allowed"] if d not in negated]
+        notes.append("убираю: " + ", ".join(DESTINATIONS[d]["name"] for d in negated))
     if dests and not h:
         if len(dests) == 1 and dests[0] != hard.get("destination"):
             ch["destination"] = dests[0]
@@ -198,7 +217,7 @@ def parse_correction(text: str, state: dict, today: date, context: str = "feed")
         ch["destination"] = None
         notes.append("ищу другие направления")
     trip = parse_trip_type(t, None)
-    if trip["tags"] and not dests and not h:
+    if trip["tags"] and not dests and not h and not negated:
         ch["trip_tags"] = trip["tags"]
         ch["destination"] = None
         notes.append("тип отдыха: " + ", ".join(trip["tags"]))

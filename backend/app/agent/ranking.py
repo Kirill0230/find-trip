@@ -1,6 +1,9 @@
 """Фильтры, ранжирование ленты и правила свайпов (без ML, формула из ТЗ).
 
-score(v) = Σ w_i·f_i(v) − 0.3·sim(v, skipped) + 0.1·novelty(v)
+score(v) = Σ w_i·f_i(v) − 0.3·sim(v, skipped) + 0.4·novelty(v)
+
+Коэффициент novelty поднят с 0.1 (стартовый в ТЗ) до 0.4 по тестам: при 0.1 пара лайков
+уводила ленту в одно направление. Плюс правило: не больше двух роликов одного направления подряд.
 """
 from __future__ import annotations
 
@@ -16,7 +19,7 @@ from ..tools.transfer import ABROAD_RATE
 from ..tools.transport import _is_direct, flight_minutes, rail_possible, search_flights, search_trains, train_minutes
 
 SIM_K = 0.3
-NOVELTY_K = 0.1
+NOVELTY_K = 0.4
 BUDGET_SLACK = 1.10
 SHORTLIST_EVERY = 3
 WARM_WATER = 21
@@ -217,8 +220,17 @@ def features_in_context(c: dict, cands: list[dict]) -> dict:
     return f
 
 
+def dest_affinity(stats: dict | None, dest: str) -> float:
+    """Отношение к месту по свайпам: пропуски без единого лайка — минус, лайки — небольшой плюс."""
+    st = (stats or {}).get(dest) or {}
+    likes, skips = st.get("like", 0), st.get("skip", 0)
+    if likes:
+        return 0.15 * min(1.0, likes / 2)
+    return -0.6 * min(1.0, max(0, skips - 1) / 2)  # 1 пропуск — случайность, 3 — место не нравится
+
+
 def score(c: dict, cands: list[dict], weights: dict, skipped_hotels: list[str], recent_dests: list[str],
-          named: str | None = None) -> dict:
+          named: str | None = None, dest_stats: dict | None = None) -> dict:
     f = features_in_context(c, cands)
     contrib = {k: weights.get(k, 0) * f[k] for k in FEATURES}
     base = sum(contrib.values())
@@ -226,7 +238,9 @@ def score(c: dict, cands: list[dict], weights: dict, skipped_hotels: list[str], 
     sim = max(0.0, sim)
     dest = HOTELS[c["hotel_id"]]["dest"]
     novelty = 1 - (recent_dests.count(dest) / len(recent_dests)) if recent_dests else 1.0
-    total = base - SIM_K * sim + NOVELTY_K * novelty
+    total = base - SIM_K * sim + NOVELTY_K * novelty + dest_affinity(dest_stats, dest)
+    if len(recent_dests) >= 2 and recent_dests[-1] == recent_dests[-2] == dest:
+        total -= 1.0  # третий подряд из того же места — только если других нет
     if named and c["hotel_id"] == named:  # отель назван в запросе — показываем первым
         total += 10
     norm = sum(abs(weights.get(k, 0)) for k in FEATURES) or 1
@@ -241,7 +255,7 @@ def rank(cands: list[dict], state: dict, exclude: set[str] = frozenset(), n: int
     pool = [c for c in cands if c["hotel_id"] not in exclude]
     out = []
     while pool and (n is None or len(out) < n):
-        scored = [(score(c, cands, weights, skipped, recent, state["hard"].get("hotel_id")), c) for c in pool]
+        scored = [(score(c, cands, weights, skipped, recent, state["hard"].get("hotel_id"), state.get("dest_stats")), c) for c in pool]
         s, best = max(scored, key=lambda x: x[0]["score"])
         out.append({**best, **s})
         pool.remove(best)
@@ -264,6 +278,10 @@ def apply_swipe(state: dict, video_id: str, direction: str) -> dict:
         sw[k] = round(sw.get(k, 0) + d, 3)
         if abs(sw[k]) >= 0.15 and state["source"].get(k) not in ("correction",):
             state["source"][k] = "swipes"
+    if direction in ("right", "left"):
+        ds = state.setdefault("dest_stats", {}).setdefault(HOTELS[hid]["dest"], {"like": 0, "skip": 0})
+        ds["like" if direction == "right" else "skip"] += 1
+        state["skip_streak"] = 0 if direction == "right" else state.get("skip_streak", 0) + 1
     if direction == "right":
         if video_id not in state["liked"]:
             state["liked"].append(video_id)
