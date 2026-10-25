@@ -19,7 +19,7 @@ function Leg({ leg, label }) {
   );
 }
 
-export default function Checkout({ sid, session, pkg, setPkg, hotelId, onPay, onToast }) {
+export default function Checkout({ sid, session, pkg, setPkg, hotelId, onPay, onToast, log = () => {} }) {
   const [steps, setSteps] = useState([]);
   const [busy, setBusy] = useState(false);
   const [extra, setExtra] = useState("");
@@ -31,8 +31,12 @@ export default function Checkout({ sid, session, pkg, setPkg, hotelId, onPay, on
     if (!hotelId) return;
     setSteps([]);
     api.package(sid, hotelId, (ev, data) => {
-      if (ev === "status") setSteps((s) => [...s, data.step]);
-      if (ev === "package") setPkg(data);
+      if (ev === "status") { setSteps((s) => [...s, data.step]); log({ kind: "tool", label: data.text }); }
+      if (ev === "package") {
+        setPkg(data);
+        const errs = data.conflicts.filter((c) => c.severity === "error").length;
+        log({ kind: "code", label: `Пакет собран: ${data.total.total_rub.toLocaleString("ru-RU")} ₽`, detail: `состыковки: ${errs ? errs + " конфликт(а)" : "без ошибок"}, предупреждений ${data.conflicts.length - errs}` });
+      }
       if (ev === "error") onToast({ text: "Не удалось собрать пакет: " + data.message, kind: "warn" });
     }).catch((e) => onToast({ text: e.message, kind: "warn" }));
   }, [hotelId]);
@@ -40,8 +44,10 @@ export default function Checkout({ sid, session, pkg, setPkg, hotelId, onPay, on
   const patch = async (p) => {
     setBusy(true);
     try {
+      log({ kind: "user", label: `Доуточнение: ${Object.keys(p).join(", ")}` });
       const res = await api.patchPackage(sid, p);
       setPkg(res);
+      log({ kind: "tool", label: `Пересчитано: ${(res.recomputed || []).join(", ")}`, detail: res.kept?.length ? `сохранено: ${res.kept.join(", ")}` : null });
       if (res.anything_else && !res.anything_else.understood) onToast({ text: res.anything_else.message, kind: "warn" });
       else if (res.changes?.length) onToast({ text: "Пересобрал: " + res.changes.join("; ") });
     } catch (e) {
@@ -116,7 +122,7 @@ export default function Checkout({ sid, session, pkg, setPkg, hotelId, onPay, on
         <div className="small">{dt(h.date_from)} — {dt(h.date_to)} · {h.nights} ноч. · {h.meal_name} · заезд с {h.checkin}</div>
         <div className="row gap">
           <select value={h.room_category} onChange={(e) => patch({ room_category: e.target.value })} aria-label="Категория номера">
-            {h.rooms.map((r) => <option key={r} value={r}>{{ standard: "Стандарт", comfort: "Комфорт", deluxe: "Делюкс", deluxe_sea: "Делюкс с видом на море", family: "Семейный", suite: "Люкс", cottage: "Коттедж" }[r]}</option>)}
+            {h.rooms.map((r) => <option key={r} value={r}>{{ standard: "Стандарт", comfort: "Комфорт", deluxe: "Делюкс", deluxe_sea: "Делюкс с видом на море", family: "Семейный", suite: "Люкс", cottage: "Коттедж", water_villa: "Вилла над водой" }[r]}</option>)}
           </select>
           <span className={`small ${h.cancel.free ? "ok" : "warn"}`}>{h.cancel.text}</span>
         </div>

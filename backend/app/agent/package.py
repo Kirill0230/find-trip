@@ -18,6 +18,7 @@ from .explain import dur, guests_label, rub
 from .ranking import reachability
 
 COMPONENTS = ["hotel", "transport", "transfer", "connections"]
+WATER_TRANSFER_WINDOW = {"maldives": (6, 21)}  # часы, когда ходят катера
 
 
 def _dt(s: str) -> datetime:
@@ -102,6 +103,11 @@ def search_transport(hard: dict, dest: str, pref: str = "optimal", forced: dict 
         o["pax"] = pax
     outs_ok = [o for o in outs if _arrival_ok(o, d_in)] or outs
     backs_ok = [o for o in backs if _return_ok(o, d_out)] or backs
+    win = WATER_TRANSFER_WINDOW.get(dest)
+    if win:  # на остров добираются только катером: прилёт и выезд в часы его работы
+        lo, hi = win
+        outs_ok = [o for o in outs_ok if lo <= _dt(o["arr"]).hour < hi] or outs_ok
+        backs_ok = [o for o in backs_ok if lo <= (_dt(o["dep"]) - timedelta(hours=3, minutes=30)).hour < hi] or backs_ok
     if not outs_ok or not backs_ok:
         return {"mode": None, "error": "нет билетов на эти даты"}
     forced = forced or {}
@@ -138,7 +144,7 @@ def search_transfers(hard: dict, hotel: dict, transport: dict, forced: dict | No
     p_out = _point_for(back, hotel["dest"], hotel, "departure")
     opts_in = search_transfer(p_in, hotel["hotel_id"], out["arr"], hard["adults"], kids)
     # обратно: выезд = отправление − запас − время в пути (оценка по такси)
-    taxi_min = next(o["duration_min"] for o in opts_in if o["type"] == "taxi")
+    taxi_min = next((o["duration_min"] for o in opts_in if o["type"] == "taxi"), opts_in[0]["duration_min"])
     buffer = 150 if back["mode"] == "flight" else 40
     start_back = (_dt(back["dep"]) - timedelta(minutes=buffer + taxi_min)).strftime("%Y-%m-%dT%H:%M")
     opts_out = search_transfer(p_out, hotel["hotel_id"], start_back, hard["adults"], kids)

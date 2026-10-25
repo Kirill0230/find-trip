@@ -44,7 +44,7 @@ export default function Feed({ sid, initial, version, muted, likes, likesSince, 
   useEffect(() => {
     if (cur && ended && !watchedSent.current.has(cur.video.video_id)) {
       watchedSent.current.add(cur.video.video_id);
-      api.swipe(sid, cur.video.video_id, "watched").then(onSwipeResult).catch(() => {});
+      api.swipe(sid, cur.video.video_id, "watched").then((r) => onSwipeResult(r, { dir: "watched", name: cur.hotel.name })).catch(() => {});
     }
   }, [ended, cur]);
 
@@ -60,7 +60,7 @@ export default function Feed({ sid, initial, version, muted, likes, likesSince, 
       setDrag(0);
     }, 260);
     const res = await resP;
-    onSwipeResult(res);
+    onSwipeResult(res, { dir, name: cur.hotel.name });
     if (res.ask) setAsk(res.ask);
     if (res.show_shortlist) setTimeout(onShortlist, 300);
   };
@@ -122,6 +122,7 @@ export default function Feed({ sid, initial, version, muted, likes, likesSince, 
         </div>
         <div className="reel-info">
           <div className="subs" aria-live="polite">{sentences[subIdx]}</div>
+          {cur.reasons?.length > 0 && <div className="why-shown">Показываю, потому что: {cur.reasons.join(" · ")}</div>}
           <div className="name">{h.name} <span className="stars">{STARS(h.stars)}</span></div>
           <div className="small">{h.dest_name}, {h.area} · ⭐ {h.rating} ({h.reviews})</div>
           <div className="price-plate">

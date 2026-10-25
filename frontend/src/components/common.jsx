@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-export const SOURCE_LABEL = { text: "из запроса", swipes: "по свайпам", default: "по умолчанию", correction: "вы поправили", llm: "понял LLM" };
+export const SOURCE_LABEL = { text: "из запроса", swipes: "по свайпам", default: "по умолчанию", correction: "вы поправили", llm: "понял LLM", memory: "помню с прошлого раза" };
 
 export function Chips({ chips }) {
   return (

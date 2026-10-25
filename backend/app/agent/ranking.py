@@ -147,6 +147,8 @@ def transfer_estimate(hotel_id: str) -> int:
     h = HOTELS[hotel_id]
     pts = arrival_points(h["dest"])
     km = min(haversine_km(p["lat"], p["lon"], h["lat"], h["lon"]) for p in pts) * 1.3
+    if h["dest"] == "maldives":  # катер туда и обратно, оценка на двоих
+        return int(2 * 2 * (9000 + km * 120))
     if km < 1.2:
         return 0
     return int(2 * (250 + km * ABROAD_RATE.get(h["dest"], 30)))

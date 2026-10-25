@@ -26,6 +26,7 @@ HOTELS: dict = {h["id"]: h for h in _hotels_raw["hotels"]}
 TZ = {
     "moscow": 3, "spb": 3, "kazan": 3, "ekb": 5, "nsk": 7, "krasnodar": 3, "nn": 3,
     "sochi": 3, "antalya": 3, "hurghada": 2, "dubai": 4, "altai": 7, "karelia": 3,
+    "sharm": 2, "alanya": 3, "tunisia": 1, "phuket": 7, "nhatrang": 7, "maldives": 5, "goa": 5.5, "srilanka": 5.5,
 }
 
 ROOM_TYPES = {
@@ -36,6 +37,7 @@ ROOM_TYPES = {
     "family": {"name": "Семейный номер", "capacity": 5, "mult": 1.75},
     "suite": {"name": "Люкс", "capacity": 4, "mult": 2.5},
     "cottage": {"name": "Коттедж", "capacity": 5, "mult": 1.6},
+    "water_villa": {"name": "Вилла над водой", "capacity": 3, "mult": 1.9},
 }
 
 MEALS = {
@@ -68,13 +70,34 @@ FEATURE_LABELS = {
 
 DEST_SYNONYMS = {
     "sochi": ["сочи", "адлер", "красная поляна", "красной поляне", "красную поляну", "сириус", "хоста", "черное море", "черном море", "черному морю"],
-    "antalya": ["анталь", "антали", "турци", "кемер", "белек", "аланья"],
-    "hurghada": ["хургад", "египет", "египт", "шарм", "красное море", "красном море", "красному морю", "макади", "эль-гун", "эль гун", "сома бей"],
-    "dubai": ["дубай", "дубае", "оаэ", "эмират", "абу-даби"],
+    "antalya": ["анталь", "антали", "кемер", "белек"],
+    "alanya": ["аланья", "аланьи", "аланью", "аланье", "алании", "клеопатр", "конакл"],
+    "hurghada": ["хургад", "макади", "эль-гун", "эль гун", "сома бей"],
+    "sharm": ["шарм", "синай", "наама"],
+    "dubai": ["дубай", "дубае", "абу-даби"],
+    "tunisia": ["тунис", "сусс", "монастир", "хаммамет", "джерб"],
+    "phuket": ["пхукет", "патонг", "пхи-пхи"],
+    "nhatrang": ["нячанг", "камрань"],
+    "maldives": ["мальдив"],
+    "goa": ["гоа"],
+    "srilanka": ["шри-ланк", "шри ланк", "цейлон", "хиккадув", "унаватун"],
     "spb": ["питер", "петербург", "спб", "северную столицу", "северной столице", "ленинград"],
     "kazan": ["казань", "казани", "татарстан"],
     "altai": ["алтай", "алтае", "катун", "телецк", "горно-алтайск", "чемал"],
     "karelia": ["карели", "петрозаводск", "онег", "ладог", "рускеал", "сортавал", "кижи", "валаам"],
+}
+
+# страны и моря, за которыми стоят несколько направлений каталога
+COUNTRY_SYNONYMS = {
+    ("египет", "египт", "красное море", "красном море", "красному морю"): ["hurghada", "sharm"],
+    ("турци",): ["antalya", "alanya"],
+    ("оаэ", "эмират"): ["dubai"],
+    ("таиланд", "тайланд"): ["phuket"],
+    ("вьетнам",): ["nhatrang"],
+    ("инди",): ["goa"],
+    ("средиземн",): ["antalya", "alanya", "tunisia"],
+    ("азию", "азии", "азия"): ["phuket", "nhatrang"],
+    ("индийск",): ["maldives", "goa", "srilanka"],
 }
 
 ORIGIN_SYNONYMS = {
@@ -159,15 +182,28 @@ def _place_tag(h: dict) -> str | None:
     return None
 
 
+@lru_cache(maxsize=None)
+def _place_allocation(dest: str) -> dict:
+    """Клип места для каждого отеля направления: сначала подходящий по типу (пляж/горы/город),
+    но без повторов, пока есть неиспользованные клипы этого направления."""
+    clips = sorted((c for c in STOCK_CLIPS.values() if c["dest"] == dest), key=lambda c: c["key"])
+    used: dict[str, int] = {c["key"]: 0 for c in clips}
+    alloc = {}
+    for hid in sorted(h for h, x in HOTELS.items() if x["dest"] == dest):
+        if not clips:
+            break
+        want = _place_tag(HOTELS[hid])
+        best = min(clips, key=lambda c: (used[c["key"]], 0 if want in c["tags"] else 1, c["key"]))
+        used[best["key"]] += 1
+        alloc[hid] = best
+    return alloc
+
+
 def _stock_for(hotel_id: str) -> list[dict]:
     """Плейлист отеля: клип места (под тип отеля) → бассейн (для курортов) → номер."""
     h = HOTELS[hotel_id]
     dest = h["dest"]
-    want = _place_tag(h)
-    pool_dest = [c for c in STOCK_CLIPS.values() if c["dest"] == dest]
-    place_clips = sorted((c for c in pool_dest if want in c["tags"]), key=lambda c: c["key"]) or sorted(pool_dest, key=lambda c: c["key"])
-    same_type = [hid for hid, x in HOTELS.items() if x["dest"] == dest and _place_tag(x) == want]
-    out = [_spread(place_clips, hotel_id, same_type)]
+    out = [_place_allocation(dest).get(hotel_id)]
     resort = "warm" in DESTINATIONS[dest]["tags"] or (h["beach_line"] in (1, 2) and h["stars"] >= 4)
     if resort:
         pools = sorted((c for c in STOCK_CLIPS.values() if "pool" in c["tags"]), key=lambda c: c["key"])
@@ -198,7 +234,7 @@ def videos_for(hotel_id: str) -> list[dict]:
             "source": source,
             "url": h.get("video_url") or (clips[0]["url"] if clips else None),
             "playlist": [c["url"] for c in clips],
-            "credits": [{"title": c["title"], "pexels": c["pexels"]} for c in clips],
+            "credits": [{"title": c["title"], "pexels": c["pexels"], "generic": c.get("generic", False)} for c in clips],
             "duration_sec": 18,
             "features": hotel_features(hotel_id),
         })

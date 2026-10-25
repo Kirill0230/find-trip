@@ -14,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor
 from contextvars import copy_context
 from datetime import date, datetime
 
-from ..catalog import DESTINATIONS, HOTELS, ORIGINS, hotel_by_video
+from ..catalog import DESTINATIONS, FEATURE_LABELS, HOTELS, ORIGINS, STOCK_CLIPS, hotel_by_video
 from ..tools import start_tool_log, tool
 from ..tools.booking import book as book_tool
 from ..tools.connections import check_connections
@@ -24,6 +24,7 @@ from .corrections import apply_delta, parse_correction
 from .explain import (TRIP_TAG_LABELS, chips_for_hotel, comparison_badges, dur, explain, rub, understood_chips,
                       voiceover)
 from .graph import END, StateGraph
+from .memory import recall
 from .package import build_package, finalize, rebuild
 from .parser import MONTH_PREP, parse_request, plural
 from .ranking import (all_candidates, candidate, dest_allowed, hotel_passes, liked_hotels, priorities, rank,
@@ -114,6 +115,14 @@ def n_validate(run):
         _clarify(st, f"{name} пока нет в демо-каталоге (8 направлений). Подобрать похожее?",
                  [("Город на выходные: Петербург, Казань", "город"), ("Тёплое море", "тёплое море"),
                   ("Предложи что угодно", "покажи что есть")], "unknown_place")
+        return
+    if st["source"].get("dates") == "default" and not st.get("known_all") and not st.get("dates_asked"):
+        # без дат цены и наличие — гадание; это единственное, что спрашиваем до ленты
+        st["dates_asked"] = True
+        nxt = MONTH_PREP[(date.fromisoformat(hard["date_from"]).month) % 12]
+        _clarify(st, "Когда планируете поездку? От дат зависят цены, погода и наличие.",
+                 [("Ближайшие выходные", "на выходные"), ("Через 2 недели, на неделю", "через две недели на неделю"),
+                  (f"В {nxt}", f"в {nxt} на неделю"), ("Даты не важны", "даты не важны")], "no_dates")
         return
     if hard.get("destination"):
         r = reachability(hard["origin_city"], hard["destination"], hard)
@@ -230,10 +239,16 @@ def n_inspire(run):
                       "why": dd["pitch"] + " " + ", ".join(reasons[:3]).capitalize() + ".",
                       "price_from": price_from, "hotels": len(cs), "weather": w,
                       "travel": {"mode": tr.get("mode"), "minutes": tr.get("minutes"), "label": f"{mode_label} {dur(tr.get('minutes'))}".strip()},
-                      "visa": dd["visa"], "score": best_score.get(d, 0)})
+                      "visa": dd["visa"], "score": best_score.get(d, 0),
+                      "video": next((c["url"] for c in STOCK_CLIPS.values() if c["dest"] == d and not c.get("generic")), None)})
     cards.sort(key=lambda c: -c["score"])
     st["destinations"] = cards[:4] if not hard.get("destination") else cards[:1]
     st["mode"] = "feed"
+
+
+def n_recall(run):
+    st = run["state"]
+    st["memory_used"] = recall(st, run.get("memory"))
 
 
 def n_clarify_done(run):
@@ -242,6 +257,7 @@ def n_clarify_done(run):
 
 _intake = (StateGraph("intake")
            .add_node("parse_request", n_parse, "llm" if llm.enabled() else "code", "Разбор запроса")
+           .add_node("recall", n_recall, "code", "Память: что помню о пользователе")
            .add_node("validate", n_validate, "code", "Проверка противоречий")
            .add_node("ask_user", n_clarify_done, "code", "Уточняющий вопрос")
            .add_node("build_package", n_direct_package, "tool", "Сразу собрать пакет (всё известно)")
@@ -249,7 +265,8 @@ _intake = (StateGraph("intake")
            .add_node("diagnose", n_diagnose, "code", "Что мешает? Варианты ослабить")
            .add_node("inspire", n_inspire, "tool", "Направления: цена, погода, дорога")
            .set_entry_point("parse_request")
-           .add_edge("parse_request", "validate")
+           .add_edge("parse_request", "recall")
+           .add_edge("recall", "validate")
            .add_conditional_edges("validate", r_after_validate, {"clarify": "ask_user", "known": "build_package", "search": "search_hotels"})
            .add_conditional_edges("search_hotels", r_after_search, {"found": "inspire", "empty": "diagnose"})
            .add_edge("diagnose", "ask_user")
@@ -271,10 +288,11 @@ _research = (StateGraph("research")
              .compile())
 
 
-def intake(session_id: str, text: str, today: date | None = None) -> dict:
+def intake(session_id: str, text: str, today: date | None = None, memory: dict | None = None, user_id: str | None = None) -> dict:
     st = new_state(session_id, text)
+    st["user_id"] = user_id
     tools = start_tool_log()
-    run = _intake.invoke({"state": st, "today": today or _today()})
+    run = _intake.invoke({"state": st, "today": today or _today(), "memory": memory})
     st["trace"] = run["trace"]
     st["metrics"]["t_intake_ms"] = round(sum(t["ms"] for t in run["trace"]), 1)
     st["metrics"]["intake_tools"] = [t["tool"] for t in tools]
@@ -290,7 +308,8 @@ def session_view(st: dict) -> dict:
     return {"session_id": st["session_id"], "mode": st["mode"], "profile": profile_view(st), "chips": understood_chips(st),
             "clarify": st.get("clarify"), "destinations": st.get("destinations", []), "priorities": priorities(st),
             "package": st.get("package"), "trace": st.get("trace", [])[-12:], "llm_used": st.get("llm_used", False),
-            "likes": len(st["liked"]), "likes_since_shortlist": st.get("likes_since_shortlist", 0)}
+            "likes": len(st["liked"]), "likes_since_shortlist": st.get("likes_since_shortlist", 0),
+            "memory_used": st.get("memory_used", [])}
 
 
 # ================================================================ FEED / SWIPE
@@ -322,7 +341,8 @@ def feed_item(st: dict, c: dict) -> dict:
         "chips": chips_for_hotel(c),
         "match": c.get("match"),
         "score": c.get("score"),
-        "reasons": [k for k, val in sorted((c.get("contrib") or {}).items(), key=lambda x: -x[1]) if val > 0.08][:3],
+        "reasons": [FEATURE_LABELS[k] for k, val in sorted((c.get("contrib") or {}).items(), key=lambda x: -x[1])
+                    if val > 0.08 and k not in ("quality",)][:3],
     }
 
 
@@ -378,7 +398,8 @@ def swipe(st: dict, video_id: str, direction: str) -> dict:
         ask = _streak_question(st)
         st["skip_streak"] = 0
     return {"weights": st["weights"], "priorities": priorities(st), "show_shortlist": res["show_shortlist"],
-            "likes": len(st["liked"]), "likes_since_shortlist": st["likes_since_shortlist"], "ask": ask}
+            "likes": len(st["liked"]), "likes_since_shortlist": st["likes_since_shortlist"], "ask": ask,
+            "dest_stats": {DESTINATIONS[d]["name"]: v for d, v in st.get("dest_stats", {}).items()}}
 
 
 # ================================================================ SHORTLIST
@@ -601,3 +622,106 @@ def book(st: dict, guests: list[dict], contact: dict) -> dict:
 
 def graphs_mermaid() -> dict:
     return {"intake": _intake.mermaid(), "research": _research.mermaid()}
+
+
+# ================================================================ ПОСЛЕ ПОКУПКИ
+
+TICKET_CHANGE_FEE = 2500  # ₽ за пассажира за плечо, тариф с багажом
+EARLY_RX = r"ранн\w* заезд|заселиться пораньше|заехать раньше|ранн\w* заселен"
+LATE_RX = r"поздн\w* выезд|выехать позже|выезд попозже"
+
+
+def _order_fees(st: dict, old: dict, new: dict) -> tuple[int, list[str]]:
+    """Штрафы за изменение оплаченного заказа (мок правил отеля и перевозчика)."""
+    fee, why = 0, []
+    pax = new["guests"]["adults"] + len(new["guests"]["children_ages"])
+    h_old, h_new = old["hotel"], new["hotel"]
+    if (h_old["date_from"], h_old["date_to"], h_old["hotel_id"]) != (h_new["date_from"], h_new["date_to"], h_new["hotel_id"]):
+        free_until = h_old["cancel"].get("deadline")
+        if not h_old["cancel"]["free"] or (free_until and _today().isoformat() > free_until):
+            night = h_old["total_rub"] // max(1, h_old["nights"])
+            fee += night
+            why.append(f"отель: тариф без бесплатного изменения — штраф 1 ночь ({rub(night)})")
+    for leg in ("outbound", "return"):
+        a, b = (old.get("transport") or {}).get(leg), (new.get("transport") or {}).get(leg)
+        if a and b and a["id"] != b["id"]:
+            if a.get("baggage", True):
+                fee += TICKET_CHANGE_FEE * pax
+                why.append(f"обмен билета «{'туда' if leg == 'outbound' else 'обратно'}»: {rub(TICKET_CHANGE_FEE * pax)}")
+            else:
+                pen = a["price_total"] // 2
+                fee += pen
+                why.append(f"тариф без багажа не меняется — возврат 50%, штраф {rub(pen)}")
+    return fee, why
+
+
+def order_request(st: dict, text: str) -> dict:
+    """Просьба по оплаченному заказу: ранний заезд, перенос дат, другой трансфер, гости."""
+    import copy
+    from .corrections import apply_delta as _apply
+    from .parser import norm
+    order = st["order"]
+    t = norm(text)
+    h = HOTELS[st["package"]["hotel"]["hotel_id"]]
+    if re.search(EARLY_RX, t) or re.search(LATE_RX, t):
+        early = bool(re.search(EARLY_RX, t))
+        if (h.get("early_checkin") and early) or (not early and h["stars"] >= 4):
+            status = "подтверждено отелем бесплатно (по наличию в день заезда)"
+        else:
+            night = st["package"]["hotel"]["per_night_rub"]
+            status = f"возможно за доплату ~{rub(night // 2)} (50% ночи), оплата на месте"
+        what = "ранний заезд" if early else "поздний выезд"
+        order.setdefault("service_requests", []).append({"what": what, "status": status})
+        return {"type": "info", "message": f"Запросил {what} в {h['name']}: {status}."}
+    delta = parse_correction(text, st, _today(), context="package")
+    if not delta["understood"]:
+        return {"type": "ask", "message": "Не понял, что поменять в заказе. Например: «ранний заезд», «на день позже», «трансфер с табличкой», «с нами едет ещё ребёнок»."}
+    trial = copy.deepcopy(st)
+    _apply(trial, delta)
+    if delta["flight_pref"]:
+        trial["package"]["transport"]["pref"] = delta["flight_pref"]
+    if re.search(r"табличк|индивидуальн", t):
+        trial["package"].setdefault("forced", {}).update({"arrival_type": "individual", "departure_type": "individual"})
+        delta["affected"] = set(delta["affected"]) | {"transfer_pick"}
+    new_hotel = _hotel_replacement(trial) if delta["affected"] & {"hotel_check"} else None
+    new = rebuild(trial, set(delta["affected"]) - {"hotel_check", "budget_check"}, hotel_id=new_hotel)
+    fee, why = _order_fees(st, st["package"], new)
+    diff = new["total"]["total_rub"] - st["package"]["total"]["total_rub"]  # разница стоимости поездки, штрафы — отдельно
+    errors = [c for c in new["conflicts"] if c["severity"] == "error"]
+    st["order_proposal"] = {"package": new, "hard": trial["hard"], "fee": fee, "diff": diff, "notes": delta["notes"]}
+    pay = diff + fee
+    msg = ("Доплата " + rub(pay)) if pay > 0 else ("Вернём " + rub(-pay)) if pay < 0 else "Без доплаты"
+    return {"type": "proposal", "message": f"Понял: {'; '.join(delta['notes'])}. {msg}.",
+            "proposal": {"notes": delta["notes"], "new_total": new["total"]["total_rub"], "paid": order["paid_rub"],
+                         "old_total": st["package"]["total"]["total_rub"],
+                         "diff": diff, "fee": fee, "fee_reasons": why, "to_pay": pay, "can_apply": not errors,
+                         "conflicts": errors, "timeline": new["timeline"], "recomputed": new["recomputed"]}}
+
+
+def order_confirm(st: dict) -> dict:
+    prop = st.pop("order_proposal", None)
+    if not prop:
+        raise ValueError("нет предложения для подтверждения")
+    order = st["order"]
+    st["package"], st["hard"] = prop["package"], prop["hard"]
+    order["paid_rub"] += prop["diff"] + prop["fee"]
+    fresh = book_tool(st["session_id"], prop["package"], order["guests"], order["contact"])
+    order.update({"vouchers": fresh["vouchers"], "timeline": prop["package"]["timeline"], "package": prop["package"]})
+    order.setdefault("changes", []).append({"notes": prop["notes"], "paid_delta": prop["diff"] + prop["fee"], "fee": prop["fee"]})
+    return order
+
+
+def order_ics(st: dict) -> str:
+    """Напоминания в календарь: события плана + онлайн-регистрация за сутки."""
+    order = st["order"]
+    lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//odin-zapros//RU", "CALSCALE:GREGORIAN"]
+    for i, e in enumerate(order["timeline"]):
+        start = e["at"].replace("-", "").replace(":", "") + "00"
+        lines += ["BEGIN:VEVENT", f"UID:{order['order_id']}-{i}@odin-zapros", f"DTSTART:{start}",
+                  f"SUMMARY:{e['title']}", f"DESCRIPTION:{e['detail']} · заказ {order['order_id']}"]
+        if e["icon"] in ("✈️", "🚆"):
+            lines += ["BEGIN:VALARM", "TRIGGER:-PT24H", "ACTION:DISPLAY", "DESCRIPTION:Онлайн-регистрация и документы", "END:VALARM",
+                      "BEGIN:VALARM", "TRIGGER:-PT3H", "ACTION:DISPLAY", "DESCRIPTION:Пора выезжать", "END:VALARM"]
+        lines.append("END:VEVENT")
+    lines.append("END:VCALENDAR")
+    return "\r\n".join(lines)

@@ -326,6 +326,200 @@
    ],
    "title": "Вид с балкона на воду",
    "pexels": "https://www.pexels.com/video/a-view-of-the-water-from-a-balcony-19479166/"
+  },
+  "sharm_resorts": {
+   "dest": "sharm",
+   "tags": [
+    "beach"
+   ],
+   "title": "Отели на берегу Синая",
+   "pexels": "https://www.pexels.com/video/drone-footage-of-beachfront-hotels-and-resorts-4185242/"
+  },
+  "sharm_ocean": {
+   "dest": "sharm",
+   "tags": [
+    "beach"
+   ],
+   "title": "Курорт у моря с дрона",
+   "pexels": "https://www.pexels.com/video/drone-shot-of-hotel-and-resort-in-front-of-the-ocean-4185243/"
+  },
+  "sharm_bigresort": {
+   "dest": "sharm",
+   "tags": [
+    "beach",
+    "city"
+   ],
+   "title": "Большой курорт с дрона",
+   "pexels": "https://www.pexels.com/video/a-drone-shot-of-a-big-resort-4185334/"
+  },
+  "alanya_coast": {
+   "dest": "alanya",
+   "tags": [
+    "beach"
+   ],
+   "title": "Побережье Аланьи",
+   "pexels": "https://www.pexels.com/video/alanya-16856059/"
+  },
+  "alanya_tower": {
+   "dest": "alanya",
+   "tags": [
+    "beach",
+    "city"
+   ],
+   "title": "Красная башня Аланьи",
+   "pexels": "https://www.pexels.com/video/red-tower-alanya-hyperlapse-18074891/"
+  },
+  "alanya_castle": {
+   "dest": "alanya",
+   "tags": [
+    "city"
+   ],
+   "title": "Крепость Аланьи",
+   "pexels": "https://www.pexels.com/video/the-castle-is-surrounded-by-a-stone-wall-19025008/"
+  },
+  "tunisia_beach": {
+   "dest": "tunisia",
+   "tags": [
+    "beach",
+    "city"
+   ],
+   "title": "Летний пляж",
+   "pexels": "https://www.pexels.com/video/summer-beach-16473203/",
+   "generic": true
+  },
+  "tunisia_waves": {
+   "dest": "tunisia",
+   "tags": [
+    "beach"
+   ],
+   "title": "Волны у берега",
+   "pexels": "https://www.pexels.com/video/waves-crashing-in-the-shore-5038047/",
+   "generic": true
+  },
+  "phuket_coast": {
+   "dest": "phuket",
+   "tags": [
+    "beach"
+   ],
+   "title": "Побережье Пхукета",
+   "pexels": "https://www.pexels.com/video/aerial-view-of-the-coastline-of-phuket-12762055/"
+  },
+  "phuket_naiharn": {
+   "dest": "phuket",
+   "tags": [
+    "beach"
+   ],
+   "title": "Пляж Най-Харн, Пхукет",
+   "pexels": "https://www.pexels.com/video/nai-harn-beach-phuket-18303209/"
+  },
+  "phuket_waves": {
+   "dest": "phuket",
+   "tags": [
+    "beach",
+    "city"
+   ],
+   "title": "Волны на пляже Пхукета",
+   "pexels": "https://www.pexels.com/video/calm-waves-in-a-beach-in-phuket-thailand-6216619/"
+  },
+  "nhatrang_beach": {
+   "dest": "nhatrang",
+   "tags": [
+    "beach",
+    "city"
+   ],
+   "title": "Пляж Нячанга",
+   "pexels": "https://www.pexels.com/video/nha-trang-beach-16098854/"
+  },
+  "nhatrang_city": {
+   "dest": "nhatrang",
+   "tags": [
+    "beach",
+    "city"
+   ],
+   "title": "Прибрежный город во Вьетнаме",
+   "pexels": "https://www.pexels.com/video/a-drone-video-over-a-coastal-city-4388410/"
+  },
+  "maldives_resort": {
+   "dest": "maldives",
+   "tags": [
+    "beach"
+   ],
+   "title": "Курорт на атолле",
+   "pexels": "https://www.pexels.com/video/aerial-footage-of-a-beach-resort-4010511/"
+  },
+  "maldives_aerial": {
+   "dest": "maldives",
+   "tags": [
+    "beach"
+   ],
+   "title": "Курорт на Мальдивах с дрона",
+   "pexels": "https://www.pexels.com/video/an-aerial-shot-of-a-beach-resort-in-maldives-4022224/"
+  },
+  "maldives_sea": {
+   "dest": "maldives",
+   "tags": [
+    "beach"
+   ],
+   "title": "Море Мальдив",
+   "pexels": "https://www.pexels.com/video/people-on-sea-in-maldives-11822872/"
+  },
+  "maldives_island": {
+   "dest": "maldives",
+   "tags": [
+    "beach"
+   ],
+   "title": "Остров с дрона",
+   "pexels": "https://www.pexels.com/video/maldives-free-download-drone-video-beach-island-4010941/"
+  },
+  "goa_resort": {
+   "dest": "goa",
+   "tags": [
+    "beach"
+   ],
+   "title": "Курорт на Гоа с дрона",
+   "pexels": "https://www.pexels.com/video/drone-view-of-a-beach-resort-in-goa-india-15455610/"
+  },
+  "goa_coast": {
+   "dest": "goa",
+   "tags": [
+    "beach"
+   ],
+   "title": "Побережье Гоа",
+   "pexels": "https://www.pexels.com/video/a-beach-resort-on-the-coast-of-goa-india-15740825/"
+  },
+  "goa_sunset": {
+   "dest": "goa",
+   "tags": [
+    "beach"
+   ],
+   "title": "Закат на пляже Гоа",
+   "pexels": "https://www.pexels.com/video/time-lapse-of-a-sunset-at-the-beach-in-goa-india-12603618/"
+  },
+  "srilanka_sunset": {
+   "dest": "srilanka",
+   "tags": [
+    "beach"
+   ],
+   "title": "Закат на Шри-Ланке",
+   "pexels": "https://www.pexels.com/video/tropical-beach-and-waves-in-sea-at-sunset-sri-lanka-12597385/"
+  },
+  "srilanka_road": {
+   "dest": "srilanka",
+   "tags": [
+    "beach",
+    "city"
+   ],
+   "title": "Дорога вдоль пляжа, Шри-Ланка",
+   "pexels": "https://www.pexels.com/video/drone-view-of-traffic-on-a-road-by-the-beach-sri-lanka-13047294/"
+  },
+  "srilanka_boats": {
+   "dest": "srilanka",
+   "tags": [
+    "beach"
+   ],
+   "title": "Рыбацкие лодки на пляже",
+   "pexels": "https://www.pexels.com/video/beach-with-fishing-boats-20012461/",
+   "generic": true
   }
  }
 }

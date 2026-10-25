@@ -46,7 +46,8 @@ async function sse(method, url, body, onEvent) {
 }
 
 export const api = {
-  createSession: (text) => json("POST", "/session", { text }),
+  createSession: (text, user_id) => json("POST", "/session", { text, user_id }),
+  forget: (user_id) => json("DELETE", `/user/${user_id}`),
   getSession: (sid) => json("GET", `/session/${sid}`),
   feed: (sid, n = 3) => json("GET", `/session/${sid}/feed?n=${n}`),
   swipe: (sid, video_id, direction) => json("POST", `/session/${sid}/swipe`, { video_id, direction }),
@@ -56,6 +57,9 @@ export const api = {
   patchPackage: (sid, patch) => json("PATCH", `/session/${sid}/package`, patch),
   book: (sid, body) => json("POST", `/session/${sid}/book`, body),
   metrics: () => json("GET", "/metrics"),
+  orderRequest: (sid, text) => json("POST", `/session/${sid}/order/request`, { text }),
+  orderConfirm: (sid) => json("POST", `/session/${sid}/order/confirm`),
+  calendarUrl: (sid) => `/session/${sid}/order/calendar.ics`,
 };
 
 export const rub = (n) => (n == null ? "—" : `${Math.round(n).toLocaleString("ru-RU")} ₽`);
@@ -77,3 +81,17 @@ export const dt = (s) => {
 };
 
 export const time = (s) => (s ? s.split("T")[1]?.slice(0, 5) : "");
+
+// анонимный id браузера для памяти между сессиями (не персональные данные)
+export function userId() {
+  try {
+    let id = localStorage.getItem("odin_uid");
+    if (!id) {
+      id = "u_" + Math.random().toString(36).slice(2, 12);
+      localStorage.setItem("odin_uid", id);
+    }
+    return id;
+  } catch {
+    return null;
+  }
+}

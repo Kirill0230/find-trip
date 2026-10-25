@@ -210,12 +210,15 @@ function frames(hotel, ns) {
   ];
 }
 
-// Настоящее видео: плейлист «место → номер» по кругу. Звук — озвучка агента, сам ролик без звука.
+// Настоящее видео: плейлист «место → бассейн → номер» по кругу, как сторис. Звук — озвучка агента.
 function StockVideo({ video, playing, compact }) {
   const list = video.playlist?.length ? video.playlist : [video.url];
   const [i, setI] = useState(0);
-  useEffect(() => setI(0), [video.video_id]);
-  const src = list[i % list.length];
+  const [progress, setProgress] = useState(0);
+  useEffect(() => { setI(0); setProgress(0); }, [video.video_id]);
+  const idx = i % list.length;
+  const src = list[idx] + (compact ? "#t=1.5" : "");
+  const generic = video.credits?.[idx]?.generic;
   return (
     <div className={`scene ${compact ? "compact" : ""}`}>
       <video
@@ -226,11 +229,19 @@ function StockVideo({ video, playing, compact }) {
         playsInline
         preload={compact ? "metadata" : "auto"}
         loop={list.length === 1}
-        onEnded={() => setI((x) => x + 1)}
+        onTimeUpdate={(e) => !compact && setProgress(e.target.currentTime / (e.target.duration || 1))}
+        onEnded={() => { setI((x) => x + 1); setProgress(0); }}
       />
+      {!compact && list.length > 1 && (
+        <div className="stories">
+          {list.map((_, k) => (
+            <span key={k}><i style={{ width: `${k < idx ? 100 : k === idx ? progress * 100 : 0}%` }} /></span>
+          ))}
+        </div>
+      )}
       {!compact && (
         <div className="ai-label">
-          {video.source === "stock" ? "Видео направления (Pexels), не съёмка этого отеля" : "Видео отеля"}
+          {video.source !== "stock" ? "Видео отеля" : generic ? "Стоковое видео моря, не съёмка этого места" : "Видео направления (Pexels), не съёмка этого отеля"}
         </div>
       )}
     </div>

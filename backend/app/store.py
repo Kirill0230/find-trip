@@ -43,7 +43,32 @@ class EventRow(Base):
     ts = Column(Float, default=time.time)
 
 
+class UserRow(Base):
+    """Память между сессиями: предпочтения анонимного пользователя (id хранится в браузере)."""
+    __tablename__ = "users"
+    id = Column(String, primary_key=True)
+    prefs = Column(Text, nullable=False)
+    updated_at = Column(Float, default=time.time)
+
+
 Base.metadata.create_all(engine)
+
+
+def load_user(user_id: str) -> dict | None:
+    with Session(engine) as s:
+        row = s.get(UserRow, user_id)
+        return json.loads(row.prefs) if row else None
+
+
+def save_user(user_id: str, prefs: dict) -> None:
+    with Session(engine) as s:
+        row = s.get(UserRow, user_id)
+        data = json.dumps(prefs, ensure_ascii=False)
+        if row:
+            row.prefs, row.updated_at = data, time.time()
+        else:
+            s.add(UserRow(id=user_id, prefs=data))
+        s.commit()
 
 _mem: dict[str, dict] = {}
 _lock = threading.Lock()

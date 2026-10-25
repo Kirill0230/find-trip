@@ -1,72 +1,392 @@
 {
-  "_note": "20 тестовых запросов: размытые, точные и каверзные. today=2026-10-24. expect — эталон разбора (только явно сказанное), like — скрытые предпочтения для имитации свайпов, corrections — правки по ходу.",
-  "today": "2026-10-24",
-  "queries": [
-    {"id": 1, "kind": "размытый (из кейса)", "text": "Хочу куда-нибудь к тёплому морю в ноябре, недорого, с ребёнком, без долгих перелётов",
-     "expect": {"children": 1, "max_travel_hours": 5, "origin_city": "moscow", "month": 11, "trip_tags": ["warm_sea"]},
-     "like": {"kids_club": 1}, "corrections": [{"after": "shortlist", "text": "а если на два дня позже?"}]},
-    {"id": 2, "kind": "точный (из ТЗ)", "text": "Выходные в Питере вдвоём, из Москвы на Сапсане, 14–16 ноября",
-     "expect": {"date_from": "2026-11-14", "date_to": "2026-11-16", "adults": 2, "origin_city": "moscow", "destination": "spb", "transport": "train"},
-     "like": {"center": 0.8}},
-    {"id": 3, "kind": "сценарий 2, без ленты (из ТЗ)", "text": "Азур Бэй Сочи, номер делюкс с видом на море, 3–10 декабря, двое взрослых",
-     "expect_mode": "checkout",
-     "expect": {"hotel_id": "h_sochi_01", "room_category": "deluxe_sea", "date_from": "2026-12-03", "date_to": "2026-12-10", "adults": 2, "destination": "sochi"},
-     "corrections": [{"after": "package", "text": "а если на два дня позже?", "must_keep": ["hotel"], "must_not_call": ["search_hotels"]},
-                     {"after": "package", "text": "с нами едет собака"}]},
-    {"id": 4, "kind": "точный, семья", "text": "Турция или Египет всё включено на неделю с 5 декабря, 2 взрослых и двое детей 4 и 9 лет, бюджет до 250 тысяч",
-     "expect": {"date_from": "2026-12-05", "date_to": "2026-12-12", "adults": 2, "children": 2, "budget_total_rub": 250000, "destinations_allowed": ["antalya", "hurghada"]},
-     "like": {"all_inclusive": 1, "kids_club": 1}, "corrections": [{"after": "package", "text": "бюджет меньше", "must_not_call": ["search_hotels"]}]},
-    {"id": 5, "kind": "праздник + питомец", "text": "Новый год в горах с собакой, из Питера, бюджет 150 тысяч на двоих",
-     "expect": {"date_from": "2026-12-30", "origin_city": "spb", "pets": true, "budget_total_rub": 150000, "adults": 2, "trip_tags": ["mountains"]},
-     "like": {"nature": 0.7}},
-    {"id": 6, "kind": "соло, город", "text": "Казань на выходные одна, до 30 000",
-     "expect": {"destination": "kazan", "adults": 1, "budget_total_rub": 30000, "nights": 2},
-     "like": {"center": 0.7}},
-    {"id": 7, "kind": "размытый, настроение", "text": "Хочу тихо отдохнуть без детей в спа, 5 звезд, питание не важно",
-     "expect": {"min_stars": 5, "origin_city": "moscow"},
-     "like": {"spa": 1}, "corrections": [{"after": "shortlist", "text": "питание не важно, но нужна бесплатная отмена"}]},
-    {"id": 8, "kind": "точный, заграница", "text": "Дубай в январе на 5 ночей вдвоём, первая линия, бюджет 300к",
-     "expect": {"destination": "dubai", "nights": 5, "adults": 2, "budget_total_rub": 300000, "month": 1},
-     "like": {"beach_line_1": 1}},
-    {"id": 9, "kind": "поезд, природа, дети", "text": "Карелия на майские с детьми 6 и 10 лет, на поезде из Петербурга, домик у озера",
-     "expect": {"destination": "karelia", "transport": "train", "origin_city": "spb", "children": 2, "month": 5},
-     "like": {"nature": 0.9}},
-    {"id": 10, "kind": "активный, из регионов", "text": "Алтай в июле на 10 дней, активный отдых, из Новосибирска",
-     "expect": {"destination": "altai", "origin_city": "nsk", "nights": 9, "month": 7},
-     "like": {"active": 1}},
-    {"id": 11, "kind": "каверзный: противоречие", "text": "Тёплое море в январе, но только на поезде из Москвы",
-     "expect_mode": "clarify", "clarify_pick": "самолёт",
-     "expect": {"transport": "train", "origin_city": "moscow", "month": 1, "trip_tags": ["warm_sea"]},
-     "like": {"beach_line_1": 1}},
-    {"id": 12, "kind": "каверзный: нет вариантов в бюджет", "text": "Неделя в Дубае на двоих за 30 тысяч",
-     "expect_mode": "clarify", "clarify_pick": "бюджет",
-     "expect": {"destination": "dubai", "adults": 2, "budget_total_rub": 30000, "nights": 7},
-     "like": {"beach_line_1": 0.5}},
-    {"id": 13, "kind": "компания, регион", "text": "Море, 3 взрослых, с 20 по 27 декабря, из Екатеринбурга, бесплатная отмена обязательна",
-     "expect": {"adults": 3, "date_from": "2026-12-20", "date_to": "2026-12-27", "origin_city": "ekb", "trip_tags": ["sea"]},
-     "like": {"free_cancel": 1}},
-    {"id": 14, "kind": "размытый, город", "text": "Куда-нибудь на выходные из Москвы, недалеко, погулять по городу",
-     "expect": {"origin_city": "moscow", "nights": 2, "max_travel_hours": 5, "trip_tags": ["city"]},
-     "like": {"center": 0.7}},
-    {"id": 15, "kind": "малыш, прямой рейс", "text": "Египет с 1 по 8 декабря, без пересадок, с малышом 2 года, бюджет 200 тыс",
-     "expect": {"destination": "hurghada", "date_from": "2026-12-01", "date_to": "2026-12-08", "direct_only": true, "children": 1, "budget_total_rub": 200000},
-     "like": {"kids_club": 1}, "corrections": [{"after": "package", "text": "рейс побыстрее"}]},
-    {"id": 16, "kind": "сценарий 2, семья", "text": "Анталья, Лара Голд Делюкс, семейный номер, 12-19 ноября, 2 взрослых и ребенок 7 лет",
-     "expect_mode": "checkout",
-     "expect": {"hotel_id": "h_ant_01", "room_category": "family", "date_from": "2026-11-12", "date_to": "2026-11-19", "adults": 2, "children": 1},
-     "corrections": [{"after": "package", "text": "на день раньше", "must_keep": ["hotel"], "must_not_call": ["search_hotels"]}]},
-    {"id": 17, "kind": "каверзный: поезда нет", "text": "Романтические выходные в Петербурге 28-30 ноября из Казани, поездом",
-     "expect_mode": "clarify", "clarify_pick": "самолёт",
-     "expect": {"destination": "spb", "origin_city": "kazan", "transport": "train", "date_from": "2026-11-28", "date_to": "2026-11-30"},
-     "like": {"quiet": 0.5}},
-    {"id": 18, "kind": "регион, поезд вместо самолёта", "text": "Хочу на море в Сочи в декабре вчетвером с двумя детьми 3 и 8 лет, всё включено, вылет из Краснодара",
-     "expect": {"destination": "sochi", "origin_city": "krasnodar", "adults": 2, "children": 2, "month": 12},
-     "like": {"kids_club": 1}, "corrections": [{"after": "shortlist", "text": "с нами едет бабушка"}]},
-    {"id": 19, "kind": "размытый + питомец", "text": "Отдохнуть недорого где-то в России в ноябре с собакой",
-     "expect": {"pets": true, "month": 11, "trip_tags": ["russia"]},
-     "like": {"budget": 0.4}},
-    {"id": 20, "kind": "поезд между регионами", "text": "Из Нижнего Новгорода в Казань на 3 дня с 12 декабря, двое",
-     "expect": {"origin_city": "nn", "destination": "kazan", "date_from": "2026-12-12", "nights": 2, "adults": 2},
-     "like": {"center": 0.6}, "corrections": [{"after": "package", "text": "Что-нибудь ещё: нужен ранний заезд"}]}
-  ]
+ "_note": "20 тестовых запросов: размытые, точные и каверзные. today=2026-10-24. expect — эталон разбора (только явно сказанное), like — скрытые предпочтения для имитации свайпов, corrections — правки по ходу.",
+ "today": "2026-10-24",
+ "queries": [
+  {
+   "id": 1,
+   "kind": "размытый (из кейса)",
+   "text": "Хочу куда-нибудь к тёплому морю в ноябре, недорого, с ребёнком, без долгих перелётов",
+   "expect": {
+    "children": 1,
+    "max_travel_hours": 5,
+    "origin_city": "moscow",
+    "month": 11,
+    "trip_tags": [
+     "warm_sea"
+    ]
+   },
+   "like": {
+    "kids_club": 1
+   },
+   "corrections": [
+    {
+     "after": "shortlist",
+     "text": "а если на два дня позже?"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "kind": "точный (из ТЗ)",
+   "text": "Выходные в Питере вдвоём, из Москвы на Сапсане, 14–16 ноября",
+   "expect": {
+    "date_from": "2026-11-14",
+    "date_to": "2026-11-16",
+    "adults": 2,
+    "origin_city": "moscow",
+    "destination": "spb",
+    "transport": "train"
+   },
+   "like": {
+    "center": 0.8
+   }
+  },
+  {
+   "id": 3,
+   "kind": "сценарий 2, без ленты (из ТЗ)",
+   "text": "Азур Бэй Сочи, номер делюкс с видом на море, 3–10 декабря, двое взрослых",
+   "expect_mode": "checkout",
+   "expect": {
+    "hotel_id": "h_sochi_01",
+    "room_category": "deluxe_sea",
+    "date_from": "2026-12-03",
+    "date_to": "2026-12-10",
+    "adults": 2,
+    "destination": "sochi"
+   },
+   "corrections": [
+    {
+     "after": "package",
+     "text": "а если на два дня позже?",
+     "must_keep": [
+      "hotel"
+     ],
+     "must_not_call": [
+      "search_hotels"
+     ]
+    },
+    {
+     "after": "package",
+     "text": "с нами едет собака"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "kind": "точный, семья",
+   "text": "Турция или Египет всё включено на неделю с 5 декабря, 2 взрослых и двое детей 4 и 9 лет, бюджет до 250 тысяч",
+   "expect": {
+    "date_from": "2026-12-05",
+    "date_to": "2026-12-12",
+    "adults": 2,
+    "children": 2,
+    "budget_total_rub": 250000,
+    "destinations_allowed": [
+     "alanya",
+     "antalya",
+     "hurghada",
+     "sharm"
+    ]
+   },
+   "like": {
+    "all_inclusive": 1,
+    "kids_club": 1
+   },
+   "corrections": [
+    {
+     "after": "package",
+     "text": "бюджет меньше",
+     "must_not_call": [
+      "search_hotels"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "kind": "праздник + питомец",
+   "text": "Новый год в горах с собакой, из Питера, бюджет 150 тысяч на двоих",
+   "expect": {
+    "date_from": "2026-12-30",
+    "origin_city": "spb",
+    "pets": true,
+    "budget_total_rub": 150000,
+    "adults": 2,
+    "trip_tags": [
+     "mountains"
+    ]
+   },
+   "like": {
+    "nature": 0.7
+   }
+  },
+  {
+   "id": 6,
+   "kind": "соло, город",
+   "text": "Казань на выходные одна, до 30 000",
+   "expect": {
+    "destination": "kazan",
+    "adults": 1,
+    "budget_total_rub": 30000,
+    "nights": 2
+   },
+   "like": {
+    "center": 0.7
+   }
+  },
+  {
+   "id": 7,
+   "kind": "размытый, настроение",
+   "text": "Хочу тихо отдохнуть без детей в спа, 5 звезд, питание не важно",
+   "expect": {
+    "min_stars": 5,
+    "origin_city": "moscow"
+   },
+   "like": {
+    "spa": 1
+   },
+   "corrections": [
+    {
+     "after": "shortlist",
+     "text": "питание не важно, но нужна бесплатная отмена"
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "kind": "точный, заграница",
+   "text": "Дубай в январе на 5 ночей вдвоём, первая линия, бюджет 300к",
+   "expect": {
+    "destination": "dubai",
+    "nights": 5,
+    "adults": 2,
+    "budget_total_rub": 300000,
+    "month": 1
+   },
+   "like": {
+    "beach_line_1": 1
+   }
+  },
+  {
+   "id": 9,
+   "kind": "поезд, природа, дети",
+   "text": "Карелия на майские с детьми 6 и 10 лет, на поезде из Петербурга, домик у озера",
+   "expect": {
+    "destination": "karelia",
+    "transport": "train",
+    "origin_city": "spb",
+    "children": 2,
+    "month": 5
+   },
+   "like": {
+    "nature": 0.9
+   }
+  },
+  {
+   "id": 10,
+   "kind": "активный, из регионов",
+   "text": "Алтай в июле на 10 дней, активный отдых, из Новосибирска",
+   "expect": {
+    "destination": "altai",
+    "origin_city": "nsk",
+    "nights": 9,
+    "month": 7
+   },
+   "like": {
+    "active": 1
+   }
+  },
+  {
+   "id": 11,
+   "kind": "каверзный: противоречие",
+   "text": "Тёплое море в январе, но только на поезде из Москвы",
+   "expect_mode": "clarify",
+   "clarify_pick": "самолёт",
+   "expect": {
+    "transport": "train",
+    "origin_city": "moscow",
+    "month": 1,
+    "trip_tags": [
+     "warm_sea"
+    ]
+   },
+   "like": {
+    "beach_line_1": 1
+   }
+  },
+  {
+   "id": 12,
+   "kind": "каверзный: нет вариантов в бюджет",
+   "text": "Неделя в Дубае на двоих за 30 тысяч",
+   "expect_mode": "clarify",
+   "clarify_pick": "бюджет",
+   "expect": {
+    "destination": "dubai",
+    "adults": 2,
+    "budget_total_rub": 30000,
+    "nights": 7
+   },
+   "like": {
+    "beach_line_1": 0.5
+   }
+  },
+  {
+   "id": 13,
+   "kind": "компания, регион",
+   "text": "Море, 3 взрослых, с 20 по 27 декабря, из Екатеринбурга, бесплатная отмена обязательна",
+   "expect": {
+    "adults": 3,
+    "date_from": "2026-12-20",
+    "date_to": "2026-12-27",
+    "origin_city": "ekb",
+    "trip_tags": [
+     "sea"
+    ]
+   },
+   "like": {
+    "free_cancel": 1
+   }
+  },
+  {
+   "id": 14,
+   "kind": "размытый, город",
+   "text": "Куда-нибудь на выходные из Москвы, недалеко, погулять по городу",
+   "expect": {
+    "origin_city": "moscow",
+    "nights": 2,
+    "max_travel_hours": 5,
+    "trip_tags": [
+     "city"
+    ]
+   },
+   "like": {
+    "center": 0.7
+   }
+  },
+  {
+   "id": 15,
+   "kind": "малыш, прямой рейс",
+   "text": "Египет с 1 по 8 декабря, без пересадок, с малышом 2 года, бюджет 200 тыс",
+   "expect": {
+    "date_from": "2026-12-01",
+    "date_to": "2026-12-08",
+    "direct_only": true,
+    "children": 1,
+    "budget_total_rub": 200000,
+    "destinations_allowed": [
+     "hurghada",
+     "sharm"
+    ]
+   },
+   "like": {
+    "kids_club": 1
+   },
+   "corrections": [
+    {
+     "after": "package",
+     "text": "рейс побыстрее"
+    }
+   ]
+  },
+  {
+   "id": 16,
+   "kind": "сценарий 2, семья",
+   "text": "Анталья, Лара Голд Делюкс, семейный номер, 12-19 ноября, 2 взрослых и ребенок 7 лет",
+   "expect_mode": "checkout",
+   "expect": {
+    "hotel_id": "h_ant_01",
+    "room_category": "family",
+    "date_from": "2026-11-12",
+    "date_to": "2026-11-19",
+    "adults": 2,
+    "children": 1
+   },
+   "corrections": [
+    {
+     "after": "package",
+     "text": "на день раньше",
+     "must_keep": [
+      "hotel"
+     ],
+     "must_not_call": [
+      "search_hotels"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "kind": "каверзный: поезда нет",
+   "text": "Романтические выходные в Петербурге 28-30 ноября из Казани, поездом",
+   "expect_mode": "clarify",
+   "clarify_pick": "самолёт",
+   "expect": {
+    "destination": "spb",
+    "origin_city": "kazan",
+    "transport": "train",
+    "date_from": "2026-11-28",
+    "date_to": "2026-11-30"
+   },
+   "like": {
+    "quiet": 0.5
+   }
+  },
+  {
+   "id": 18,
+   "kind": "регион, поезд вместо самолёта",
+   "text": "Хочу на море в Сочи в декабре вчетвером с двумя детьми 3 и 8 лет, всё включено, вылет из Краснодара",
+   "expect": {
+    "destination": "sochi",
+    "origin_city": "krasnodar",
+    "adults": 2,
+    "children": 2,
+    "month": 12
+   },
+   "like": {
+    "kids_club": 1
+   },
+   "corrections": [
+    {
+     "after": "shortlist",
+     "text": "с нами едет бабушка"
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "kind": "размытый + питомец",
+   "text": "Отдохнуть недорого где-то в России в ноябре с собакой",
+   "expect": {
+    "pets": true,
+    "month": 11,
+    "trip_tags": [
+     "russia"
+    ]
+   },
+   "like": {
+    "budget": 0.4
+   }
+  },
+  {
+   "id": 20,
+   "kind": "поезд между регионами",
+   "text": "Из Нижнего Новгорода в Казань на 3 дня с 12 декабря, двое",
+   "expect": {
+    "origin_city": "nn",
+    "destination": "kazan",
+    "date_from": "2026-12-12",
+    "nights": 2,
+    "adults": 2
+   },
+   "like": {
+    "center": 0.6
+   },
+   "corrections": [
+    {
+     "after": "package",
+     "text": "Что-нибудь ещё: нужен ранний заезд"
+    }
+   ]
+  }
+ ]
 }

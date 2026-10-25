@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { rub } from "../api.js";
+import { api, rub, userId } from "../api.js";
 import { Chips } from "../components/common.jsx";
 
 const EXAMPLES = [
@@ -19,6 +19,7 @@ export default function Query({ session, busy, onSubmit, onOption, onStart, onPi
 
   return (
     <div className="screen query">
+      {!session && <video className="hero-bg" src="/videos/maldives_island.mp4" autoPlay muted loop playsInline aria-hidden="true" />}
       <div className="hero">
         <div className="logo">О!дин запрос</div>
         <p className="muted">Скажи, куда хочешь отправиться. Остальное устроит агент.</p>
@@ -47,6 +48,11 @@ export default function Query({ session, busy, onSubmit, onOption, onStart, onPi
       {session && (
         <div className="understood card">
           <div className="small muted">Агент понял</div>
+          {session.memory_used?.length > 0 && (
+            <div className="memory small">🧠 С возвращением! Помню: {session.memory_used.join(", ")}.{" "}
+              <button className="link" onClick={() => api.forget(userId()).then(() => alert("Готово: забыл ваши предпочтения."))}>Забыть</button>
+            </div>
+          )}
           <Chips chips={session.chips} />
           {session.chips.some((c) => c.source === "default") && (
             <div className="small muted">Пунктиром — то, что я додумал. Проверим перед оплатой, переспрашивать сейчас не буду.</div>
@@ -70,7 +76,8 @@ export default function Query({ session, busy, onSubmit, onOption, onStart, onPi
           <div className="small muted">{session.destinations.length > 1 ? "Куда можно поехать — нажмите, чтобы смотреть только это" : "Направление"}</div>
           {session.destinations.map((d) => (
             <button key={d.dest_id} className="dest card" onClick={() => session.destinations.length > 1 && onPickDest(d)} disabled={busy}>
-              <div className="row between"><b>{d.name}</b><span className="price">от {rub(d.price_from)}</span></div>
+              {d.video && <video className="dest-thumb" src={d.video + "#t=2"} muted playsInline preload="metadata" aria-hidden="true" />}
+              <div className="row between"><b>{d.name} <span className="muted small">{d.country}</span></b><span className="price">от {rub(d.price_from)}</span></div>
               <div className="small">{d.why}</div>
               <div className="small muted">
                 {d.weather?.water ? `🌊 +${d.weather.water}° ` : ""}{d.weather?.air != null ? `☀️ ${d.weather.air > 0 ? "+" : ""}${d.weather.air}° ` : ""}

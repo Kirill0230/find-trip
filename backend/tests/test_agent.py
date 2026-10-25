@@ -48,3 +48,37 @@ def test_connections_detect_late_arrival():
 def test_twenty_queries_reach_booking():
     from tests.run_metrics import main
     assert main() == 0
+
+
+def _client():
+    from fastapi.testclient import TestClient
+    from app.main import app
+    return TestClient(app)
+
+
+def test_post_purchase_change_dates_with_fee():
+    c = _client()
+    s = c.post("/session", json={"text": "Азур Бэй Сочи, номер делюкс с видом на море, 3–10 декабря, двое взрослых"}).json()
+    sid = s["session_id"]
+    paid = c.post(f"/session/{sid}/book", json={"guests": [{"name": "A B"}, {"name": "C D"}]}).json()["paid_rub"]
+    r = c.post(f"/session/{sid}/order/request", json={"text": "на день позже"}).json()
+    assert r["type"] == "proposal" and r["proposal"]["can_apply"]
+    o = c.post(f"/session/{sid}/order/confirm").json()
+    assert o["paid_rub"] == paid + r["proposal"]["to_pay"]
+    assert o["package"]["hotel"]["date_from"] == "2026-12-04"
+    assert c.get(f"/session/{sid}/order/calendar.ics").text.startswith("BEGIN:VCALENDAR")
+
+
+def test_memory_between_sessions():
+    c = _client()
+    s = c.post("/session", json={"text": "море в декабре из Казани вдвоём", "user_id": "u_pytest"}).json()
+    c.get(f"/session/{s['session_id']}/shortlist?stream=0")
+    s2 = c.post("/session", json={"text": "хочу к морю в январе", "user_id": "u_pytest"}).json()
+    assert s2["profile"]["hard"]["origin_city"] == "kazan"
+    assert s2["profile"]["source"]["origin_city"] == "memory"
+
+
+def test_no_dates_asks_when():
+    c = _client()
+    s = c.post("/session", json={"text": "хочу к морю"}).json()
+    assert s["mode"] == "clarify" and "Когда" in s["clarify"]["question"]

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { api } from "./api.js";
+import { api, userId } from "./api.js";
 import { CorrectionBar, Toast, Trace } from "./components/common.jsx";
+import { ProfilePanel, ThinkingPanel } from "./components/panels.jsx";
 import Checkout from "./screens/Checkout.jsx";
 import Done from "./screens/Done.jsx";
 import Feed from "./screens/Feed.jsx";
@@ -27,6 +28,12 @@ export default function App() {
   const [muted, setMuted] = useState(false);
   const [traceOpen, setTraceOpen] = useState(false);
   const [trace, setTrace] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [priorities, setPriorities] = useState([]);
+  const [destStats, setDestStats] = useState({});
+
+  const log = (...items) => setEvents((e) => [...e, ...items].slice(-80));
+  const fromTrace = (tr) => (tr || []).map((t) => ({ kind: t.kind, label: t.label, ms: t.ms }));
 
   const sid = session?.session_id;
 
@@ -35,9 +42,18 @@ export default function App() {
     setPkg(null); setOrder(null); setHotelId(null); setShortlistOverride(null); setInitialFeed(null);
     setLikes({ total: 0, since: 0 });
     try {
-      const s = await api.createSession(text);
+      setEvents([{ kind: "user", label: `Запрос: «${text}»` }]);
+      setDestStats({});
+      const s = await api.createSession(text, userId());
       setSession(s);
       setTrace(s.trace);
+      setPriorities(s.priorities || []);
+      if (s.memory_used?.length) log({ kind: "code", label: "Вспомнил с прошлого раза", detail: s.memory_used.join(", ") });
+      log(...fromTrace(s.trace), {
+        kind: "code",
+        label: s.mode === "clarify" ? "Остановился и задаю один вопрос" : s.mode === "checkout" ? "Всё известно — сразу пакет" : `Лента: ${s.destinations?.length || 0} направл.`,
+        detail: s.mode === "clarify" ? s.clarify?.question : s.destinations?.map((d) => d.name).join(", "),
+      });
       if (s.mode === "checkout") {
         setPkg(s.package);
         setHotelId(s.package.hotel.hotel_id);
@@ -64,11 +80,19 @@ export default function App() {
     if (!sid) return;
     setBusy(true);
     try {
+      log({ kind: "user", label: `Правка: «${text}»` });
       const res = await api.correct(sid, text, contextFor());
       if (!res.understood) {
+        log({ kind: "code", label: "Не понял правку — переспрашиваю" });
         setToast({ text: res.message, kind: "warn" });
         return;
       }
+      setPriorities(res.priorities || []);
+      log(...fromTrace(res.trace), {
+        kind: "tool",
+        label: `Дельта: ${(res.notes || []).join("; ") || "—"}`,
+        detail: res.tool_calls?.length ? `вызваны: ${[...new Set(res.tool_calls)].join(", ")}` : "без новых запросов к инструментам",
+      });
       setToast({ text: res.message, detail: res.package?.changes?.find((c) => c.startsWith("отель заменён")) });
       setTrace((t) => [...t, ...(res.trace || [])].slice(-30));
       setSession((s) => ({ ...(res.session || s), chips: res.chips, priorities: res.priorities }));
@@ -94,6 +118,7 @@ export default function App() {
     setBusy(true);
     try {
       const o = await api.book(sid, body);
+      log({ kind: "tool", label: `book → заказ ${o.order_id}`, detail: "оплата демонстрационная" });
       setOrder(o);
       setScreen("done");
     } catch (e) {
@@ -114,6 +139,9 @@ export default function App() {
   const showBar = sid && ["feed", "shortlist", "checkout"].includes(screen);
 
   return (
+    <>
+    <ProfilePanel session={session} priorities={priorities} destStats={destStats} />
+    <ThinkingPanel events={events} />
     <div className="app">
       <header className="top">
         {BACK[screen] && session ? <button className="ghost" onClick={() => setScreen(BACK[screen] === "shortlist" && !likes.total && session?.mode === "checkout" ? "query" : BACK[screen])} aria-label="Назад">‹</button> : <span className="brand">О!</span>}
@@ -131,7 +159,14 @@ export default function App() {
         )}
         {screen === "feed" && sid && (
           <Feed sid={sid} initial={initialFeed} version={feedVersion} muted={muted} likes={likes.total} likesSince={likes.since}
-            onSwipeResult={(r) => setLikes({ total: r.likes, since: r.likes_since_shortlist })} onShortlist={openShortlist} onAnswer={correct} />
+            onSwipeResult={(r, info) => {
+              setLikes({ total: r.likes, since: r.likes_since_shortlist });
+              setPriorities(r.priorities || []);
+              if (r.dest_stats) setDestStats(r.dest_stats);
+              if (info) log({ kind: "code", label: `${info.dir === "right" ? "❤" : info.dir === "left" ? "✕" : "👀 досмотрел"} ${info.name}`, detail: info.dir === "right" ? "веса сдвинуты к признакам отеля (+0.2·(f−0.5))" : info.dir === "left" ? "веса от признаков отеля (−0.1·(f−0.5)), место ниже в ленте" : "слабый плюс 0.05" });
+              if (r.ask) log({ kind: "code", label: "Серия пропусков — спрашиваю, что поменять" });
+              if (r.show_shortlist) log({ kind: "code", label: "3 лайка — собираю подборку с объяснениями" });
+            }} onShortlist={openShortlist} onAnswer={correct} />
         )}
         {screen === "shortlist" && sid && (
           <Shortlist key={shortlistKey} sid={sid} override={shortlistOverride}
@@ -139,15 +174,16 @@ export default function App() {
             onMore={() => setScreen("feed")} />
         )}
         {screen === "checkout" && sid && (
-          <Checkout sid={sid} session={session} pkg={pkg} setPkg={setPkg} hotelId={hotelId} onToast={setToast} onPay={() => setScreen("payment")} />
+          <Checkout sid={sid} session={session} pkg={pkg} setPkg={setPkg} hotelId={hotelId} onToast={setToast} onPay={() => setScreen("payment")} log={log} />
         )}
         {screen === "payment" && pkg && <Payment pkg={pkg} busy={busy} onBook={book} />}
-        {screen === "done" && order && <Done order={order} onRestart={restart} />}
+        {screen === "done" && order && <Done sid={sid} order={order} onOrder={setOrder} onRestart={restart} log={log} />}
       </main>
 
       {showBar && <CorrectionBar context={contextFor()} onSend={correct} busy={busy} />}
       <Toast toast={toast} onClose={() => setToast(null)} />
       <Trace trace={trace} open={traceOpen} onClose={() => setTraceOpen(false)} />
     </div>
+    </>
   );
 }

@@ -67,7 +67,7 @@ backend (FastAPI)
    │   └── corrections.py  фраза → дельта профиля → затронутые компоненты
    ├── tools/              search_hotels, get_hotel_price, search_flights, search_trains,
    │                       search_transfer, get_weather, check_connections, book (каждый вызов журналируется)
-   ├── data/               8 направлений, 40 отелей (синтетика)
+   ├── data/               16 направлений, 64 отеля (синтетика), 63 стоковых клипа
    └── store.py            SQLite/SQLAlchemy: состояние по session_id + события
 ```
 

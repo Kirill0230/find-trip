@@ -225,7 +225,7 @@ def understood_chips(state: dict) -> list[dict]:
         label += f" (±{hard['flexible_days']} дн)"
     chips.append({"key": "dates", "icon": "📅", "label": label, "source": src.get("dates", "default") if src.get("nights") != "default" else "default"})
     chips.append({"key": "guests", "icon": "👥", "label": guests_label(hard["adults"], hard["children_ages"]),
-                  "source": "default" if "default" in (src.get("adults"), src.get("children_ages")) else "text"})
+                  "source": "memory" if src.get("adults") == "memory" else "default" if "default" in (src.get("adults"), src.get("children_ages")) else "text"})
     if hard.get("budget_total_rub"):
         chips.append({"key": "budget", "icon": "💰", "label": f"до {rub(hard['budget_total_rub'])}", "source": src.get("budget_total_rub", "text")})
     elif hard.get("budget_night_rub"):

@@ -14,13 +14,14 @@ from typing import Literal
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.responses import JSONResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from . import store
 from .agent import flows, llm
 from .agent.flows import BookingConflict
+from .agent.memory import remember
 from .metrics import summary
 
 app = FastAPI(title="О!дин запрос — прототип агента", version="0.1.0")
@@ -36,12 +37,18 @@ def _state(sid: str) -> dict:
     return st
 
 
+def _remember(st: dict) -> None:
+    if st.get("user_id"):
+        store.save_user(st["user_id"], remember(st, store.load_user(st["user_id"])))
+
+
 def _sse(event: str, data) -> str:
     return f"event: {event}\ndata: {json.dumps(data, ensure_ascii=False, default=str)}\n\n"
 
 
 class SessionIn(BaseModel):
     text: str = Field(min_length=1, max_length=2000)
+    user_id: str | None = Field(default=None, max_length=64)
 
 
 class SwipeIn(BaseModel):
@@ -93,7 +100,8 @@ def health():
 def create_session(body: SessionIn):
     sid = "s_" + uuid.uuid4().hex[:10]
     t0 = time.perf_counter()
-    st = flows.intake(sid, body.text)
+    memory = store.load_user(body.user_id) if body.user_id else None
+    st = flows.intake(sid, body.text, memory=memory, user_id=body.user_id)
     store.save(st)
     store.event(sid, "intake", {"ms": round((time.perf_counter() - t0) * 1000), "mode": st["mode"]})
     view = flows.session_view(st)
@@ -134,6 +142,7 @@ def shortlist(sid: str, stream: int = 1):
         sl = flows.build_shortlist(st)
         flows.mark_shortlist_shown(st)
         store.save(st)
+        _remember(st)
     if not stream:
         return sl
 
@@ -213,8 +222,55 @@ def book(sid: str, body: BookIn):
             store.save(st)
             return JSONResponse(status_code=409, content={"error": "conflicts", "conflicts": e.conflicts, "package": st["package"]})
         store.save(st)
+        _remember(st)
     store.event(sid, "book", {"order_id": order["order_id"]})
     return order
+
+
+class OrderRequestIn(BaseModel):
+    text: str = Field(min_length=1, max_length=500)
+
+
+def _order_state(sid: str) -> dict:
+    st = _state(sid)
+    if not st.get("order"):
+        raise HTTPException(400, "no order yet")
+    return st
+
+
+@app.post("/session/{sid}/order/request")
+def order_request(sid: str, body: OrderRequestIn):
+    with _locks[sid]:
+        st = _order_state(sid)
+        res = flows.order_request(st, body.text)
+        store.save(st)
+    store.event(sid, "order_request", {"text": body.text, "type": res["type"]})
+    return res
+
+
+@app.post("/session/{sid}/order/confirm")
+def order_confirm(sid: str):
+    with _locks[sid]:
+        st = _order_state(sid)
+        try:
+            order = flows.order_confirm(st)
+        except ValueError as e:
+            raise HTTPException(400, str(e))
+        store.save(st)
+    return order
+
+
+@app.get("/session/{sid}/order/calendar.ics")
+def order_calendar(sid: str):
+    st = _order_state(sid)
+    return Response(flows.order_ics(st), media_type="text/calendar",
+                    headers={"Content-Disposition": f'attachment; filename="{st["order"]["order_id"]}.ics"'})
+
+
+@app.delete("/user/{user_id}")
+def forget_user(user_id: str):
+    store.save_user(user_id, {})
+    return {"ok": True}
 
 
 @app.get("/metrics")

@@ -11,7 +11,7 @@ import calendar
 import re
 from datetime import date, timedelta
 
-from ..catalog import DEST_SYNONYMS, DESTINATIONS, HOTELS, ORIGIN_SYNONYMS, ROOM_TYPES
+from ..catalog import COUNTRY_SYNONYMS, DEST_SYNONYMS, DESTINATIONS, HOTELS, ORIGIN_SYNONYMS, ROOM_TYPES
 
 DEFAULT_WEIGHTS = {
     "beach_line_1": 0.2, "all_inclusive": 0.1, "stars_5": 0.1, "kids_club": 0.0,
@@ -84,6 +84,7 @@ def plural(n: int, one: str, few: str, many: str) -> str:
 
 def parse_duration(t: str) -> int | None:
     """Число ночей из «на неделю», «на 5 дней», «10 ночей»."""
+    t = re.sub(r"через\s+(?:\S+\s+)?(недел\w*|месяц\w*|дн\w*|дня)", " ", t)  # «через две недели» — это старт, а не длительность
     if re.search(r"две недели|2 недели|двух недель", t):
         return 14
     if re.search(r"\bна неделю|\bнеделю\b|\bнеделя\b|на 7 дней", t):
@@ -315,15 +316,40 @@ def find_origin(t: str) -> tuple[str | None, tuple[int, int] | None]:
     return None, None
 
 
+def _word_at(t: str, s: str) -> int:
+    for m in re.finditer(re.escape(s), t):
+        if m.start() == 0 or not t[m.start() - 1].isalpha():
+            return m.start()
+    return -1
+
+
+def negated_dest(t: str, dest: str) -> bool:
+    """«не Анталья», «только не Турция», «без Египта», «кроме Дубая»."""
+    syns = list(DEST_SYNONYMS[dest]) + [s for group, ds in COUNTRY_SYNONYMS.items() if dest in ds for s in group]
+    for syn in syns:
+        for m in re.finditer(re.escape(syn), t):
+            if re.search(r"(?:\bне|\bбез|кроме|исключи\w*|убери\w*)\s+(?:в\s+|во\s+|на\s+)?$", t[max(0, m.start() - 16):m.start()]):
+                return True
+    return False
+
+
 def find_destinations(t: str) -> list[str]:
     found = []
     for did, syns in DEST_SYNONYMS.items():
         for s in syns:
-            idx = t.find(s)
-            if idx >= 0 and (idx == 0 or not t[idx - 1].isalpha()):
+            idx = _word_at(t, s)
+            if idx >= 0:
                 found.append((idx, did))
                 break
-    return [d for _, d in sorted(found)]
+    for syns, dests in COUNTRY_SYNONYMS.items():
+        idx = min((i for i in (_word_at(t, s) for s in syns) if i >= 0), default=-1)
+        if idx >= 0:
+            found += [(idx, d) for d in dests]
+    out = []
+    for _, d in sorted(found):
+        if d not in out:
+            out.append(d)
+    return out
 
 
 _GENERIC = {"отель", "резорт", "гранд", "парк", "бич", "сити", "клаб", "спа", "инн", "лодж", "бутик", "хостел-отель", "хостел",
@@ -369,7 +395,9 @@ def find_room(t: str, hotel_id: str | None) -> str | None:
     rooms = HOTELS[hotel_id]["rooms"] if hotel_id else list(ROOM_TYPES)
     sea = re.search(r"вид\w* на море|видом на море|с видом", t)
     cand = None
-    if re.search(r"делюкс|deluxe|делюск", t):
+    if re.search(r"вилл\w* (над|на) вод|water villa|бунгало над вод", t):
+        cand = "water_villa"
+    elif re.search(r"делюкс|deluxe|делюск", t):
         cand = "deluxe_sea" if sea and "deluxe_sea" in rooms else "deluxe"
     elif re.search(r"(?<!де)люкс|сюит|suite", t):
         cand = "suite"
@@ -502,6 +530,8 @@ def parse_request(text: str, today: date) -> dict:
     t_dest = t[:span[0]] + " " + t[span[1]:] if span else t
     hotel_id = find_hotel(t)
     dests = find_destinations(t_dest)
+    excluded = [d for d in dests if negated_dest(t_dest, d)]
+    dests = [d for d in dests if d not in excluded]
     if hotel_id:
         dests = [HOTELS[hotel_id]["dest"]]
     room = find_room(t.replace(norm(HOTELS[hotel_id]["name"]), " ") if hotel_id else t, hotel_id)
@@ -558,6 +588,7 @@ def parse_request(text: str, today: date) -> dict:
         "destination": dests[0] if len(dests) == 1 else None,
         "destinations_allowed": dests if len(dests) > 1 else [],
         "trip_tags": trip["tags"],
+        "exclude_dests": excluded,
         "hotel_id": hotel_id, "room_category": room,
         "transport": constraints.get("transport", "any"),
         "max_travel_hours": constraints.get("max_travel_hours"),
@@ -570,5 +601,5 @@ def parse_request(text: str, today: date) -> dict:
         source["hotel_id"] = "text"
         source["room_category"] = "text" if room else "default"
     known_all = bool(hotel_id and dates.get("exact"))
-    unknown = None if (dests or hotel_id) else find_unknown_place(text)
+    unknown = None if (dests or hotel_id or excluded) else find_unknown_place(text)
     return {"hard": hard, "weights": weights, "source": source, "known_all": known_all, "text": text, "unknown_place": unknown}

@@ -9,9 +9,9 @@ from __future__ import annotations
 import re
 from datetime import date, timedelta
 
-from ..catalog import DEST_SYNONYMS, DESTINATIONS, FEATURE_LABELS, HOTELS, ORIGINS
+from ..catalog import COUNTRY_SYNONYMS, DEST_SYNONYMS, DESTINATIONS, FEATURE_LABELS, HOTELS, ORIGINS
 from .explain import guests_label, rub
-from .parser import (NUM, find_destinations, find_hotel, find_origin, find_room, fmt_range, norm, num, parse_budget,
+from .parser import (NUM, negated_dest, find_destinations, find_hotel, find_origin, find_room, fmt_range, norm, num, parse_budget,
                      parse_constraints, parse_dates, parse_guests, parse_trip_type, parse_weights)
 
 # какое поле профиля → какие компоненты пакета пересчитывать
@@ -82,14 +82,6 @@ def _extend(t: str) -> int | None:
     return None
 
 
-def _negated_dest(t: str, dest: str) -> bool:
-    for syn in DEST_SYNONYMS[dest]:
-        for m in re.finditer(re.escape(syn), t):
-            if re.search(r"(?:\bне|\bбез|кроме|исключи\w*|убери\w*)\s+(?:в\s+|во\s+|на\s+)?$", t[max(0, m.start() - 16):m.start()]):
-                return True
-    return False
-
-
 def parse_correction(text: str, state: dict, today: date, context: str = "feed") -> dict:
     t = norm(text)
     hard = state["hard"]
@@ -123,6 +115,10 @@ def parse_correction(text: str, state: dict, today: date, context: str = "feed")
             ch["date_to"] = (date.fromisoformat(hard["date_from"]) + timedelta(days=n)).isoformat()
             notes.append(f"{n} ноч.: {fmt_range(hard['date_from'], ch['date_to'])}")
 
+    if re.search(r"даты не важн|когда угодно|в любое время|без разницы когда|не важно когда", t):
+        ch["flexible_days"] = 7
+        notes.append("даты гибкие — ищу на ближайшие недели, проверим перед оплатой")
+
     # --- бюджет
     b = parse_budget(t)
     if b and b["per"] != "night":
@@ -150,7 +146,7 @@ def parse_correction(text: str, state: dict, today: date, context: str = "feed")
     adults, kids = hard["adults"], list(hard["children_ages"])
     if re.search(r"с нами (едет|поедет|будет)|ещ[её] (едет|поедет|будет)|добав\w*|плюс|\+\s*\d?", t) and re.search(PERSON_ADULT + "|" + PERSON_CHILD, t):
         add_ad = len(re.findall(r"(?:" + PERSON_ADULT + r")\w*", t))
-        add_kids = re.findall(r"(?:" + PERSON_CHILD + r")\w*\D{0,10}?(\d{1,2})?", t)
+        add_kids = re.findall(r"(?:" + PERSON_CHILD + r")\w*(?:\s+(?:\w+\s+)?(\d{1,2})\s*(?:лет|года|год))?", t)
         if add_ad:
             adults += add_ad
         for age in add_kids:
@@ -193,7 +189,7 @@ def parse_correction(text: str, state: dict, today: date, context: str = "feed")
         hotel_change = h
         notes.append(f"отель: {HOTELS[h]['name']}")
     dests = find_destinations(t_dest)
-    negated = [d for d in dests if _negated_dest(t_dest, d)]
+    negated = [d for d in dests if negated_dest(t_dest, d)]
     if negated:  # «только не Турция», «не Анталья и не Хургада»
         dests = [d for d in dests if d not in negated]
         excl = sorted(set(hard.get("exclude_dests") or []) | set(negated))

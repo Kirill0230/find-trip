@@ -1,13 +1,13 @@
 {
- "generated_at": "2026-10-24T21:44:42",
+ "generated_at": "2026-10-25T20:44:19",
  "summary": {
   "cases": 20,
   "completion": "20 из 20",
   "completion_rate": 1.0,
-  "t_first_result_ms_max": 16,
-  "t_first_result_ms_median": 7.0,
-  "questions_avg": 0.15,
-  "questions_max": 1,
+  "t_first_result_ms_max": 32,
+  "t_first_result_ms_median": 9.0,
+  "questions_avg": 0.25,
+  "questions_max": 2,
   "swipes_to_shortlist_avg": 3.2,
   "parse_accuracy": 1.0,
   "conflicts_at_booking": 0,
@@ -46,13 +46,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 11,
+   "t_first_result_ms": 32,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-135438",
-   "total_rub": 107160,
+   "order_id": "OD-2610-971085",
+   "total_rub": 112750,
    "questions": 0,
-   "wall_ms": 49
+   "wall_ms": 65
   },
   {
    "id": 2,
@@ -65,13 +65,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 5,
-   "t_first_result_ms": 5,
+   "t_first_result_ms": 7,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-193755",
+   "order_id": "OD-2610-393979",
    "total_rub": 32260,
    "questions": 0,
-   "wall_ms": 33
+   "wall_ms": 31
   },
   {
    "id": 3,
@@ -152,10 +152,10 @@
    "t_first_result_ms": 4,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-302698",
+   "order_id": "OD-2610-487163",
    "total_rub": 67920,
    "questions": 0,
-   "wall_ms": 21
+   "wall_ms": 22
   },
   {
    "id": 4,
@@ -192,13 +192,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 8,
+   "t_first_result_ms": 10,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-826427",
-   "total_rub": 170780,
+   "order_id": "OD-2610-443417",
+   "total_rub": 250380,
    "questions": 0,
-   "wall_ms": 31
+   "wall_ms": 29
   },
   {
    "id": 5,
@@ -211,13 +211,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 6,
+   "t_first_result_ms": 8,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-896560",
+   "order_id": "OD-2610-751749",
    "total_rub": 114510,
    "questions": 0,
-   "wall_ms": 22
+   "wall_ms": 25
   },
   {
    "id": 6,
@@ -230,13 +230,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 4,
-   "t_first_result_ms": 6,
+   "t_first_result_ms": 7,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-046749",
+   "order_id": "OD-2610-228305",
    "total_rub": 22780,
    "questions": 0,
-   "wall_ms": 25
+   "wall_ms": 26
   },
   {
    "id": 7,
@@ -260,15 +260,19 @@
    "parse_ok": 2,
    "parse_total": 2,
    "parse_misses": [],
-   "mode": "feed",
+   "mode": "clarify",
+   "clarify": {
+    "question": "Когда планируете поездку? От дат зависят цены, погода и наличие.",
+    "picked": "Ближайшие выходные"
+   },
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 7,
+   "t_first_result_ms": 12,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-710117",
-   "total_rub": 219620,
-   "questions": 0,
-   "wall_ms": 26
+   "order_id": "OD-2610-964673",
+   "total_rub": 132950,
+   "questions": 1,
+   "wall_ms": 33
   },
   {
    "id": 8,
@@ -281,13 +285,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": null,
-   "t_first_result_ms": 6,
+   "t_first_result_ms": 8,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-077195",
+   "order_id": "OD-2610-661067",
    "total_rub": 171930,
    "questions": 0,
-   "wall_ms": 23
+   "wall_ms": 25
   },
   {
    "id": 9,
@@ -300,13 +304,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": null,
-   "t_first_result_ms": 5,
+   "t_first_result_ms": 6,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-332199",
+   "order_id": "OD-2610-931231",
    "total_rub": 118840,
    "questions": 0,
-   "wall_ms": 21
+   "wall_ms": 22
   },
   {
    "id": 10,
@@ -319,10 +323,10 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": null,
-   "t_first_result_ms": 7,
+   "t_first_result_ms": 9,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-542878",
+   "order_id": "OD-2610-602944",
    "total_rub": 193170,
    "questions": 0,
    "wall_ms": 25
@@ -342,13 +346,13 @@
     "picked": "✈️ Полетим самолётом"
    },
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 16,
+   "t_first_result_ms": 13,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-925308",
-   "total_rub": 158040,
+   "order_id": "OD-2610-501035",
+   "total_rub": 141860,
    "questions": 1,
-   "wall_ms": 36
+   "wall_ms": 43
   },
   {
    "id": 12,
@@ -362,16 +366,16 @@
    "mode": "clarify",
    "clarify": {
     "question": "Честно: в бюджет ничего не помещается. Что можно ослабить?",
-    "picked": "Поднять бюджет до 127 000 ₽"
+    "picked": "Поднять бюджет до 73 000 ₽"
    },
    "swipes_to_shortlist": null,
-   "t_first_result_ms": 10,
+   "t_first_result_ms": 12,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-976572",
-   "total_rub": 132200,
-   "questions": 1,
-   "wall_ms": 25
+   "order_id": "OD-2610-717820",
+   "total_rub": 72440,
+   "questions": 2,
+   "wall_ms": 26
   },
   {
    "id": 13,
@@ -384,13 +388,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 8,
+   "t_first_result_ms": 13,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-706369",
-   "total_rub": 165730,
+   "order_id": "OD-2610-924856",
+   "total_rub": 265020,
    "questions": 0,
-   "wall_ms": 31
+   "wall_ms": 37
   },
   {
    "id": 14,
@@ -406,10 +410,10 @@
    "t_first_result_ms": 7,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-844680",
-   "total_rub": 54310,
+   "order_id": "OD-2610-924757",
+   "total_rub": 45910,
    "questions": 0,
-   "wall_ms": 28
+   "wall_ms": 23
   },
   {
    "id": 15,
@@ -447,11 +451,11 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 7,
+   "t_first_result_ms": 9,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-222897",
-   "total_rub": 150460,
+   "order_id": "OD-2610-316180",
+   "total_rub": 201700,
    "questions": 0,
    "wall_ms": 28
   },
@@ -500,10 +504,10 @@
    "t_first_result_ms": 3,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-992460",
+   "order_id": "OD-2610-005960",
    "total_rub": 240560,
    "questions": 0,
-   "wall_ms": 13
+   "wall_ms": 12
   },
   {
    "id": 17,
@@ -520,13 +524,13 @@
     "picked": "✈️ Полетим самолётом"
    },
    "swipes_to_shortlist": null,
-   "t_first_result_ms": 10,
+   "t_first_result_ms": 9,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-679923",
+   "order_id": "OD-2610-191682",
    "total_rub": 45580,
    "questions": 1,
-   "wall_ms": 48
+   "wall_ms": 35
   },
   {
    "id": 18,
@@ -559,13 +563,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 7,
+   "t_first_result_ms": 14,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-468734",
+   "order_id": "OD-2610-342286",
    "total_rub": 260860,
    "questions": 0,
-   "wall_ms": 32
+   "wall_ms": 50
   },
   {
    "id": 19,
@@ -578,13 +582,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 8,
+   "t_first_result_ms": 15,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-857355",
+   "order_id": "OD-2610-305216",
    "total_rub": 48920,
    "questions": 0,
-   "wall_ms": 25
+   "wall_ms": 77
   },
   {
    "id": 20,
@@ -619,13 +623,13 @@
    "parse_misses": [],
    "mode": "feed",
    "swipes_to_shortlist": 3,
-   "t_first_result_ms": 5,
+   "t_first_result_ms": 8,
    "booked": true,
    "conflicts_at_booking": 0,
-   "order_id": "OD-2610-633644",
+   "order_id": "OD-2610-323089",
    "total_rub": 26390,
    "questions": 0,
-   "wall_ms": 22
+   "wall_ms": 32
   }
  ]
 }

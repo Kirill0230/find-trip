@@ -1,132 +1,3269 @@
 {
-  "_note": "Демо-каталог: названия отелей вымышленные, координаты — реальные районы. Цены, номера, отзывы и признаки синтетические.",
-  "hotels": [
-    {"id": "h_sochi_01", "name": "Азур Бэй Сочи", "dest": "sochi", "stars": 5, "lat": 43.575, "lon": 39.728, "area": "Центральный район, набережная", "beach_line": 1, "meal": "BB", "base": 15500, "kids_club": true, "spa": true, "vibe": "quiet", "center": 0.8, "nature": 0.3, "cancel_days": 3, "pets": false, "checkin": "15:00", "checkout": "12:00", "rating": 9.1, "reviews": 812, "rooms": ["standard", "deluxe_sea", "family", "suite"], "early_checkin": true, "shuttle": true,
-     "desc": "Свой галечный пляж, спа с бассейном и видовые номера на море.",
-     "pros": [["свой пляж и шезлонги", 0.64], ["вид на море из номеров", 0.51], ["вкусные завтраки", 0.43]], "cons": [["дорогой ресторан", 0.21], ["галька, нужна обувь для моря", 0.17]]},
-    {"id": "h_sochi_02", "name": "Магнолия Фэмили Резорт", "dest": "sochi", "stars": 4, "lat": 43.432, "lon": 39.918, "area": "Адлер, Имеретинская низменность", "beach_line": 1, "meal": "AI", "base": 11800, "kids_club": true, "spa": false, "vibe": "family", "center": 0.2, "nature": 0.3, "cancel_days": 5, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 8.7, "reviews": 1264, "rooms": ["standard", "comfort", "family"], "early_checkin": true, "shuttle": true,
-     "desc": "Семейный отель на первой линии в Адлере: аниматоры, детский клуб и всё включено.",
-     "pros": [["детский клуб и анимация", 0.68], ["всё включено без доплат", 0.55], ["10 минут от аэропорта", 0.41]], "cons": [["шумно у бассейна днём", 0.27], ["однообразный ужин", 0.18]]},
-    {"id": "h_sochi_03", "name": "Горный Приют Поляна", "dest": "sochi", "stars": 4, "lat": 43.684, "lon": 40.265, "area": "Красная Поляна, 960 м", "beach_line": 0, "meal": "HB", "base": 9800, "kids_club": false, "spa": true, "vibe": "active", "center": 0.1, "nature": 1.0, "cancel_days": 7, "pets": true, "checkin": "15:00", "checkout": "12:00", "rating": 8.9, "reviews": 534, "rooms": ["standard", "deluxe", "suite"], "early_checkin": false, "shuttle": false,
-     "desc": "Шале у подъёмников: трекинг летом, лыжи зимой, баня и вид на хребет. Можно с собакой.",
-     "pros": [["рядом подъёмники и тропы", 0.6], ["можно с животными", 0.33], ["баня и сауна", 0.36]], "cons": [["до моря час езды", 0.31], ["слабый Wi-Fi", 0.15]]},
-    {"id": "h_sochi_04", "name": "Лазурный Берег Хоста", "dest": "sochi", "stars": 3, "lat": 43.516, "lon": 39.869, "area": "Хоста", "beach_line": 2, "meal": "BB", "base": 5200, "kids_club": false, "spa": false, "vibe": "quiet", "center": 0.3, "nature": 0.5, "cancel_days": 1, "pets": true, "checkin": "14:00", "checkout": "11:00", "rating": 8.2, "reviews": 389, "rooms": ["standard", "comfort", "family"], "early_checkin": true, "shuttle": false,
-     "desc": "Небольшой тихий отель в 300 м от моря в зелёной Хосте, с животными можно.",
-     "pros": [["тихо и зелено", 0.52], ["доброжелательный персонал", 0.47], ["можно с собакой", 0.29]], "cons": [["крутой подъём от пляжа", 0.34], ["простые номера", 0.25]]},
-    {"id": "h_sochi_05", "name": "Сочи Сити Лофт", "dest": "sochi", "stars": 3, "lat": 43.589, "lon": 39.726, "area": "Центр, у вокзала", "beach_line": 3, "meal": "RO", "base": 4300, "kids_club": false, "spa": false, "vibe": "city", "center": 1.0, "nature": 0.1, "cancel_days": 0, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 7.9, "reviews": 211, "rooms": ["standard", "comfort"], "early_checkin": false, "shuttle": false,
-     "desc": "Бюджетный лофт в пешей доступности от вокзала и Морского порта.",
-     "pros": [["дёшево", 0.58], ["всё рядом пешком", 0.49]], "cons": [["невозвратный тариф", 0.3], ["шум с улицы", 0.29], ["до пляжа 15 минут", 0.22]]},
-    {"id": "h_sochi_06", "name": "Имеретинский Гранд Парк", "dest": "sochi", "stars": 5, "lat": 43.405, "lon": 39.963, "area": "Сириус, Олимпийский парк", "beach_line": 1, "meal": "HB", "base": 17200, "kids_club": true, "spa": true, "vibe": "family", "center": 0.2, "nature": 0.3, "cancel_days": 7, "pets": false, "checkin": "15:00", "checkout": "12:00", "rating": 9.3, "reviews": 976, "rooms": ["standard", "deluxe_sea", "family", "suite"], "early_checkin": true, "shuttle": true,
-     "desc": "Большой курорт у Олимпийского парка: подогреваемые бассейны, детский клуб, полупансион.",
-     "pros": [["подогреваемые бассейны", 0.57], ["большая территория для детей", 0.5], ["рядом Олимпийский парк", 0.44]], "cons": [["далеко от центра Сочи", 0.26], ["очереди на завтраке", 0.19]]},
-
-    {"id": "h_ant_01", "name": "Лара Голд Делюкс", "dest": "antalya", "stars": 5, "lat": 36.852, "lon": 30.851, "area": "Лара", "beach_line": 1, "meal": "AI", "base": 19500, "kids_club": true, "spa": true, "vibe": "family", "center": 0.3, "nature": 0.2, "cancel_days": 7, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 9.2, "reviews": 1840, "rooms": ["standard", "deluxe_sea", "family", "suite"], "early_checkin": true, "shuttle": true,
-     "desc": "Ультра всё включено, аквапарк и песчаный пляж в 15 минутах от аэропорта.",
-     "pros": [["аквапарк с горками", 0.61], ["песчаный пляж", 0.58], ["близко к аэропорту", 0.47]], "cons": [["много людей в сезон", 0.24], ["платный ресторан a la carte", 0.16]]},
-    {"id": "h_ant_02", "name": "Кемер Пайн Бич", "dest": "antalya", "stars": 4, "lat": 36.602, "lon": 30.563, "area": "Кемер", "beach_line": 1, "meal": "AI", "base": 11200, "kids_club": true, "spa": false, "vibe": "quiet", "center": 0.4, "nature": 0.8, "cancel_days": 3, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 8.6, "reviews": 932, "rooms": ["standard", "comfort", "family"], "early_checkin": false, "shuttle": true,
-     "desc": "Сосны до самой воды и вид на Таврские горы, спокойная атмосфера.",
-     "pros": [["сосновый парк у моря", 0.55], ["вид на горы", 0.42], ["спокойно", 0.39]], "cons": [["галечный пляж", 0.33], ["час от аэропорта", 0.28]]},
-    {"id": "h_ant_03", "name": "Белек Гольф и Спа", "dest": "antalya", "stars": 5, "lat": 36.858, "lon": 31.062, "area": "Белек", "beach_line": 1, "meal": "AI", "base": 23800, "kids_club": true, "spa": true, "vibe": "quiet", "center": 0.1, "nature": 0.6, "cancel_days": 14, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 9.4, "reviews": 1102, "rooms": ["deluxe", "deluxe_sea", "family", "suite"], "early_checkin": true, "shuttle": true,
-     "desc": "Премиальный курорт с большим спа, гольф-полями и бесплатной отменой за 14 дней.",
-     "pros": [["огромный спа-центр", 0.6], ["тихая просторная территория", 0.52], ["сервис уровня люкс", 0.5]], "cons": [["дорого", 0.31], ["вокруг ничего нет", 0.2]]},
-    {"id": "h_ant_04", "name": "Сиде Санрайз Клаб", "dest": "antalya", "stars": 4, "lat": 36.771, "lon": 31.392, "area": "Сиде", "beach_line": 2, "meal": "AI", "base": 8600, "kids_club": false, "spa": false, "vibe": "active", "center": 0.5, "nature": 0.3, "cancel_days": 1, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 8.1, "reviews": 744, "rooms": ["standard", "comfort"], "early_checkin": false, "shuttle": true,
-     "desc": "Молодёжный клубный отель: вечеринки у бассейна, водные виды спорта, рядом античный Сиде.",
-     "pros": [["вечеринки и анимация", 0.49], ["рядом старый город", 0.41], ["недорого для AI", 0.45]], "cons": [["шумно ночью", 0.38], ["до моря через дорогу", 0.27]]},
-    {"id": "h_ant_05", "name": "Коньяалты Сити Бутик", "dest": "antalya", "stars": 3, "lat": 36.872, "lon": 30.641, "area": "Коньяалты, Анталья", "beach_line": 2, "meal": "BB", "base": 5400, "kids_club": false, "spa": false, "vibe": "city", "center": 0.8, "nature": 0.2, "cancel_days": 2, "pets": true, "checkin": "14:00", "checkout": "11:00", "rating": 8.3, "reviews": 318, "rooms": ["standard", "comfort"], "early_checkin": true, "shuttle": false,
-     "desc": "Бутик-отель у пляжа Коньяалты, рядом старый город Калеичи. Пускают с небольшими собаками.",
-     "pros": [["рядом старый город", 0.5], ["хорошее соотношение цены", 0.46], ["можно с собакой", 0.22]], "cons": [["только завтраки", 0.3], ["маленькие номера", 0.24]]},
-    {"id": "h_ant_06", "name": "Анталья Фэмили Аква", "dest": "antalya", "stars": 5, "lat": 36.845, "lon": 30.892, "area": "Кунду", "beach_line": 1, "meal": "AI", "base": 16400, "kids_club": true, "spa": true, "vibe": "family", "center": 0.2, "nature": 0.2, "cancel_days": 5, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 8.9, "reviews": 1377, "rooms": ["standard", "family", "suite"], "early_checkin": true, "shuttle": true,
-     "desc": "Детский мини-клуб с 4 лет, детское меню, семейные номера с двумя спальнями.",
-     "pros": [["лучший мини-клуб", 0.63], ["семейные номера", 0.48], ["пологий вход в море", 0.4]], "cons": [["много детей — не для тишины", 0.29], ["шумная анимация", 0.2]]},
-
-    {"id": "h_hrg_01", "name": "Сахл Хашиш Корал Резорт", "dest": "hurghada", "stars": 5, "lat": 27.043, "lon": 33.887, "area": "Сахл-Хашиш", "beach_line": 1, "meal": "AI", "base": 12400, "kids_club": true, "spa": true, "vibe": "family", "center": 0.2, "nature": 0.5, "cancel_days": 7, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 9.0, "reviews": 1520, "rooms": ["standard", "deluxe_sea", "family", "suite"], "early_checkin": true, "shuttle": true,
-     "desc": "Собственный коралловый риф с понтоном, детский клуб и аквазона.",
-     "pros": [["риф с рыбками у понтона", 0.66], ["детский клуб", 0.47], ["чисто и новая мебель", 0.44]], "cons": [["ветрено зимой", 0.22], ["далеко от города", 0.18]]},
-    {"id": "h_hrg_02", "name": "Макади Санни Бич", "dest": "hurghada", "stars": 4, "lat": 26.991, "lon": 33.899, "area": "Макади-Бей", "beach_line": 1, "meal": "AI", "base": 7600, "kids_club": true, "spa": false, "vibe": "family", "center": 0.1, "nature": 0.4, "cancel_days": 3, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 8.5, "reviews": 1120, "rooms": ["standard", "family"], "early_checkin": false, "shuttle": true,
-     "desc": "Песчаный пляж с пологим входом — удобно с маленькими детьми, недорогое всё включено.",
-     "pros": [["пологий песчаный вход", 0.62], ["недорого", 0.5], ["аниматоры для детей", 0.38]], "cons": [["скромный выбор блюд", 0.3], ["старый номерной фонд", 0.26]]},
-    {"id": "h_hrg_03", "name": "Эль Гуна Лагуна Лодж", "dest": "hurghada", "stars": 5, "lat": 27.394, "lon": 33.679, "area": "Эль-Гуна", "beach_line": 1, "meal": "HB", "base": 14800, "kids_club": false, "spa": true, "vibe": "quiet", "center": 0.5, "nature": 0.6, "cancel_days": 10, "pets": true, "checkin": "15:00", "checkout": "12:00", "rating": 9.2, "reviews": 640, "rooms": ["deluxe", "deluxe_sea", "suite"], "early_checkin": true, "shuttle": true,
-     "desc": "Тихий лодж на лагунах Эль-Гуны: кайт-станция рядом, спа, допускаются небольшие животные.",
-     "pros": [["тишина и лагуны", 0.56], ["кайтсёрфинг рядом", 0.37], ["отличный спа", 0.4]], "cons": [["полупансион, ужин платный", 0.25], ["40 минут от аэропорта", 0.2]]},
-    {"id": "h_hrg_04", "name": "Хургада Марина Сити", "dest": "hurghada", "stars": 3, "lat": 27.226, "lon": 33.838, "area": "Хургада, Марина", "beach_line": 2, "meal": "BB", "base": 4200, "kids_club": false, "spa": false, "vibe": "city", "center": 0.9, "nature": 0.1, "cancel_days": 0, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 7.7, "reviews": 402, "rooms": ["standard", "comfort"], "early_checkin": false, "shuttle": false,
-     "desc": "Бюджетный городской отель у марины: кафе, рынки и экскурсии рядом.",
-     "pros": [["дёшево", 0.6], ["рядом марина и кафе", 0.45]], "cons": [["невозвратный тариф", 0.35], ["городской пляж", 0.33], ["шумно", 0.28]]},
-    {"id": "h_hrg_05", "name": "Сома Бэй Виндс", "dest": "hurghada", "stars": 5, "lat": 26.851, "lon": 33.985, "area": "Сома-Бей", "beach_line": 1, "meal": "AI", "base": 13600, "kids_club": true, "spa": true, "vibe": "active", "center": 0.1, "nature": 0.6, "cancel_days": 5, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 8.8, "reviews": 870, "rooms": ["standard", "deluxe_sea", "family"], "early_checkin": true, "shuttle": true,
-     "desc": "Для активных: дайв-центр, кайт и гольф, при этом детский клуб для семей.",
-     "pros": [["дайвинг и кайт", 0.54], ["большой пляж", 0.46], ["детский клуб", 0.31]], "cons": [["сильный ветер", 0.29], ["50 минут от аэропорта", 0.23]]},
-    {"id": "h_hrg_06", "name": "Аква Джангл Хургада", "dest": "hurghada", "stars": 4, "lat": 27.105, "lon": 33.83, "area": "Хургада, юг", "beach_line": 1, "meal": "AI", "base": 8900, "kids_club": true, "spa": false, "vibe": "family", "center": 0.4, "nature": 0.2, "cancel_days": 3, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 8.4, "reviews": 2104, "rooms": ["standard", "family"], "early_checkin": false, "shuttle": true,
-     "desc": "Отель-аквапарк: 30 горок, детские бассейны, всё включено.",
-     "pros": [["аквапарк бесплатно", 0.71], ["детям не скучно", 0.52]], "cons": [["очень шумно", 0.35], ["массовый отель", 0.3]]},
-
-    {"id": "h_dxb_01", "name": "Палм Корал Резиденс", "dest": "dubai", "stars": 5, "lat": 25.112, "lon": 55.139, "area": "Палм-Джумейра", "beach_line": 1, "meal": "BB", "base": 29500, "kids_club": true, "spa": true, "vibe": "quiet", "center": 0.4, "nature": 0.1, "cancel_days": 7, "pets": false, "checkin": "15:00", "checkout": "12:00", "rating": 9.3, "reviews": 1290, "rooms": ["deluxe", "deluxe_sea", "family", "suite"], "early_checkin": true, "shuttle": true,
-     "desc": "Курорт на Пальме с частным пляжем, видом на Марину и детским клубом.",
-     "pros": [["частный пляж", 0.6], ["вид на Марину", 0.5], ["сервис", 0.48]], "cons": [["дорогие напитки", 0.3], ["пробки на выезде с Пальмы", 0.22]]},
-    {"id": "h_dxb_02", "name": "JBR Сансет Бич", "dest": "dubai", "stars": 4, "lat": 25.078, "lon": 55.133, "area": "Джумейра-Бич-Резиденс", "beach_line": 1, "meal": "BB", "base": 15800, "kids_club": false, "spa": false, "vibe": "active", "center": 0.6, "nature": 0.0, "cancel_days": 3, "pets": false, "checkin": "15:00", "checkout": "12:00", "rating": 8.6, "reviews": 940, "rooms": ["standard", "deluxe_sea", "family"], "early_checkin": false, "shuttle": false,
-     "desc": "Пляж JBR, променад с ресторанами и метро рядом.",
-     "pros": [["променад и рестораны", 0.55], ["публичный пляж через дорогу", 0.44]], "cons": [["шумно вечером", 0.3], ["маленький бассейн", 0.21]]},
-    {"id": "h_dxb_03", "name": "Даунтаун Скай Отель", "dest": "dubai", "stars": 4, "lat": 25.197, "lon": 55.276, "area": "Даунтаун, у Бурдж-Халифы", "beach_line": 0, "meal": "BB", "base": 13200, "kids_club": false, "spa": true, "vibe": "city", "center": 1.0, "nature": 0.0, "cancel_days": 2, "pets": false, "checkin": "15:00", "checkout": "12:00", "rating": 8.8, "reviews": 1505, "rooms": ["standard", "deluxe", "suite"], "early_checkin": true, "shuttle": true,
-     "desc": "Вид на Бурдж-Халифу и фонтаны, пешком до Dubai Mall. Шаттл на пляж.",
-     "pros": [["вид на Бурдж-Халифу", 0.62], ["рядом Dubai Mall", 0.53]], "cons": [["пляж только шаттлом", 0.33], ["пробки", 0.18]]},
-    {"id": "h_dxb_04", "name": "Дейра Крик Инн", "dest": "dubai", "stars": 3, "lat": 25.268, "lon": 55.308, "area": "Дейра", "beach_line": 0, "meal": "RO", "base": 7200, "kids_club": false, "spa": false, "vibe": "city", "center": 0.7, "nature": 0.0, "cancel_days": 0, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 7.8, "reviews": 620, "rooms": ["standard", "comfort"], "early_checkin": false, "shuttle": false,
-     "desc": "Недорогой отель у залива Дубай-Крик, рядом золотой рынок и метро.",
-     "pros": [["дёшево для Дубая", 0.6], ["рядом метро и рынки", 0.48]], "cons": [["нет пляжа", 0.4], ["невозвратный тариф", 0.3]]},
-
-    {"id": "h_spb_01", "name": "Невский Палас Классик", "dest": "spb", "stars": 5, "lat": 59.933, "lon": 30.345, "area": "Невский проспект", "beach_line": 0, "meal": "BB", "base": 17800, "kids_club": false, "spa": true, "vibe": "city", "center": 1.0, "nature": 0.0, "cancel_days": 2, "pets": true, "checkin": "15:00", "checkout": "12:00", "rating": 9.2, "reviews": 1430, "rooms": ["standard", "deluxe", "suite"], "early_checkin": true, "shuttle": false,
-     "desc": "Исторический отель на Невском: 10 минут пешком до Эрмитажа, спа, можно с собакой.",
-     "pros": [["лучшая локация", 0.66], ["красивые интерьеры", 0.45], ["можно с животными", 0.18]], "cons": [["дорого", 0.28], ["окна на Невский шумят", 0.2]]},
-    {"id": "h_spb_02", "name": "Мойка Бутик 12", "dest": "spb", "stars": 4, "lat": 59.938, "lon": 30.322, "area": "Набережная Мойки", "beach_line": 0, "meal": "BB", "base": 9600, "kids_club": false, "spa": false, "vibe": "quiet", "center": 0.95, "nature": 0.0, "cancel_days": 1, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 9.0, "reviews": 702, "rooms": ["standard", "deluxe"], "early_checkin": true, "shuttle": false,
-     "desc": "Камерный бутик-отель на Мойке, окна во двор — тихо, при этом центр.",
-     "pros": [["тихо в центре", 0.51], ["вкусные завтраки", 0.48], ["дизайн", 0.35]], "cons": [["нет лифта", 0.27], ["маленькие номера", 0.2]]},
-    {"id": "h_spb_03", "name": "Петроградский Модерн", "dest": "spb", "stars": 4, "lat": 59.962, "lon": 30.311, "area": "Петроградская сторона", "beach_line": 0, "meal": "BB", "base": 7800, "kids_club": false, "spa": false, "vibe": "city", "center": 0.7, "nature": 0.1, "cancel_days": 3, "pets": true, "checkin": "14:00", "checkout": "12:00", "rating": 8.7, "reviews": 512, "rooms": ["standard", "comfort", "family"], "early_checkin": false, "shuttle": false,
-     "desc": "Дом в стиле модерн у метро «Петроградская», семейные номера, с животными можно.",
-     "pros": [["рядом метро", 0.5], ["семейные номера", 0.3], ["можно с собакой", 0.25]], "cons": [["до Невского 20 минут", 0.25]]},
-    {"id": "h_spb_04", "name": "Васильевский Хостел-Отель", "dest": "spb", "stars": 3, "lat": 59.941, "lon": 30.279, "area": "Васильевский остров", "beach_line": 0, "meal": "RO", "base": 4100, "kids_club": false, "spa": false, "vibe": "active", "center": 0.6, "nature": 0.0, "cancel_days": 0, "pets": false, "checkin": "14:00", "checkout": "11:00", "rating": 8.0, "reviews": 890, "rooms": ["standard", "comfort"], "early_checkin": false, "shuttle": false,
-     "desc": "Бюджетные номера на Васильевском, бары и Стрелка рядом.",
-     "pros": [["дёшево", 0.62], ["рядом бары", 0.38]], "cons": [["невозвратный тариф", 0.3], ["тонкие стены", 0.32]]},
-    {"id": "h_spb_05", "name": "Сапсан Стейшн Отель", "dest": "spb", "stars": 4, "lat": 59.928, "lon": 30.366, "area": "площадь Восстания, у Московского вокзала", "beach_line": 0, "meal": "BB", "base": 8400, "kids_club": false, "spa": false, "vibe": "city", "center": 0.9, "nature": 0.0, "cancel_days": 1, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 8.6, "reviews": 1210, "rooms": ["standard", "comfort", "deluxe"], "early_checkin": true, "shuttle": false,
-     "desc": "3 минуты пешком от Московского вокзала: удобно приехать на Сапсане и сразу гулять.",
-     "pros": [["3 минуты от вокзала", 0.7], ["ранний заезд", 0.33]], "cons": [["шумная площадь", 0.25]]},
-    {"id": "h_spb_06", "name": "Крестовский Парк Резорт", "dest": "spb", "stars": 5, "lat": 59.971, "lon": 30.246, "area": "Крестовский остров", "beach_line": 0, "meal": "BB", "base": 13900, "kids_club": true, "spa": true, "vibe": "quiet", "center": 0.3, "nature": 0.6, "cancel_days": 5, "pets": true, "checkin": "15:00", "checkout": "12:00", "rating": 9.0, "reviews": 455, "rooms": ["standard", "deluxe", "family", "suite"], "early_checkin": true, "shuttle": true,
-     "desc": "Парковый отель на Крестовском: спа, детская комната, шаттл в центр.",
-     "pros": [["тихо и зелено", 0.55], ["спа с бассейном", 0.44]], "cons": [["далеко от центра", 0.3]]},
-
-    {"id": "h_kzn_01", "name": "Кремлёвская Панорама", "dest": "kazan", "stars": 5, "lat": 55.798, "lon": 49.11, "area": "у Казанского кремля", "beach_line": 0, "meal": "BB", "base": 11900, "kids_club": false, "spa": true, "vibe": "city", "center": 1.0, "nature": 0.1, "cancel_days": 2, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 9.1, "reviews": 960, "rooms": ["standard", "deluxe", "suite"], "early_checkin": true, "shuttle": false,
-     "desc": "Окна на кремль, завтраки с чак-чаком и спа на крыше.",
-     "pros": [["вид на кремль", 0.6], ["татарские завтраки", 0.45]], "cons": [["дорогая парковка", 0.2]]},
-    {"id": "h_kzn_02", "name": "Бауман Бутик", "dest": "kazan", "stars": 4, "lat": 55.789, "lon": 49.118, "area": "улица Баумана", "beach_line": 0, "meal": "BB", "base": 6400, "kids_club": false, "spa": false, "vibe": "active", "center": 0.95, "nature": 0.0, "cancel_days": 1, "pets": true, "checkin": "14:00", "checkout": "12:00", "rating": 8.8, "reviews": 744, "rooms": ["standard", "comfort", "family"], "early_checkin": false, "shuttle": false,
-     "desc": "На пешеходной Баумана: кафе, бары и кремль в 10 минутах. Можно с собакой.",
-     "pros": [["пешеходная улица", 0.55], ["цена", 0.4]], "cons": [["шумно вечером", 0.3]]},
-    {"id": "h_kzn_03", "name": "Ривьера Аква Казань", "dest": "kazan", "stars": 4, "lat": 55.817, "lon": 49.135, "area": "у аквапарка, Ново-Татарская слобода", "beach_line": 0, "meal": "BB", "base": 8200, "kids_club": true, "spa": true, "vibe": "family", "center": 0.6, "nature": 0.2, "cancel_days": 3, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 8.7, "reviews": 1320, "rooms": ["standard", "family", "suite"], "early_checkin": true, "shuttle": false,
-     "desc": "Семейный отель с входом в аквапарк, детская комната и вид на Казанку.",
-     "pros": [["аквапарк включён", 0.62], ["для семей", 0.5]], "cons": [["очень много детей", 0.24]]},
-    {"id": "h_kzn_04", "name": "Старо-Татарская Слобода Инн", "dest": "kazan", "stars": 3, "lat": 55.779, "lon": 49.115, "area": "Старо-Татарская слобода", "beach_line": 0, "meal": "BB", "base": 4100, "kids_club": false, "spa": false, "vibe": "quiet", "center": 0.75, "nature": 0.1, "cancel_days": 1, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 8.5, "reviews": 388, "rooms": ["standard", "comfort"], "early_checkin": true, "shuttle": false,
-     "desc": "Небольшая гостиница в историческом квартале, тихо и недорого.",
-     "pros": [["атмосферный квартал", 0.48], ["недорого", 0.5]], "cons": [["простые номера", 0.3]]},
-
-    {"id": "h_alt_01", "name": "Катунь Ривер Лодж", "dest": "altai", "stars": 4, "lat": 51.413, "lon": 86.0, "area": "Чемал, берег Катуни", "beach_line": 0, "meal": "FB", "base": 9400, "kids_club": false, "spa": true, "vibe": "quiet", "center": 0.0, "nature": 1.0, "cancel_days": 7, "pets": true, "checkin": "14:00", "checkout": "12:00", "rating": 9.2, "reviews": 420, "rooms": ["standard", "deluxe", "cottage"], "early_checkin": true, "shuttle": true,
-     "desc": "Коттеджи на берегу бирюзовой Катуни, баня, трёхразовое питание. Можно с собакой.",
-     "pros": [["вид на Катунь", 0.65], ["баня у реки", 0.45], ["можно с животными", 0.28]], "cons": [["90 минут от аэропорта", 0.3], ["нет связи местами", 0.27]]},
-    {"id": "h_alt_02", "name": "Телецкое Озеро Глэмпинг", "dest": "altai", "stars": 3, "lat": 51.79, "lon": 87.27, "area": "Артыбаш, Телецкое озеро", "beach_line": 0, "meal": "HB", "base": 7200, "kids_club": false, "spa": false, "vibe": "active", "center": 0.0, "nature": 1.0, "cancel_days": 5, "pets": true, "checkin": "15:00", "checkout": "11:00", "rating": 8.9, "reviews": 260, "rooms": ["cottage", "family"], "early_checkin": false, "shuttle": false,
-     "desc": "Глэмпинг-купола у Телецкого озера: сапы, катера к водопадам, звёздное небо.",
-     "pros": [["звёздное небо", 0.55], ["прогулки на катере", 0.4]], "cons": [["4 часа дороги от аэропорта", 0.42], ["прохладно ночью", 0.3]]},
-    {"id": "h_alt_03", "name": "Манжерок Маунтин Резорт", "dest": "altai", "stars": 4, "lat": 51.83, "lon": 85.8, "area": "Манжерок", "beach_line": 0, "meal": "BB", "base": 8600, "kids_club": true, "spa": true, "vibe": "family", "center": 0.1, "nature": 0.9, "cancel_days": 3, "pets": false, "checkin": "15:00", "checkout": "12:00", "rating": 8.8, "reviews": 610, "rooms": ["standard", "family", "suite"], "early_checkin": true, "shuttle": true,
-     "desc": "Курорт у горнолыжного комплекса Манжерок: канатка, детский клуб и 40 минут от аэропорта.",
-     "pros": [["канатная дорога рядом", 0.5], ["близко к аэропорту", 0.4], ["детский клуб", 0.3]], "cons": [["много туристов", 0.25]]},
-    {"id": "h_alt_04", "name": "Горно-Алтайск Кедр", "dest": "altai", "stars": 3, "lat": 51.958, "lon": 85.96, "area": "Горно-Алтайск", "beach_line": 0, "meal": "BB", "base": 3800, "kids_club": false, "spa": false, "vibe": "city", "center": 0.6, "nature": 0.5, "cancel_days": 1, "pets": true, "checkin": "14:00", "checkout": "12:00", "rating": 8.1, "reviews": 190, "rooms": ["standard", "comfort"], "early_checkin": true, "shuttle": false,
-     "desc": "Недорогая база в городе для поездок по Чуйскому тракту.",
-     "pros": [["дёшево", 0.55], ["удобно ехать на маршруты", 0.38]], "cons": [["не на природе", 0.33]]},
-
-    {"id": "h_kar_01", "name": "Онего Шхеры Резорт", "dest": "karelia", "stars": 4, "lat": 61.812, "lon": 34.39, "area": "берег Онежского озера, Петрозаводск", "beach_line": 0, "meal": "HB", "base": 9900, "kids_club": true, "spa": true, "vibe": "quiet", "center": 0.3, "nature": 0.9, "cancel_days": 5, "pets": true, "checkin": "15:00", "checkout": "12:00", "rating": 9.0, "reviews": 512, "rooms": ["standard", "deluxe", "cottage", "family"], "early_checkin": true, "shuttle": true,
-     "desc": "Отель на берегу Онеги в 15 минутах от вокзала, банный комплекс, лодки на Кижи.",
-     "pros": [["вид на Онегу", 0.58], ["банный комплекс", 0.47], ["рядом вокзал", 0.3]], "cons": [["комары летом", 0.22]]},
-    {"id": "h_kar_02", "name": "Рускеала Лесные Дома", "dest": "karelia", "stars": 3, "lat": 61.95, "lon": 30.585, "area": "Рускеала, у мраморного каньона", "beach_line": 0, "meal": "BB", "base": 7400, "kids_club": false, "spa": false, "vibe": "active", "center": 0.0, "nature": 1.0, "cancel_days": 3, "pets": true, "checkin": "15:00", "checkout": "11:00", "rating": 8.8, "reviews": 340, "rooms": ["cottage", "family"], "early_checkin": false, "shuttle": false,
-     "desc": "Деревянные дома у мраморного каньона: зиплайн, каяки, пешие тропы. С собаками можно.",
-     "pros": [["каньон в 5 минутах", 0.6], ["можно с собакой", 0.3]], "cons": [["30 км от вокзала", 0.3]]},
-    {"id": "h_kar_03", "name": "Сортавала Ладога Отель", "dest": "karelia", "stars": 4, "lat": 61.703, "lon": 30.69, "area": "Сортавала, центр", "beach_line": 0, "meal": "BB", "base": 6900, "kids_club": false, "spa": true, "vibe": "city", "center": 0.7, "nature": 0.6, "cancel_days": 2, "pets": false, "checkin": "14:00", "checkout": "12:00", "rating": 8.6, "reviews": 450, "rooms": ["standard", "comfort", "deluxe"], "early_checkin": true, "shuttle": false,
-     "desc": "У вокзала Сортавалы: удобно на «Ласточке» из Петербурга, рядом причал на Валаам.",
-     "pros": [["рядом вокзал и причал", 0.55], ["сауна", 0.3]], "cons": [["простые завтраки", 0.25]]},
-    {"id": "h_kar_04", "name": "Карельская Усадьба Кондопога", "dest": "karelia", "stars": 4, "lat": 62.2, "lon": 34.27, "area": "Кондопожский район", "beach_line": 0, "meal": "FB", "base": 10800, "kids_club": true, "spa": true, "vibe": "family", "center": 0.0, "nature": 1.0, "cancel_days": 7, "pets": true, "checkin": "15:00", "checkout": "12:00", "rating": 9.1, "reviews": 288, "rooms": ["family", "cottage", "suite"], "early_checkin": true, "shuttle": true,
-     "desc": "Усадьба с хаски-фермой, рыбалкой и детской программой, трёхразовое питание.",
-     "pros": [["хаски-ферма", 0.5], ["детская программа", 0.4], ["питание включено", 0.36]], "cons": [["час от Петрозаводска", 0.3]]}
-  ]
+ "_note": "Демо-каталог: названия отелей вымышленные, координаты — реальные районы. Цены, номера, отзывы и признаки синтетические.",
+ "hotels": [
+  {
+   "id": "h_sochi_01",
+   "name": "Азур Бэй Сочи",
+   "dest": "sochi",
+   "stars": 5,
+   "lat": 43.575,
+   "lon": 39.728,
+   "area": "Центральный район, набережная",
+   "beach_line": 1,
+   "meal": "BB",
+   "base": 15500,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "quiet",
+   "center": 0.8,
+   "nature": 0.3,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 9.1,
+   "reviews": 812,
+   "rooms": [
+    "standard",
+    "deluxe_sea",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Свой галечный пляж, спа с бассейном и видовые номера на море.",
+   "pros": [
+    [
+     "свой пляж и шезлонги",
+     0.64
+    ],
+    [
+     "вид на море из номеров",
+     0.51
+    ],
+    [
+     "вкусные завтраки",
+     0.43
+    ]
+   ],
+   "cons": [
+    [
+     "дорогой ресторан",
+     0.21
+    ],
+    [
+     "галька, нужна обувь для моря",
+     0.17
+    ]
+   ]
+  },
+  {
+   "id": "h_sochi_02",
+   "name": "Магнолия Фэмили Резорт",
+   "dest": "sochi",
+   "stars": 4,
+   "lat": 43.432,
+   "lon": 39.918,
+   "area": "Адлер, Имеретинская низменность",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 11800,
+   "kids_club": true,
+   "spa": false,
+   "vibe": "family",
+   "center": 0.2,
+   "nature": 0.3,
+   "cancel_days": 5,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.7,
+   "reviews": 1264,
+   "rooms": [
+    "standard",
+    "comfort",
+    "family"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Семейный отель на первой линии в Адлере: аниматоры, детский клуб и всё включено.",
+   "pros": [
+    [
+     "детский клуб и анимация",
+     0.68
+    ],
+    [
+     "всё включено без доплат",
+     0.55
+    ],
+    [
+     "10 минут от аэропорта",
+     0.41
+    ]
+   ],
+   "cons": [
+    [
+     "шумно у бассейна днём",
+     0.27
+    ],
+    [
+     "однообразный ужин",
+     0.18
+    ]
+   ]
+  },
+  {
+   "id": "h_sochi_03",
+   "name": "Горный Приют Поляна",
+   "dest": "sochi",
+   "stars": 4,
+   "lat": 43.684,
+   "lon": 40.265,
+   "area": "Красная Поляна, 960 м",
+   "beach_line": 0,
+   "meal": "HB",
+   "base": 9800,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "active",
+   "center": 0.1,
+   "nature": 1.0,
+   "cancel_days": 7,
+   "pets": true,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 8.9,
+   "reviews": 534,
+   "rooms": [
+    "standard",
+    "deluxe",
+    "suite"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "Шале у подъёмников: трекинг летом, лыжи зимой, баня и вид на хребет. Можно с собакой.",
+   "pros": [
+    [
+     "рядом подъёмники и тропы",
+     0.6
+    ],
+    [
+     "можно с животными",
+     0.33
+    ],
+    [
+     "баня и сауна",
+     0.36
+    ]
+   ],
+   "cons": [
+    [
+     "до моря час езды",
+     0.31
+    ],
+    [
+     "слабый Wi-Fi",
+     0.15
+    ]
+   ]
+  },
+  {
+   "id": "h_sochi_04",
+   "name": "Лазурный Берег Хоста",
+   "dest": "sochi",
+   "stars": 3,
+   "lat": 43.516,
+   "lon": 39.869,
+   "area": "Хоста",
+   "beach_line": 2,
+   "meal": "BB",
+   "base": 5200,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "quiet",
+   "center": 0.3,
+   "nature": 0.5,
+   "cancel_days": 1,
+   "pets": true,
+   "checkin": "14:00",
+   "checkout": "11:00",
+   "rating": 8.2,
+   "reviews": 389,
+   "rooms": [
+    "standard",
+    "comfort",
+    "family"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Небольшой тихий отель в 300 м от моря в зелёной Хосте, с животными можно.",
+   "pros": [
+    [
+     "тихо и зелено",
+     0.52
+    ],
+    [
+     "доброжелательный персонал",
+     0.47
+    ],
+    [
+     "можно с собакой",
+     0.29
+    ]
+   ],
+   "cons": [
+    [
+     "крутой подъём от пляжа",
+     0.34
+    ],
+    [
+     "простые номера",
+     0.25
+    ]
+   ]
+  },
+  {
+   "id": "h_sochi_05",
+   "name": "Сочи Сити Лофт",
+   "dest": "sochi",
+   "stars": 3,
+   "lat": 43.589,
+   "lon": 39.726,
+   "area": "Центр, у вокзала",
+   "beach_line": 3,
+   "meal": "RO",
+   "base": 4300,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "city",
+   "center": 1.0,
+   "nature": 0.1,
+   "cancel_days": 0,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 7.9,
+   "reviews": 211,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "Бюджетный лофт в пешей доступности от вокзала и Морского порта.",
+   "pros": [
+    [
+     "дёшево",
+     0.58
+    ],
+    [
+     "всё рядом пешком",
+     0.49
+    ]
+   ],
+   "cons": [
+    [
+     "невозвратный тариф",
+     0.3
+    ],
+    [
+     "шум с улицы",
+     0.29
+    ],
+    [
+     "до пляжа 15 минут",
+     0.22
+    ]
+   ]
+  },
+  {
+   "id": "h_sochi_06",
+   "name": "Имеретинский Гранд Парк",
+   "dest": "sochi",
+   "stars": 5,
+   "lat": 43.405,
+   "lon": 39.963,
+   "area": "Сириус, Олимпийский парк",
+   "beach_line": 1,
+   "meal": "HB",
+   "base": 17200,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "family",
+   "center": 0.2,
+   "nature": 0.3,
+   "cancel_days": 7,
+   "pets": false,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 9.3,
+   "reviews": 976,
+   "rooms": [
+    "standard",
+    "deluxe_sea",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Большой курорт у Олимпийского парка: подогреваемые бассейны, детский клуб, полупансион.",
+   "pros": [
+    [
+     "подогреваемые бассейны",
+     0.57
+    ],
+    [
+     "большая территория для детей",
+     0.5
+    ],
+    [
+     "рядом Олимпийский парк",
+     0.44
+    ]
+   ],
+   "cons": [
+    [
+     "далеко от центра Сочи",
+     0.26
+    ],
+    [
+     "очереди на завтраке",
+     0.19
+    ]
+   ]
+  },
+  {
+   "id": "h_ant_01",
+   "name": "Лара Голд Делюкс",
+   "dest": "antalya",
+   "stars": 5,
+   "lat": 36.852,
+   "lon": 30.851,
+   "area": "Лара",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 19500,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "family",
+   "center": 0.3,
+   "nature": 0.2,
+   "cancel_days": 7,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 9.2,
+   "reviews": 1840,
+   "rooms": [
+    "standard",
+    "deluxe_sea",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Ультра всё включено, аквапарк и песчаный пляж в 15 минутах от аэропорта.",
+   "pros": [
+    [
+     "аквапарк с горками",
+     0.61
+    ],
+    [
+     "песчаный пляж",
+     0.58
+    ],
+    [
+     "близко к аэропорту",
+     0.47
+    ]
+   ],
+   "cons": [
+    [
+     "много людей в сезон",
+     0.24
+    ],
+    [
+     "платный ресторан a la carte",
+     0.16
+    ]
+   ]
+  },
+  {
+   "id": "h_ant_02",
+   "name": "Кемер Пайн Бич",
+   "dest": "antalya",
+   "stars": 4,
+   "lat": 36.602,
+   "lon": 30.563,
+   "area": "Кемер",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 11200,
+   "kids_club": true,
+   "spa": false,
+   "vibe": "quiet",
+   "center": 0.4,
+   "nature": 0.8,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.6,
+   "reviews": 932,
+   "rooms": [
+    "standard",
+    "comfort",
+    "family"
+   ],
+   "early_checkin": false,
+   "shuttle": true,
+   "desc": "Сосны до самой воды и вид на Таврские горы, спокойная атмосфера.",
+   "pros": [
+    [
+     "сосновый парк у моря",
+     0.55
+    ],
+    [
+     "вид на горы",
+     0.42
+    ],
+    [
+     "спокойно",
+     0.39
+    ]
+   ],
+   "cons": [
+    [
+     "галечный пляж",
+     0.33
+    ],
+    [
+     "час от аэропорта",
+     0.28
+    ]
+   ]
+  },
+  {
+   "id": "h_ant_03",
+   "name": "Белек Гольф и Спа",
+   "dest": "antalya",
+   "stars": 5,
+   "lat": 36.858,
+   "lon": 31.062,
+   "area": "Белек",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 23800,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "quiet",
+   "center": 0.1,
+   "nature": 0.6,
+   "cancel_days": 14,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 9.4,
+   "reviews": 1102,
+   "rooms": [
+    "deluxe",
+    "deluxe_sea",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Премиальный курорт с большим спа, гольф-полями и бесплатной отменой за 14 дней.",
+   "pros": [
+    [
+     "огромный спа-центр",
+     0.6
+    ],
+    [
+     "тихая просторная территория",
+     0.52
+    ],
+    [
+     "сервис уровня люкс",
+     0.5
+    ]
+   ],
+   "cons": [
+    [
+     "дорого",
+     0.31
+    ],
+    [
+     "вокруг ничего нет",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "h_ant_04",
+   "name": "Сиде Санрайз Клаб",
+   "dest": "antalya",
+   "stars": 4,
+   "lat": 36.771,
+   "lon": 31.392,
+   "area": "Сиде",
+   "beach_line": 2,
+   "meal": "AI",
+   "base": 8600,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.5,
+   "nature": 0.3,
+   "cancel_days": 1,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.1,
+   "reviews": 744,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": false,
+   "shuttle": true,
+   "desc": "Молодёжный клубный отель: вечеринки у бассейна, водные виды спорта, рядом античный Сиде.",
+   "pros": [
+    [
+     "вечеринки и анимация",
+     0.49
+    ],
+    [
+     "рядом старый город",
+     0.41
+    ],
+    [
+     "недорого для AI",
+     0.45
+    ]
+   ],
+   "cons": [
+    [
+     "шумно ночью",
+     0.38
+    ],
+    [
+     "до моря через дорогу",
+     0.27
+    ]
+   ]
+  },
+  {
+   "id": "h_ant_05",
+   "name": "Коньяалты Сити Бутик",
+   "dest": "antalya",
+   "stars": 3,
+   "lat": 36.872,
+   "lon": 30.641,
+   "area": "Коньяалты, Анталья",
+   "beach_line": 2,
+   "meal": "BB",
+   "base": 5400,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "city",
+   "center": 0.8,
+   "nature": 0.2,
+   "cancel_days": 2,
+   "pets": true,
+   "checkin": "14:00",
+   "checkout": "11:00",
+   "rating": 8.3,
+   "reviews": 318,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Бутик-отель у пляжа Коньяалты, рядом старый город Калеичи. Пускают с небольшими собаками.",
+   "pros": [
+    [
+     "рядом старый город",
+     0.5
+    ],
+    [
+     "хорошее соотношение цены",
+     0.46
+    ],
+    [
+     "можно с собакой",
+     0.22
+    ]
+   ],
+   "cons": [
+    [
+     "только завтраки",
+     0.3
+    ],
+    [
+     "маленькие номера",
+     0.24
+    ]
+   ]
+  },
+  {
+   "id": "h_ant_06",
+   "name": "Анталья Фэмили Аква",
+   "dest": "antalya",
+   "stars": 5,
+   "lat": 36.845,
+   "lon": 30.892,
+   "area": "Кунду",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 16400,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "family",
+   "center": 0.2,
+   "nature": 0.2,
+   "cancel_days": 5,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.9,
+   "reviews": 1377,
+   "rooms": [
+    "standard",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Детский мини-клуб с 4 лет, детское меню, семейные номера с двумя спальнями.",
+   "pros": [
+    [
+     "лучший мини-клуб",
+     0.63
+    ],
+    [
+     "семейные номера",
+     0.48
+    ],
+    [
+     "пологий вход в море",
+     0.4
+    ]
+   ],
+   "cons": [
+    [
+     "много детей — не для тишины",
+     0.29
+    ],
+    [
+     "шумная анимация",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "h_hrg_01",
+   "name": "Сахл Хашиш Корал Резорт",
+   "dest": "hurghada",
+   "stars": 5,
+   "lat": 27.043,
+   "lon": 33.887,
+   "area": "Сахл-Хашиш",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 12400,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "family",
+   "center": 0.2,
+   "nature": 0.5,
+   "cancel_days": 7,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 9.0,
+   "reviews": 1520,
+   "rooms": [
+    "standard",
+    "deluxe_sea",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Собственный коралловый риф с понтоном, детский клуб и аквазона.",
+   "pros": [
+    [
+     "риф с рыбками у понтона",
+     0.66
+    ],
+    [
+     "детский клуб",
+     0.47
+    ],
+    [
+     "чисто и новая мебель",
+     0.44
+    ]
+   ],
+   "cons": [
+    [
+     "ветрено зимой",
+     0.22
+    ],
+    [
+     "далеко от города",
+     0.18
+    ]
+   ]
+  },
+  {
+   "id": "h_hrg_02",
+   "name": "Макади Санни Бич",
+   "dest": "hurghada",
+   "stars": 4,
+   "lat": 26.991,
+   "lon": 33.899,
+   "area": "Макади-Бей",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 7600,
+   "kids_club": true,
+   "spa": false,
+   "vibe": "family",
+   "center": 0.1,
+   "nature": 0.4,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.5,
+   "reviews": 1120,
+   "rooms": [
+    "standard",
+    "family"
+   ],
+   "early_checkin": false,
+   "shuttle": true,
+   "desc": "Песчаный пляж с пологим входом — удобно с маленькими детьми, недорогое всё включено.",
+   "pros": [
+    [
+     "пологий песчаный вход",
+     0.62
+    ],
+    [
+     "недорого",
+     0.5
+    ],
+    [
+     "аниматоры для детей",
+     0.38
+    ]
+   ],
+   "cons": [
+    [
+     "скромный выбор блюд",
+     0.3
+    ],
+    [
+     "старый номерной фонд",
+     0.26
+    ]
+   ]
+  },
+  {
+   "id": "h_hrg_03",
+   "name": "Эль Гуна Лагуна Лодж",
+   "dest": "hurghada",
+   "stars": 5,
+   "lat": 27.394,
+   "lon": 33.679,
+   "area": "Эль-Гуна",
+   "beach_line": 1,
+   "meal": "HB",
+   "base": 14800,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "quiet",
+   "center": 0.5,
+   "nature": 0.6,
+   "cancel_days": 10,
+   "pets": true,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 9.2,
+   "reviews": 640,
+   "rooms": [
+    "deluxe",
+    "deluxe_sea",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Тихий лодж на лагунах Эль-Гуны: кайт-станция рядом, спа, допускаются небольшие животные.",
+   "pros": [
+    [
+     "тишина и лагуны",
+     0.56
+    ],
+    [
+     "кайтсёрфинг рядом",
+     0.37
+    ],
+    [
+     "отличный спа",
+     0.4
+    ]
+   ],
+   "cons": [
+    [
+     "полупансион, ужин платный",
+     0.25
+    ],
+    [
+     "40 минут от аэропорта",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "h_hrg_04",
+   "name": "Хургада Марина Сити",
+   "dest": "hurghada",
+   "stars": 3,
+   "lat": 27.226,
+   "lon": 33.838,
+   "area": "Хургада, Марина",
+   "beach_line": 2,
+   "meal": "BB",
+   "base": 4200,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "city",
+   "center": 0.9,
+   "nature": 0.1,
+   "cancel_days": 0,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 7.7,
+   "reviews": 402,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "Бюджетный городской отель у марины: кафе, рынки и экскурсии рядом.",
+   "pros": [
+    [
+     "дёшево",
+     0.6
+    ],
+    [
+     "рядом марина и кафе",
+     0.45
+    ]
+   ],
+   "cons": [
+    [
+     "невозвратный тариф",
+     0.35
+    ],
+    [
+     "городской пляж",
+     0.33
+    ],
+    [
+     "шумно",
+     0.28
+    ]
+   ]
+  },
+  {
+   "id": "h_hrg_05",
+   "name": "Сома Бэй Виндс",
+   "dest": "hurghada",
+   "stars": 5,
+   "lat": 26.851,
+   "lon": 33.985,
+   "area": "Сома-Бей",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 13600,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "active",
+   "center": 0.1,
+   "nature": 0.6,
+   "cancel_days": 5,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.8,
+   "reviews": 870,
+   "rooms": [
+    "standard",
+    "deluxe_sea",
+    "family"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Для активных: дайв-центр, кайт и гольф, при этом детский клуб для семей.",
+   "pros": [
+    [
+     "дайвинг и кайт",
+     0.54
+    ],
+    [
+     "большой пляж",
+     0.46
+    ],
+    [
+     "детский клуб",
+     0.31
+    ]
+   ],
+   "cons": [
+    [
+     "сильный ветер",
+     0.29
+    ],
+    [
+     "50 минут от аэропорта",
+     0.23
+    ]
+   ]
+  },
+  {
+   "id": "h_hrg_06",
+   "name": "Аква Джангл Хургада",
+   "dest": "hurghada",
+   "stars": 4,
+   "lat": 27.105,
+   "lon": 33.83,
+   "area": "Хургада, юг",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 8900,
+   "kids_club": true,
+   "spa": false,
+   "vibe": "family",
+   "center": 0.4,
+   "nature": 0.2,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.4,
+   "reviews": 2104,
+   "rooms": [
+    "standard",
+    "family"
+   ],
+   "early_checkin": false,
+   "shuttle": true,
+   "desc": "Отель-аквапарк: 30 горок, детские бассейны, всё включено.",
+   "pros": [
+    [
+     "аквапарк бесплатно",
+     0.71
+    ],
+    [
+     "детям не скучно",
+     0.52
+    ]
+   ],
+   "cons": [
+    [
+     "очень шумно",
+     0.35
+    ],
+    [
+     "массовый отель",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_dxb_01",
+   "name": "Палм Корал Резиденс",
+   "dest": "dubai",
+   "stars": 5,
+   "lat": 25.112,
+   "lon": 55.139,
+   "area": "Палм-Джумейра",
+   "beach_line": 1,
+   "meal": "BB",
+   "base": 29500,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "quiet",
+   "center": 0.4,
+   "nature": 0.1,
+   "cancel_days": 7,
+   "pets": false,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 9.3,
+   "reviews": 1290,
+   "rooms": [
+    "deluxe",
+    "deluxe_sea",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Курорт на Пальме с частным пляжем, видом на Марину и детским клубом.",
+   "pros": [
+    [
+     "частный пляж",
+     0.6
+    ],
+    [
+     "вид на Марину",
+     0.5
+    ],
+    [
+     "сервис",
+     0.48
+    ]
+   ],
+   "cons": [
+    [
+     "дорогие напитки",
+     0.3
+    ],
+    [
+     "пробки на выезде с Пальмы",
+     0.22
+    ]
+   ]
+  },
+  {
+   "id": "h_dxb_02",
+   "name": "JBR Сансет Бич",
+   "dest": "dubai",
+   "stars": 4,
+   "lat": 25.078,
+   "lon": 55.133,
+   "area": "Джумейра-Бич-Резиденс",
+   "beach_line": 1,
+   "meal": "BB",
+   "base": 15800,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.6,
+   "nature": 0.0,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 8.6,
+   "reviews": 940,
+   "rooms": [
+    "standard",
+    "deluxe_sea",
+    "family"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "Пляж JBR, променад с ресторанами и метро рядом.",
+   "pros": [
+    [
+     "променад и рестораны",
+     0.55
+    ],
+    [
+     "публичный пляж через дорогу",
+     0.44
+    ]
+   ],
+   "cons": [
+    [
+     "шумно вечером",
+     0.3
+    ],
+    [
+     "маленький бассейн",
+     0.21
+    ]
+   ]
+  },
+  {
+   "id": "h_dxb_03",
+   "name": "Даунтаун Скай Отель",
+   "dest": "dubai",
+   "stars": 4,
+   "lat": 25.197,
+   "lon": 55.276,
+   "area": "Даунтаун, у Бурдж-Халифы",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 13200,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "city",
+   "center": 1.0,
+   "nature": 0.0,
+   "cancel_days": 2,
+   "pets": false,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 8.8,
+   "reviews": 1505,
+   "rooms": [
+    "standard",
+    "deluxe",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Вид на Бурдж-Халифу и фонтаны, пешком до Dubai Mall. Шаттл на пляж.",
+   "pros": [
+    [
+     "вид на Бурдж-Халифу",
+     0.62
+    ],
+    [
+     "рядом Dubai Mall",
+     0.53
+    ]
+   ],
+   "cons": [
+    [
+     "пляж только шаттлом",
+     0.33
+    ],
+    [
+     "пробки",
+     0.18
+    ]
+   ]
+  },
+  {
+   "id": "h_dxb_04",
+   "name": "Дейра Крик Инн",
+   "dest": "dubai",
+   "stars": 3,
+   "lat": 25.268,
+   "lon": 55.308,
+   "area": "Дейра",
+   "beach_line": 0,
+   "meal": "RO",
+   "base": 7200,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "city",
+   "center": 0.7,
+   "nature": 0.0,
+   "cancel_days": 0,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 7.8,
+   "reviews": 620,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "Недорогой отель у залива Дубай-Крик, рядом золотой рынок и метро.",
+   "pros": [
+    [
+     "дёшево для Дубая",
+     0.6
+    ],
+    [
+     "рядом метро и рынки",
+     0.48
+    ]
+   ],
+   "cons": [
+    [
+     "нет пляжа",
+     0.4
+    ],
+    [
+     "невозвратный тариф",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_spb_01",
+   "name": "Невский Палас Классик",
+   "dest": "spb",
+   "stars": 5,
+   "lat": 59.933,
+   "lon": 30.345,
+   "area": "Невский проспект",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 17800,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "city",
+   "center": 1.0,
+   "nature": 0.0,
+   "cancel_days": 2,
+   "pets": true,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 9.2,
+   "reviews": 1430,
+   "rooms": [
+    "standard",
+    "deluxe",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Исторический отель на Невском: 10 минут пешком до Эрмитажа, спа, можно с собакой.",
+   "pros": [
+    [
+     "лучшая локация",
+     0.66
+    ],
+    [
+     "красивые интерьеры",
+     0.45
+    ],
+    [
+     "можно с животными",
+     0.18
+    ]
+   ],
+   "cons": [
+    [
+     "дорого",
+     0.28
+    ],
+    [
+     "окна на Невский шумят",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "h_spb_02",
+   "name": "Мойка Бутик 12",
+   "dest": "spb",
+   "stars": 4,
+   "lat": 59.938,
+   "lon": 30.322,
+   "area": "Набережная Мойки",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 9600,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "quiet",
+   "center": 0.95,
+   "nature": 0.0,
+   "cancel_days": 1,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 9.0,
+   "reviews": 702,
+   "rooms": [
+    "standard",
+    "deluxe"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Камерный бутик-отель на Мойке, окна во двор — тихо, при этом центр.",
+   "pros": [
+    [
+     "тихо в центре",
+     0.51
+    ],
+    [
+     "вкусные завтраки",
+     0.48
+    ],
+    [
+     "дизайн",
+     0.35
+    ]
+   ],
+   "cons": [
+    [
+     "нет лифта",
+     0.27
+    ],
+    [
+     "маленькие номера",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "h_spb_03",
+   "name": "Петроградский Модерн",
+   "dest": "spb",
+   "stars": 4,
+   "lat": 59.962,
+   "lon": 30.311,
+   "area": "Петроградская сторона",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 7800,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "city",
+   "center": 0.7,
+   "nature": 0.1,
+   "cancel_days": 3,
+   "pets": true,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.7,
+   "reviews": 512,
+   "rooms": [
+    "standard",
+    "comfort",
+    "family"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "Дом в стиле модерн у метро «Петроградская», семейные номера, с животными можно.",
+   "pros": [
+    [
+     "рядом метро",
+     0.5
+    ],
+    [
+     "семейные номера",
+     0.3
+    ],
+    [
+     "можно с собакой",
+     0.25
+    ]
+   ],
+   "cons": [
+    [
+     "до Невского 20 минут",
+     0.25
+    ]
+   ]
+  },
+  {
+   "id": "h_spb_04",
+   "name": "Васильевский Хостел-Отель",
+   "dest": "spb",
+   "stars": 3,
+   "lat": 59.941,
+   "lon": 30.279,
+   "area": "Васильевский остров",
+   "beach_line": 0,
+   "meal": "RO",
+   "base": 4100,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.6,
+   "nature": 0.0,
+   "cancel_days": 0,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "11:00",
+   "rating": 8.0,
+   "reviews": 890,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "Бюджетные номера на Васильевском, бары и Стрелка рядом.",
+   "pros": [
+    [
+     "дёшево",
+     0.62
+    ],
+    [
+     "рядом бары",
+     0.38
+    ]
+   ],
+   "cons": [
+    [
+     "невозвратный тариф",
+     0.3
+    ],
+    [
+     "тонкие стены",
+     0.32
+    ]
+   ]
+  },
+  {
+   "id": "h_spb_05",
+   "name": "Сапсан Стейшн Отель",
+   "dest": "spb",
+   "stars": 4,
+   "lat": 59.928,
+   "lon": 30.366,
+   "area": "площадь Восстания, у Московского вокзала",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 8400,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "city",
+   "center": 0.9,
+   "nature": 0.0,
+   "cancel_days": 1,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.6,
+   "reviews": 1210,
+   "rooms": [
+    "standard",
+    "comfort",
+    "deluxe"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "3 минуты пешком от Московского вокзала: удобно приехать на Сапсане и сразу гулять.",
+   "pros": [
+    [
+     "3 минуты от вокзала",
+     0.7
+    ],
+    [
+     "ранний заезд",
+     0.33
+    ]
+   ],
+   "cons": [
+    [
+     "шумная площадь",
+     0.25
+    ]
+   ]
+  },
+  {
+   "id": "h_spb_06",
+   "name": "Крестовский Парк Резорт",
+   "dest": "spb",
+   "stars": 5,
+   "lat": 59.971,
+   "lon": 30.246,
+   "area": "Крестовский остров",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 13900,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "quiet",
+   "center": 0.3,
+   "nature": 0.6,
+   "cancel_days": 5,
+   "pets": true,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 9.0,
+   "reviews": 455,
+   "rooms": [
+    "standard",
+    "deluxe",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Парковый отель на Крестовском: спа, детская комната, шаттл в центр.",
+   "pros": [
+    [
+     "тихо и зелено",
+     0.55
+    ],
+    [
+     "спа с бассейном",
+     0.44
+    ]
+   ],
+   "cons": [
+    [
+     "далеко от центра",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_kzn_01",
+   "name": "Кремлёвская Панорама",
+   "dest": "kazan",
+   "stars": 5,
+   "lat": 55.798,
+   "lon": 49.11,
+   "area": "у Казанского кремля",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 11900,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "city",
+   "center": 1.0,
+   "nature": 0.1,
+   "cancel_days": 2,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 9.1,
+   "reviews": 960,
+   "rooms": [
+    "standard",
+    "deluxe",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Окна на кремль, завтраки с чак-чаком и спа на крыше.",
+   "pros": [
+    [
+     "вид на кремль",
+     0.6
+    ],
+    [
+     "татарские завтраки",
+     0.45
+    ]
+   ],
+   "cons": [
+    [
+     "дорогая парковка",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "h_kzn_02",
+   "name": "Бауман Бутик",
+   "dest": "kazan",
+   "stars": 4,
+   "lat": 55.789,
+   "lon": 49.118,
+   "area": "улица Баумана",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 6400,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.95,
+   "nature": 0.0,
+   "cancel_days": 1,
+   "pets": true,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.8,
+   "reviews": 744,
+   "rooms": [
+    "standard",
+    "comfort",
+    "family"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "На пешеходной Баумана: кафе, бары и кремль в 10 минутах. Можно с собакой.",
+   "pros": [
+    [
+     "пешеходная улица",
+     0.55
+    ],
+    [
+     "цена",
+     0.4
+    ]
+   ],
+   "cons": [
+    [
+     "шумно вечером",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_kzn_03",
+   "name": "Ривьера Аква Казань",
+   "dest": "kazan",
+   "stars": 4,
+   "lat": 55.817,
+   "lon": 49.135,
+   "area": "у аквапарка, Ново-Татарская слобода",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 8200,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "family",
+   "center": 0.6,
+   "nature": 0.2,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.7,
+   "reviews": 1320,
+   "rooms": [
+    "standard",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Семейный отель с входом в аквапарк, детская комната и вид на Казанку.",
+   "pros": [
+    [
+     "аквапарк включён",
+     0.62
+    ],
+    [
+     "для семей",
+     0.5
+    ]
+   ],
+   "cons": [
+    [
+     "очень много детей",
+     0.24
+    ]
+   ]
+  },
+  {
+   "id": "h_kzn_04",
+   "name": "Старо-Татарская Слобода Инн",
+   "dest": "kazan",
+   "stars": 3,
+   "lat": 55.779,
+   "lon": 49.115,
+   "area": "Старо-Татарская слобода",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 4100,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "quiet",
+   "center": 0.75,
+   "nature": 0.1,
+   "cancel_days": 1,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.5,
+   "reviews": 388,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Небольшая гостиница в историческом квартале, тихо и недорого.",
+   "pros": [
+    [
+     "атмосферный квартал",
+     0.48
+    ],
+    [
+     "недорого",
+     0.5
+    ]
+   ],
+   "cons": [
+    [
+     "простые номера",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_alt_01",
+   "name": "Катунь Ривер Лодж",
+   "dest": "altai",
+   "stars": 4,
+   "lat": 51.413,
+   "lon": 86.0,
+   "area": "Чемал, берег Катуни",
+   "beach_line": 0,
+   "meal": "FB",
+   "base": 9400,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "quiet",
+   "center": 0.0,
+   "nature": 1.0,
+   "cancel_days": 7,
+   "pets": true,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 9.2,
+   "reviews": 420,
+   "rooms": [
+    "standard",
+    "deluxe",
+    "cottage"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Коттеджи на берегу бирюзовой Катуни, баня, трёхразовое питание. Можно с собакой.",
+   "pros": [
+    [
+     "вид на Катунь",
+     0.65
+    ],
+    [
+     "баня у реки",
+     0.45
+    ],
+    [
+     "можно с животными",
+     0.28
+    ]
+   ],
+   "cons": [
+    [
+     "90 минут от аэропорта",
+     0.3
+    ],
+    [
+     "нет связи местами",
+     0.27
+    ]
+   ]
+  },
+  {
+   "id": "h_alt_02",
+   "name": "Телецкое Озеро Глэмпинг",
+   "dest": "altai",
+   "stars": 3,
+   "lat": 51.79,
+   "lon": 87.27,
+   "area": "Артыбаш, Телецкое озеро",
+   "beach_line": 0,
+   "meal": "HB",
+   "base": 7200,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.0,
+   "nature": 1.0,
+   "cancel_days": 5,
+   "pets": true,
+   "checkin": "15:00",
+   "checkout": "11:00",
+   "rating": 8.9,
+   "reviews": 260,
+   "rooms": [
+    "cottage",
+    "family"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "Глэмпинг-купола у Телецкого озера: сапы, катера к водопадам, звёздное небо.",
+   "pros": [
+    [
+     "звёздное небо",
+     0.55
+    ],
+    [
+     "прогулки на катере",
+     0.4
+    ]
+   ],
+   "cons": [
+    [
+     "4 часа дороги от аэропорта",
+     0.42
+    ],
+    [
+     "прохладно ночью",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_alt_03",
+   "name": "Манжерок Маунтин Резорт",
+   "dest": "altai",
+   "stars": 4,
+   "lat": 51.83,
+   "lon": 85.8,
+   "area": "Манжерок",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 8600,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "family",
+   "center": 0.1,
+   "nature": 0.9,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 8.8,
+   "reviews": 610,
+   "rooms": [
+    "standard",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Курорт у горнолыжного комплекса Манжерок: канатка, детский клуб и 40 минут от аэропорта.",
+   "pros": [
+    [
+     "канатная дорога рядом",
+     0.5
+    ],
+    [
+     "близко к аэропорту",
+     0.4
+    ],
+    [
+     "детский клуб",
+     0.3
+    ]
+   ],
+   "cons": [
+    [
+     "много туристов",
+     0.25
+    ]
+   ]
+  },
+  {
+   "id": "h_alt_04",
+   "name": "Горно-Алтайск Кедр",
+   "dest": "altai",
+   "stars": 3,
+   "lat": 51.958,
+   "lon": 85.96,
+   "area": "Горно-Алтайск",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 3800,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "city",
+   "center": 0.6,
+   "nature": 0.5,
+   "cancel_days": 1,
+   "pets": true,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.1,
+   "reviews": 190,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Недорогая база в городе для поездок по Чуйскому тракту.",
+   "pros": [
+    [
+     "дёшево",
+     0.55
+    ],
+    [
+     "удобно ехать на маршруты",
+     0.38
+    ]
+   ],
+   "cons": [
+    [
+     "не на природе",
+     0.33
+    ]
+   ]
+  },
+  {
+   "id": "h_kar_01",
+   "name": "Онего Шхеры Резорт",
+   "dest": "karelia",
+   "stars": 4,
+   "lat": 61.812,
+   "lon": 34.39,
+   "area": "берег Онежского озера, Петрозаводск",
+   "beach_line": 0,
+   "meal": "HB",
+   "base": 9900,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "quiet",
+   "center": 0.3,
+   "nature": 0.9,
+   "cancel_days": 5,
+   "pets": true,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 9.0,
+   "reviews": 512,
+   "rooms": [
+    "standard",
+    "deluxe",
+    "cottage",
+    "family"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Отель на берегу Онеги в 15 минутах от вокзала, банный комплекс, лодки на Кижи.",
+   "pros": [
+    [
+     "вид на Онегу",
+     0.58
+    ],
+    [
+     "банный комплекс",
+     0.47
+    ],
+    [
+     "рядом вокзал",
+     0.3
+    ]
+   ],
+   "cons": [
+    [
+     "комары летом",
+     0.22
+    ]
+   ]
+  },
+  {
+   "id": "h_kar_02",
+   "name": "Рускеала Лесные Дома",
+   "dest": "karelia",
+   "stars": 3,
+   "lat": 61.95,
+   "lon": 30.585,
+   "area": "Рускеала, у мраморного каньона",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 7400,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.0,
+   "nature": 1.0,
+   "cancel_days": 3,
+   "pets": true,
+   "checkin": "15:00",
+   "checkout": "11:00",
+   "rating": 8.8,
+   "reviews": 340,
+   "rooms": [
+    "cottage",
+    "family"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "Деревянные дома у мраморного каньона: зиплайн, каяки, пешие тропы. С собаками можно.",
+   "pros": [
+    [
+     "каньон в 5 минутах",
+     0.6
+    ],
+    [
+     "можно с собакой",
+     0.3
+    ]
+   ],
+   "cons": [
+    [
+     "30 км от вокзала",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_kar_03",
+   "name": "Сортавала Ладога Отель",
+   "dest": "karelia",
+   "stars": 4,
+   "lat": 61.703,
+   "lon": 30.69,
+   "area": "Сортавала, центр",
+   "beach_line": 0,
+   "meal": "BB",
+   "base": 6900,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "city",
+   "center": 0.7,
+   "nature": 0.6,
+   "cancel_days": 2,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.6,
+   "reviews": 450,
+   "rooms": [
+    "standard",
+    "comfort",
+    "deluxe"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "У вокзала Сортавалы: удобно на «Ласточке» из Петербурга, рядом причал на Валаам.",
+   "pros": [
+    [
+     "рядом вокзал и причал",
+     0.55
+    ],
+    [
+     "сауна",
+     0.3
+    ]
+   ],
+   "cons": [
+    [
+     "простые завтраки",
+     0.25
+    ]
+   ]
+  },
+  {
+   "id": "h_kar_04",
+   "name": "Карельская Усадьба Кондопога",
+   "dest": "karelia",
+   "stars": 4,
+   "lat": 62.2,
+   "lon": 34.27,
+   "area": "Кондопожский район",
+   "beach_line": 0,
+   "meal": "FB",
+   "base": 10800,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "family",
+   "center": 0.0,
+   "nature": 1.0,
+   "cancel_days": 7,
+   "pets": true,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 9.1,
+   "reviews": 288,
+   "rooms": [
+    "family",
+    "cottage",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Усадьба с хаски-фермой, рыбалкой и детской программой, трёхразовое питание.",
+   "pros": [
+    [
+     "хаски-ферма",
+     0.5
+    ],
+    [
+     "детская программа",
+     0.4
+    ],
+    [
+     "питание включено",
+     0.36
+    ]
+   ],
+   "cons": [
+    [
+     "час от Петрозаводска",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_ssh_01",
+   "name": "Наама Бэй Риф Резорт",
+   "dest": "sharm",
+   "stars": 5,
+   "lat": 27.912,
+   "lon": 34.33,
+   "area": "Наама-Бэй",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 12500,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "family",
+   "center": 0.6,
+   "nature": 0.5,
+   "cancel_days": 7,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 9.0,
+   "reviews": 1430,
+   "rooms": [
+    "standard",
+    "deluxe_sea",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Свой риф с понтоном в бухте Наама: снорклинг прямо от пляжа, детский клуб и всё включено.",
+   "pros": [
+    [
+     "риф у понтона",
+     0.66
+    ],
+    [
+     "детский клуб",
+     0.41
+    ],
+    [
+     "рядом променад Наама-Бэй",
+     0.38
+    ]
+   ],
+   "cons": [
+    [
+     "пляж маленький, занимают лежаки",
+     0.24
+    ],
+    [
+     "шумно вечером от променада",
+     0.18
+    ]
+   ]
+  },
+  {
+   "id": "h_ssh_02",
+   "name": "Шаркс Бэй Дайв Лодж",
+   "dest": "sharm",
+   "stars": 4,
+   "lat": 27.957,
+   "lon": 34.37,
+   "area": "Шаркс-Бэй",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 8200,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.2,
+   "nature": 0.8,
+   "cancel_days": 5,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.7,
+   "reviews": 860,
+   "rooms": [
+    "standard",
+    "comfort",
+    "deluxe_sea"
+   ],
+   "early_checkin": false,
+   "shuttle": true,
+   "desc": "Отель для дайверов: дайв-центр на территории, лодки к Рас-Мохаммеду и тихая бухта.",
+   "pros": [
+    [
+     "дайв-центр и риф",
+     0.6
+    ],
+    [
+     "тихая бухта",
+     0.42
+    ]
+   ],
+   "cons": [
+    [
+     "скромная анимация",
+     0.27
+    ],
+    [
+     "далеко от центра",
+     0.22
+    ]
+   ]
+  },
+  {
+   "id": "h_ssh_03",
+   "name": "Старый Рынок Шарм Инн",
+   "dest": "sharm",
+   "stars": 3,
+   "lat": 27.862,
+   "lon": 34.29,
+   "area": "Старый город",
+   "beach_line": 3,
+   "meal": "BB",
+   "base": 4300,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "city",
+   "center": 0.9,
+   "nature": 0.1,
+   "cancel_days": 1,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 7.9,
+   "reviews": 410,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Недорогой отель у Старого рынка, на пляж — шаттлом. Хорош для экскурсий.",
+   "pros": [
+    [
+     "дёшево",
+     0.58
+    ],
+    [
+     "рядом рынок и кафе",
+     0.44
+    ]
+   ],
+   "cons": [
+    [
+     "пляж только шаттлом",
+     0.4
+    ],
+    [
+     "простые номера",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_aly_01",
+   "name": "Клеопатра Бич Палас",
+   "dest": "alanya",
+   "stars": 5,
+   "lat": 36.548,
+   "lon": 31.983,
+   "area": "пляж Клеопатры",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 13000,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "family",
+   "center": 0.7,
+   "nature": 0.3,
+   "cancel_days": 7,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 9.0,
+   "reviews": 1210,
+   "rooms": [
+    "standard",
+    "deluxe_sea",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "На знаменитом песчаном пляже Клеопатры, аквапарк и мини-клуб, до центра Аланьи пешком.",
+   "pros": [
+    [
+     "песчаный пляж Клеопатры",
+     0.63
+    ],
+    [
+     "аквапарк",
+     0.45
+    ],
+    [
+     "близко к центру",
+     0.39
+    ]
+   ],
+   "cons": [
+    [
+     "много людей на пляже",
+     0.25
+    ],
+    [
+     "платные шезлонги у моря",
+     0.16
+    ]
+   ]
+  },
+  {
+   "id": "h_aly_02",
+   "name": "Конаклы Санрайз Клаб",
+   "dest": "alanya",
+   "stars": 4,
+   "lat": 36.586,
+   "lon": 31.89,
+   "area": "Конаклы",
+   "beach_line": 2,
+   "meal": "AI",
+   "base": 7800,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.3,
+   "nature": 0.3,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.4,
+   "reviews": 760,
+   "rooms": [
+    "standard",
+    "comfort",
+    "family"
+   ],
+   "early_checkin": false,
+   "shuttle": true,
+   "desc": "Клубный отель с вечеринками у бассейна и водными горками, до моря через дорогу.",
+   "pros": [
+    [
+     "анимация и вечеринки",
+     0.5
+    ],
+    [
+     "цена для всё включено",
+     0.46
+    ]
+   ],
+   "cons": [
+    [
+     "до моря через дорогу",
+     0.31
+    ],
+    [
+     "шумно ночью",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_aly_03",
+   "name": "Аланья Касл Бутик",
+   "dest": "alanya",
+   "stars": 3,
+   "lat": 36.537,
+   "lon": 32.0,
+   "area": "под крепостью",
+   "beach_line": 2,
+   "meal": "BB",
+   "base": 4200,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "city",
+   "center": 0.85,
+   "nature": 0.3,
+   "cancel_days": 2,
+   "pets": true,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.5,
+   "reviews": 340,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Маленький бутик-отель под крепостью, гавань и пляж в пяти минутах. Можно с собакой.",
+   "pros": [
+    [
+     "атмосферная гавань",
+     0.5
+    ],
+    [
+     "можно с питомцем",
+     0.24
+    ]
+   ],
+   "cons": [
+    [
+     "только завтраки",
+     0.3
+    ],
+    [
+     "крутые улочки",
+     0.22
+    ]
+   ]
+  },
+  {
+   "id": "h_tun_01",
+   "name": "Монастир Таласса Палас",
+   "dest": "tunisia",
+   "stars": 5,
+   "lat": 35.777,
+   "lon": 10.83,
+   "area": "Скане, Монастир",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 9800,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "quiet",
+   "center": 0.3,
+   "nature": 0.4,
+   "cancel_days": 7,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.9,
+   "reviews": 690,
+   "rooms": [
+    "standard",
+    "deluxe_sea",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Центр талассотерапии и широкий песчаный пляж, спокойная взрослая атмосфера.",
+   "pros": [
+    [
+     "талассо-центр",
+     0.58
+    ],
+    [
+     "широкий пляж",
+     0.5
+    ]
+   ],
+   "cons": [
+    [
+     "водоросли у берега в сентябре",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "h_tun_02",
+   "name": "Сусс Голден Сэндс",
+   "dest": "tunisia",
+   "stars": 4,
+   "lat": 35.85,
+   "lon": 10.602,
+   "area": "Сусс",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 6200,
+   "kids_club": true,
+   "spa": false,
+   "vibe": "family",
+   "center": 0.6,
+   "nature": 0.2,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.3,
+   "reviews": 980,
+   "rooms": [
+    "standard",
+    "family"
+   ],
+   "early_checkin": false,
+   "shuttle": true,
+   "desc": "Семейный отель на песке в Суссе: мелкий вход в море, детский клуб, медина рядом.",
+   "pros": [
+    [
+     "мелкое море для детей",
+     0.55
+    ],
+    [
+     "недорого",
+     0.48
+    ]
+   ],
+   "cons": [
+    [
+     "еда однообразная",
+     0.28
+    ]
+   ]
+  },
+  {
+   "id": "h_tun_03",
+   "name": "Порт-эль-Кантауи Марина Инн",
+   "dest": "tunisia",
+   "stars": 3,
+   "lat": 35.892,
+   "lon": 10.597,
+   "area": "Порт-эль-Кантауи",
+   "beach_line": 2,
+   "meal": "HB",
+   "base": 3600,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.7,
+   "nature": 0.2,
+   "cancel_days": 1,
+   "pets": true,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.0,
+   "reviews": 300,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "У яхтенной марины: гольф, дайвинг, кафе — и бюджетная цена. С собаками можно.",
+   "pros": [
+    [
+     "марина и кафе",
+     0.5
+    ],
+    [
+     "дёшево",
+     0.5
+    ]
+   ],
+   "cons": [
+    [
+     "старые номера",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_hkt_01",
+   "name": "Ката Ной Клифф Резорт",
+   "dest": "phuket",
+   "stars": 5,
+   "lat": 7.809,
+   "lon": 98.298,
+   "area": "Ката-Ной",
+   "beach_line": 1,
+   "meal": "BB",
+   "base": 16500,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "quiet",
+   "center": 0.2,
+   "nature": 0.8,
+   "cancel_days": 7,
+   "pets": false,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 9.3,
+   "reviews": 1120,
+   "rooms": [
+    "deluxe",
+    "deluxe_sea",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Резорт на скале над тихим пляжем Ката-Ной, инфинити-бассейн и тайский спа.",
+   "pros": [
+    [
+     "вид с инфинити-бассейна",
+     0.62
+    ],
+    [
+     "тихий пляж",
+     0.5
+    ],
+    [
+     "спа",
+     0.4
+    ]
+   ],
+   "cons": [
+    [
+     "крутые лестницы",
+     0.24
+    ],
+    [
+     "волны в сезон дождей",
+     0.18
+    ]
+   ]
+  },
+  {
+   "id": "h_hkt_02",
+   "name": "Карон Бич Гарден",
+   "dest": "phuket",
+   "stars": 4,
+   "lat": 7.843,
+   "lon": 98.297,
+   "area": "Карон",
+   "beach_line": 2,
+   "meal": "BB",
+   "base": 8200,
+   "kids_club": true,
+   "spa": false,
+   "vibe": "family",
+   "center": 0.4,
+   "nature": 0.5,
+   "cancel_days": 5,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.6,
+   "reviews": 1340,
+   "rooms": [
+    "standard",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Семейный отель в саду у пляжа Карон, детский клуб и бассейн с горками.",
+   "pros": [
+    [
+     "бассейн с горками",
+     0.52
+    ],
+    [
+     "детский клуб",
+     0.4
+    ]
+   ],
+   "cons": [
+    [
+     "до пляжа дорога",
+     0.27
+    ]
+   ]
+  },
+  {
+   "id": "h_hkt_03",
+   "name": "Патонг Найт Отель",
+   "dest": "phuket",
+   "stars": 3,
+   "lat": 7.893,
+   "lon": 98.297,
+   "area": "Патонг",
+   "beach_line": 3,
+   "meal": "RO",
+   "base": 3900,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.9,
+   "nature": 0.1,
+   "cancel_days": 0,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 7.8,
+   "reviews": 920,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "Недорого в центре Патонга: Бангла-роуд, рынки и ночная жизнь рядом.",
+   "pros": [
+    [
+     "дёшево",
+     0.6
+    ],
+    [
+     "всё рядом",
+     0.48
+    ]
+   ],
+   "cons": [
+    [
+     "очень шумно ночью",
+     0.42
+    ],
+    [
+     "невозвратный тариф",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_cxr_01",
+   "name": "Камрань Бэй Санрайз",
+   "dest": "nhatrang",
+   "stars": 5,
+   "lat": 12.05,
+   "lon": 109.212,
+   "area": "Бай-Дай, Камрань",
+   "beach_line": 1,
+   "meal": "AI",
+   "base": 11000,
+   "kids_club": true,
+   "spa": true,
+   "vibe": "family",
+   "center": 0.1,
+   "nature": 0.6,
+   "cancel_days": 7,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 9.0,
+   "reviews": 870,
+   "rooms": [
+    "standard",
+    "deluxe_sea",
+    "family",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Всё включено на длинном пляже Бай-Дай, 10 минут от аэропорта, детский клуб.",
+   "pros": [
+    [
+     "огромный пустой пляж",
+     0.55
+    ],
+    [
+     "близко к аэропорту",
+     0.44
+    ]
+   ],
+   "cons": [
+    [
+     "далеко от города — 40 минут",
+     0.33
+    ]
+   ]
+  },
+  {
+   "id": "h_cxr_02",
+   "name": "Нячанг Ривьера Сити",
+   "dest": "nhatrang",
+   "stars": 4,
+   "lat": 12.24,
+   "lon": 109.196,
+   "area": "набережная Чан Фу",
+   "beach_line": 1,
+   "meal": "BB",
+   "base": 5200,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "city",
+   "center": 0.95,
+   "nature": 0.2,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.5,
+   "reviews": 1500,
+   "rooms": [
+    "standard",
+    "deluxe_sea",
+    "family"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Высотка на набережной с видом на залив, рестораны и рынки вокруг.",
+   "pros": [
+    [
+     "вид на залив",
+     0.58
+    ],
+    [
+     "центр города",
+     0.5
+    ]
+   ],
+   "cons": [
+    [
+     "городской пляж с волнами",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_cxr_03",
+   "name": "Тран Фу Бутик",
+   "dest": "nhatrang",
+   "stars": 3,
+   "lat": 12.235,
+   "lon": 109.194,
+   "area": "центр Нячанга",
+   "beach_line": 2,
+   "meal": "BB",
+   "base": 2600,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "city",
+   "center": 0.9,
+   "nature": 0.1,
+   "cancel_days": 1,
+   "pets": true,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.2,
+   "reviews": 460,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Бюджетный бутик-отель в двух кварталах от моря, можно с небольшими собаками.",
+   "pros": [
+    [
+     "очень недорого",
+     0.6
+    ],
+    [
+     "рядом пляж",
+     0.4
+    ]
+   ],
+   "cons": [
+    [
+     "маленькие номера",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_mle_01",
+   "name": "Атолл Лагуна Вилла",
+   "dest": "maldives",
+   "stars": 5,
+   "lat": 4.0,
+   "lon": 73.4,
+   "area": "атолл Южный Мале",
+   "beach_line": 1,
+   "meal": "FB",
+   "base": 52000,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "quiet",
+   "center": 0.0,
+   "nature": 1.0,
+   "cancel_days": 14,
+   "pets": false,
+   "checkin": "15:00",
+   "checkout": "12:00",
+   "rating": 9.6,
+   "reviews": 520,
+   "rooms": [
+    "water_villa",
+    "deluxe_sea",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Виллы над лагуной, хаус-риф с черепахами, полный пансион и спа над водой.",
+   "pros": [
+    [
+     "вилла над водой",
+     0.7
+    ],
+    [
+     "хаус-риф",
+     0.55
+    ],
+    [
+     "тишина",
+     0.5
+    ]
+   ],
+   "cons": [
+    [
+     "дорого всё на острове",
+     0.35
+    ],
+    [
+     "трансфер на катере",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "h_mle_02",
+   "name": "Коралл Айленд Резорт",
+   "dest": "maldives",
+   "stars": 4,
+   "lat": 4.3,
+   "lon": 73.6,
+   "area": "атолл Северный Мале",
+   "beach_line": 1,
+   "meal": "HB",
+   "base": 28000,
+   "kids_club": true,
+   "spa": false,
+   "vibe": "family",
+   "center": 0.0,
+   "nature": 0.9,
+   "cancel_days": 7,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 9.0,
+   "reviews": 640,
+   "rooms": [
+    "deluxe_sea",
+    "family",
+    "water_villa"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Семейный остров-отель с детским клубом и мелкой лагуной, 30 минут на катере.",
+   "pros": [
+    [
+     "мелкая лагуна для детей",
+     0.55
+    ],
+    [
+     "детский клуб",
+     0.4
+    ]
+   ],
+   "cons": [
+    [
+     "ужин за доплату",
+     0.25
+    ]
+   ]
+  },
+  {
+   "id": "h_mle_03",
+   "name": "Маафуши Бич Гестхаус",
+   "dest": "maldives",
+   "stars": 3,
+   "lat": 3.942,
+   "lon": 73.49,
+   "area": "остров Маафуши",
+   "beach_line": 1,
+   "meal": "BB",
+   "base": 8500,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.3,
+   "nature": 0.7,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.4,
+   "reviews": 780,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "Бюджетные Мальдивы на местном острове: бикини-пляж, экскурсии к мантам и сэндбанкам.",
+   "pros": [
+    [
+     "доступная цена",
+     0.6
+    ],
+    [
+     "экскурсии к мантам",
+     0.45
+    ]
+   ],
+   "cons": [
+    [
+     "на острове нет алкоголя",
+     0.3
+    ],
+    [
+     "скромные номера",
+     0.25
+    ]
+   ]
+  },
+  {
+   "id": "h_goi_01",
+   "name": "Южный Гоа Пальм Резорт",
+   "dest": "goa",
+   "stars": 5,
+   "lat": 15.2,
+   "lon": 73.93,
+   "area": "Кавелоссим, Южный Гоа",
+   "beach_line": 1,
+   "meal": "BB",
+   "base": 14000,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "quiet",
+   "center": 0.1,
+   "nature": 0.8,
+   "cancel_days": 7,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 9.1,
+   "reviews": 610,
+   "rooms": [
+    "deluxe",
+    "deluxe_sea",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Пальмовый резорт на пустом пляже Южного Гоа, аюрведический спа и йога.",
+   "pros": [
+    [
+     "пустой пляж",
+     0.58
+    ],
+    [
+     "аюрведа и йога",
+     0.45
+    ]
+   ],
+   "cons": [
+    [
+     "далеко от тусовок",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "h_goi_02",
+   "name": "Колва Сэндс",
+   "dest": "goa",
+   "stars": 4,
+   "lat": 15.27,
+   "lon": 73.918,
+   "area": "Колва",
+   "beach_line": 2,
+   "meal": "BB",
+   "base": 6300,
+   "kids_club": true,
+   "spa": false,
+   "vibe": "family",
+   "center": 0.4,
+   "nature": 0.5,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.3,
+   "reviews": 720,
+   "rooms": [
+    "standard",
+    "family"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Семейный отель у пляжа Колва, бассейн и детская площадка, рыбный рынок рядом.",
+   "pros": [
+    [
+     "хорошее соотношение цены",
+     0.5
+    ],
+    [
+     "бассейн",
+     0.4
+    ]
+   ],
+   "cons": [
+    [
+     "шумные соседи-кафе",
+     0.25
+    ]
+   ]
+  },
+  {
+   "id": "h_goi_03",
+   "name": "Арамболь Сансет Хижины",
+   "dest": "goa",
+   "stars": 3,
+   "lat": 15.687,
+   "lon": 73.704,
+   "area": "Арамболь, Северный Гоа",
+   "beach_line": 1,
+   "meal": "RO",
+   "base": 2400,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.3,
+   "nature": 0.6,
+   "cancel_days": 0,
+   "pets": true,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.1,
+   "reviews": 540,
+   "rooms": [
+    "cottage",
+    "standard"
+   ],
+   "early_checkin": false,
+   "shuttle": false,
+   "desc": "Бунгало на песке Арамболя: закаты, барабаны, йога-ретриты. С собаками можно.",
+   "pros": [
+    [
+     "закаты и атмосфера",
+     0.6
+    ],
+    [
+     "очень дёшево",
+     0.55
+    ]
+   ],
+   "cons": [
+    [
+     "простые бунгало",
+     0.35
+    ],
+    [
+     "невозвратно",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_cmb_01",
+   "name": "Унаватуна Бэй Резорт",
+   "dest": "srilanka",
+   "stars": 5,
+   "lat": 6.012,
+   "lon": 80.25,
+   "area": "Унаватуна",
+   "beach_line": 1,
+   "meal": "HB",
+   "base": 12800,
+   "kids_club": false,
+   "spa": true,
+   "vibe": "quiet",
+   "center": 0.2,
+   "nature": 0.8,
+   "cancel_days": 7,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 9.1,
+   "reviews": 580,
+   "rooms": [
+    "deluxe",
+    "deluxe_sea",
+    "suite"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Тихая бухта Унаватуны: спокойное море, аюрведа и форт Галле в 15 минутах.",
+   "pros": [
+    [
+     "спокойная бухта",
+     0.55
+    ],
+    [
+     "аюрведа-спа",
+     0.4
+    ]
+   ],
+   "cons": [
+    [
+     "4 часа трансфер из Коломбо",
+     0.33
+    ]
+   ]
+  },
+  {
+   "id": "h_cmb_02",
+   "name": "Хиккадува Тёртл Бич",
+   "dest": "srilanka",
+   "stars": 4,
+   "lat": 6.139,
+   "lon": 80.101,
+   "area": "Хиккадува",
+   "beach_line": 1,
+   "meal": "BB",
+   "base": 6900,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "active",
+   "center": 0.6,
+   "nature": 0.6,
+   "cancel_days": 3,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.5,
+   "reviews": 820,
+   "rooms": [
+    "standard",
+    "deluxe_sea",
+    "family"
+   ],
+   "early_checkin": true,
+   "shuttle": true,
+   "desc": "Сёрф-спот и черепахи у берега, бары на пляже, сёрф-школа рядом.",
+   "pros": [
+    [
+     "черепахи у берега",
+     0.55
+    ],
+    [
+     "сёрфинг",
+     0.45
+    ]
+   ],
+   "cons": [
+    [
+     "волны — купаться с детьми сложно",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "h_cmb_03",
+   "name": "Галле Форт Гестхаус",
+   "dest": "srilanka",
+   "stars": 3,
+   "lat": 6.027,
+   "lon": 80.217,
+   "area": "форт Галле",
+   "beach_line": 3,
+   "meal": "BB",
+   "base": 3100,
+   "kids_club": false,
+   "spa": false,
+   "vibe": "city",
+   "center": 0.9,
+   "nature": 0.3,
+   "cancel_days": 1,
+   "pets": false,
+   "checkin": "14:00",
+   "checkout": "12:00",
+   "rating": 8.6,
+   "reviews": 390,
+   "rooms": [
+    "standard",
+    "comfort"
+   ],
+   "early_checkin": true,
+   "shuttle": false,
+   "desc": "Колониальный дом внутри форта Галле: кафе, галереи и маяк — пляж в 10 минутах.",
+   "pros": [
+    [
+     "атмосфера форта",
+     0.6
+    ],
+    [
+     "недорого",
+     0.45
+    ]
+   ],
+   "cons": [
+    [
+     "до пляжа на тук-туке",
+     0.3
+    ]
+   ]
+  }
+ ]
 }
